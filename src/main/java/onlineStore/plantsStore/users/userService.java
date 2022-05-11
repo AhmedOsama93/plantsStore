@@ -21,23 +21,23 @@ public class userService {
     }
 
     public void suspendUser(String email){
-        users  user = usersRepository.findusersByEmail2(email);
+        users  user = usersRepository.findusersByEmail(email);
         if(user.isActive()==false){
             user.setActive(true);
         }
         else{
             user.setActive(false);
-            System.out.println(user.isActive());
         }
+        usersRepository.save(user);
     }
-    public void addNewUser(users user) {
-        Optional<users> userIptional = usersRepository.findusersByEmail(user.getEmail());
 
-        if(userIptional.isPresent()){
+    public void addNewUser(users user) {
+        users user1 = usersRepository.findusersByEmail(user.getEmail());
+
+        if(user1!=null){
             throw new IllegalStateException("email is taken");
         }else {
             usersRepository.save(user);
         }
-        System.out.println(user);
     }
 }
