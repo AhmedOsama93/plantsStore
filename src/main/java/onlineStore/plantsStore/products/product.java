@@ -1,10 +1,11 @@
 package onlineStore.plantsStore.products;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table
-public class product {
+public class product implements Serializable {
     @Id
     @SequenceGenerator(
             name="product_sequence",
@@ -15,12 +16,31 @@ public class product {
             strategy = GenerationType.SEQUENCE,
             generator =  "product_sequence"
     )
+
     private long id;
     private String name;
     private String category;
     private int quantityAvailable=0;
     private double price;
     private boolean active = false;
+
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+        if(obj == null || obj.getClass()!= this.getClass())
+            return true;
+        if(obj == null || obj.getClass()!= this.getClass())
+            return false;
+        product p = (product) obj;
+        return (p.id == this.id);
+    }
+    @Override
+    public int hashCode()
+    {
+        return (int) this.id;
+    }
 
     public product() {
 

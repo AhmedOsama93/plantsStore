@@ -1,10 +1,12 @@
 package onlineStore.plantsStore.users;
-
+import onlineStore.plantsStore.products.product;
 import javax.persistence.*;
+import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table
-public class users {
+public class users implements Serializable {
     @Id
     @SequenceGenerator(
             name="user_sequence",
@@ -15,15 +17,35 @@ public class users {
             strategy = GenerationType.SEQUENCE,
             generator =  "user_sequence"
     )
+
     private long id;
     private String fName;
     private String lName;
     private String email;
     private String password;
+    @ManyToMany
+    private Set<product> cart;
 
     private boolean isAdmin=false;
     private boolean isSeller=false;
     private boolean isActive=false;
+
+    @Override
+    public boolean equals(Object obj)
+    {
+        if(this == obj)
+            if(obj == null || obj.getClass()!= this.getClass())
+                return true;
+        if(obj == null || obj.getClass()!= this.getClass())
+            return false;
+        users p = (users) obj;
+        return (p.id == this.id);
+    }
+    @Override
+    public int hashCode()
+    {
+        return (int) this.id;
+    }
 
     public users() {
         
