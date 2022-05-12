@@ -13,6 +13,16 @@ public class userController {
     public userController(onlineStore.plantsStore.users.userService userService) {
         this.userService = userService;
     }
+    //    *********************************************************************************************
+    //                                             test api
+    //    *********************************************************************************************
+
+    @GetMapping(path="api/home")
+    public String ex1(){
+        return "Hello World";
+    }
+
+    //    *********************************************************************************************
 
     @GetMapping(path="api/user/getUsers")
     public List<users> getUsers(){

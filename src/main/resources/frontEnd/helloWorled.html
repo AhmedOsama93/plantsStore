@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script >
+        //    ===========================================================================================
+        //                                example 1 : getting string form the api
+        //    ===========================================================================================
+        const api = "http://localhost:8081/api/home";
+        async function testFn1(){
+            const response1 = await fetch(api);
+            const data1= await response1.text();
+            document.getElementById("EX1").textContent= data1;
+        }
+        testFn1();
+        //    ===========================================================================================
+        //                                example 2 : getting ONE json object form the api
+        //    ===========================================================================================
+        const api2 = "https://api.wheretheiss.at/v1/satellites/25544";
+        async function helloFn2(){
+            const response2 = await fetch(api2);
+            const data2= await response2.json();
+            const{latitude,longtiude}=data2;
+            console.log(latitude);
+            console.log(longtiude);
+            document.getElementById("EX2").textContent= latitude;
+        }
+        helloFn2();
+        //    ===========================================================================================
+        //                                example 3 : getting an array of json object form the api
+        //    ===========================================================================================
+
+        const api3 = "http://localhost:8081/api/user/getUsers";
+        async function helloFn3(){
+            const response3 = await fetch(api3);
+            const data3= await response3.json();
+            const{fName,email}=data3[0];
+            console.log(fName);
+            console.log(email);
+            document.getElementById("EX3").textContent= fName;
+        }
+        helloFn3();
+    //    *********************************************************************************************
+
+    </script>
+</head>
+<body>
+
+    <div id = "EX1"></div>
+    <br>
+    <div id = "EX2"></div>
+    <br>
+    <div id = "EX3"></div>
+
+
+</body>
+</html>
