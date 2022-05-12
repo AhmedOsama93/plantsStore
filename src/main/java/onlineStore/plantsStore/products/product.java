@@ -103,6 +103,7 @@ public class product implements Serializable {
         this.active = active;
     }
 
+
     @Override
     public String toString() {
         return "product{" +

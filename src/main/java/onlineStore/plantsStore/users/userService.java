@@ -40,4 +40,8 @@ public class userService {
             usersRepository.save(user);
         }
     }
+
+    public void editUserForAdmins(users user){
+        usersRepository.save(user);
+    }
 }

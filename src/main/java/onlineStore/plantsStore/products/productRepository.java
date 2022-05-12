@@ -10,4 +10,7 @@ import java.util.Optional;
 public interface productRepository extends JpaRepository<product,Long> {
     @Query("select p from product p where p.name=?1")
     Optional<product> findproductsByName(String name);
+
+    @Query("select p from product p where p.id=?1")
+    product findproductsByID(long id);
 }

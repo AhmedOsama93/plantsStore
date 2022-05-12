@@ -30,4 +30,7 @@ public class productService {
         System.out.println(product);
     }
 
+    public void editProduct(product product){
+        productRepository.save(product);
+    }
 }

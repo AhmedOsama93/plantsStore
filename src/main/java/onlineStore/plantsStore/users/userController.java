@@ -29,5 +29,10 @@ public class userController {
         userService.suspendUser(email);
     }
 
+    @PostMapping(path="api/user/editUserForAdmin")
+    public void editUserForAdmins(@RequestBody users user){
+        userService.editUserForAdmins(user);
+    }
+
 
 }
