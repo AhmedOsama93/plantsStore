@@ -1,7 +1,11 @@
 package onlineStore.plantsStore.cart;
 
+import onlineStore.plantsStore.products.product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class cartService {
@@ -21,5 +25,8 @@ public class cartService {
             c1.setQuantity(c1.getQuantity()+quantity);
         }
         cartRepository.save(c1);
+    }
+    public List<cartItem> getCartItemsForUser(long userId){
+        return cartRepository.getCartItemsForUser(userId);
     }
 }
