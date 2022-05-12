@@ -18,8 +18,8 @@ public class productController {
     @GetMapping(path="api/product/getProduct")
     public List<product> getProduct(){return productService.getProducts();}
 
-    @PostMapping(path="api/product/addNewProduct")
-    public void addNewProduct(@RequestBody product product){
+    @PostMapping(path="api/product/addNewProduct" )
+    public void addNewProduct(@ModelAttribute  product product){
         productService.addNewProduct(product);
     }
 

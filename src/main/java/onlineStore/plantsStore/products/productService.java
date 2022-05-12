@@ -21,10 +21,16 @@ public class productService {
     }
 
     public void addNewProduct(product product){
-        Optional<product> productOptional = productRepository.findproductsByName(product.getName());
-        if(productOptional.isPresent()){
+        product product1 = productRepository.findproductsByName(product.getName());
+        if(product1!=null){
             throw new IllegalStateException("product name already exists");
         }else {
+            if(product.getSeason().equals("\"")||product.getSeason().equals(",")||product.getSeason().equals("")){
+                product.setSeason(null);
+            }
+            if(product.getSoil().equals("\"")||product.getSoil().equals(",")||product.getSoil().equals("")){
+                product.setSoil(null);
+            }
             productRepository.save(product);
         }
         System.out.println(product);

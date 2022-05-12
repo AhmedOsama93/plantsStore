@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>users</title>
+    //script to add side menu
+    <script type="text/javascript" src="adminHeader.js"></script>
+
+    <style>
+        body{
+            background:#F1F1F1
+        }
+        table {
+            font-family: arial, sans-serif;
+            background: #ffffff;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #90EE90;
+        }
+    </style>
+    <script type="text/javascript">
+        listAllUsers();
+
+        function listAllUsers() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "http://localhost:8081/api/user/getUsers", true);
+            xhttp.send();
+
+            xhttp.onreadystatechange = function () {
+                var tbody = document.getElementById("usersTable").querySelector("tbody");
+                tbody.innerHTML = "";
+                if (this.readyState == 4 && this.status == 200) {
+                    JSON.parse(this.responseText).forEach(function (data, index) {
+                        tbody.innerHTML +=
+                            "<tr><td>" + data.id + "</td>" +
+                            "<td>" + data.fName + "</td>" +
+                            "<td>" + data.lName + "</td>" +
+                            "<td>" + data.email + "</td>" +
+                            "<td>" + data.password + "</td>" +
+                            "<td>" + data.admin + "</td>" +
+                            "<td>" + data.active + "</td></tr>"
+
+                        ;
+                    });
+                }
+                console.log(xhttp);
+            };
+        }
+    </script>
+</head>
+<body>
+<!--        div for side menu-->
+<div id="header"></div>
+
+<div class="main">
+    <h2>Users:</h2>
+
+    <table id="usersTable">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>first name</th>
+            <th>last name</th>
+            <th>email</th>
+            <th>password</th>
+            <th>admin</th>
+            <th>active</th>
+        </tr>
+        </thead>
+        <tbody>
+
+
+        </tbody>
+
+    </table>
+</div>
+
+
+</body>
+</html>
+

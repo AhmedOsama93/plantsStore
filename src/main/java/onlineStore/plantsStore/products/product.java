@@ -22,6 +22,8 @@ public class product implements Serializable {
     private String category;
     private int quantityAvailable=0;
     private double price;
+    private String season;
+    private String soil;
     private boolean active = false;
 
 
@@ -91,6 +93,33 @@ public class product implements Serializable {
     }
 
     public void setActive(boolean active) {
+        this.active = active;
+    }
+
+    public void setSeason(String season) {
+        this.season = season;
+    }
+
+    public void setSoil(String soil) {
+        this.soil = soil;
+    }
+
+    public String getSeason() {
+        return season;
+    }
+
+    public String getSoil() {
+        return soil;
+    }
+
+    public product(long id, String name, String category, int quantityAvailable, double price, String season, String soil, boolean active) {
+        this.id = id;
+        this.name = name;
+        this.category = category;
+        this.quantityAvailable = quantityAvailable;
+        this.price = price;
+        this.season = season;
+        this.soil = soil;
         this.active = active;
     }
 

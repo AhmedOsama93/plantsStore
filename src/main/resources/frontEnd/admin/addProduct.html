@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>addProduct</title>
+    <script type="text/javascript" src="adminHeader.js"></script>
+    <script>
+
+       function myFunction() {
+           var x = document.getElementById("select").value;
+           if(x==="plants")
+           document.getElementById("plantOptions").style.display="inline-block";
+           else
+               document.getElementById("plantOptions").style.display="none";
+
+       }
+    </script>
+    <style>
+
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    <div class="main">
+<!--        th:action="http://localhost:8081/api/product/addNewProduct"-->
+        <form action="http://localhost:8081/api/product/addNewProduct"  method="POST">
+            <label>product name:</label>
+           <input name="name" type="text">
+            <br>
+            <br>
+
+            <label>Category:</label>
+            <select name="category" id="select" onchange="myFunction()">
+                <option></option>
+                <option value="plants">plants</option>
+                <option value="tools">tools</option>
+                <option value="fertilizers">fertilizers</option>
+            </select>
+            <br>
+            <br>
+
+            <label>available quantity:</label>
+            <input name="quantityAvailable" type="number">
+            <br>
+            <br>
+
+            <label>Price:</label>
+            <input name="price" type="number">
+            <br>
+            <br>
+
+            <p id="plantOptions" style="display: none" >
+                <label>season:</label>
+                <select name="season">
+                    <option></option>
+                    <option value="summer">summer</option>
+                    <option value="winter">winter</option>
+                    <option value="autumn">autumn</option>
+                    <option value="spring">spring</option>
+                </select>
+                <br>
+                <br>
+                <label>soil:</label>
+                <select name="soil">
+                    <option></option>
+                    <option value="Sandy soil">Sandy soil</option>
+                    <option value="Clay Soil">Clay Soil</option>
+                    <option value="Silt Soil">Silt Soil</option>
+                    <option value="Peat Soi">Peat Soi</option>
+                    <option value="Chalk Soil">Chalk Soil</option>
+                    <option value="CLoam Soi">Loam Soi</option>
+                </select>
+            </p>
+
+            <br>
+            <input type="submit"  value="add product">
+        </form >
+        <br>
+        <button onclick="window.location.href='products.html'">cancel</button>
+    </div>
+
+</body>
+</html>
