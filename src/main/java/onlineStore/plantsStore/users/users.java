@@ -28,7 +28,7 @@ public class users implements Serializable {
     private long id;
     private String fName;
     private String lName;
-    private String email;
+    private String username;
     private String password;
     @ManyToMany
     private Set<product> cart;
@@ -73,8 +73,8 @@ public class users implements Serializable {
         return lName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
     public String getPassword() {
@@ -101,8 +101,8 @@ public class users implements Serializable {
         this.lName = lName;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String email) {
+        this.username = email;
     }
 
     public void setPassword(String password) {
@@ -117,18 +117,18 @@ public class users implements Serializable {
         isActive = active;
     }
 
-    public users(String fName, String lName, String email, String password) {
+    public users(String fName, String lName, String username, String password) {
         this.fName = fName;
         this.lName = lName;
-        this.email = email;
+        this.username = username;
         this.password = password;
     }
 
-    public users(long id, String fName, String lName, String email, String password, boolean isAdmin, boolean isActive) {
+    public users(long id, String fName, String lName, String username, String password, boolean isAdmin, boolean isActive) {
         this.id = id;
         this.fName = fName;
         this.lName = lName;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
         this.isActive = isActive;
@@ -140,7 +140,7 @@ public class users implements Serializable {
                 "id=" + id +
                 ", fName='" + fName + '\'' +
                 ", lName='" + lName + '\'' +
-                ", email='" + email + '\'' +
+                ", email='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", isAdmin=" + isAdmin +
                 ", isActive=" + isActive +

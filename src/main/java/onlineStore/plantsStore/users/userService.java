@@ -1,15 +1,13 @@
 package onlineStore.plantsStore.users;
 
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
-import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import onlineStore.plantsStore.Role.Role;
-import onlineStore.plantsStore.Role.roleRepo;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,6 +24,7 @@ public class userService  implements UserDetailsService {
 
     private final usersRepository usersRepository;
     private final onlineStore.plantsStore.Role.roleRepo roleRepo;
+    private final PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
@@ -38,7 +37,7 @@ public class userService  implements UserDetailsService {
         }
         Collection<SimpleGrantedAuthority>authorities=new ArrayList<>();
         user.getRoles().forEach(role -> {authorities.add(new SimpleGrantedAuthority(role.getName()));});
-        return new org.springframework.security.core.userdetails.User(user.getEmail(),user.getPassword(),authorities);
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),user.getPassword(),authorities);
     }
 
     public List<users> getUsers(){
@@ -65,11 +64,12 @@ public class userService  implements UserDetailsService {
     }
 
     public users addNewUser(users user) {
-        users user1 = usersRepository.findusersByEmail(user.getEmail());
+        users user1 = usersRepository.findusersByEmail(user.getUsername());
 
         if(user1!=null){
             throw new IllegalStateException("email is taken");
         }else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
             return usersRepository.save(user);
         }
     }

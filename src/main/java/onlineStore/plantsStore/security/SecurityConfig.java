@@ -1,5 +1,5 @@
 package onlineStore.plantsStore.security;
-
+import onlineStore.plantsStore.PlantsStoreApplication;
 import lombok.RequiredArgsConstructor;
 import onlineStore.plantsStore.filter.CustomAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
