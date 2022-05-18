@@ -16,6 +16,7 @@ public class roleConfig {
             Role role=new Role(1,"ROLE_USER");
             Role role2=new Role(2,"ROLE_ADMIN");
             repository.save(role);
+            repository.save(role2);
         };
     }
 }
