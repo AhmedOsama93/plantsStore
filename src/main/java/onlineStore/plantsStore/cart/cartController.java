@@ -20,6 +20,7 @@ public class cartController {
         cartService.addToCart(userID,productID,quantity);
     }
 
+
     //the return type will be changed according to the front end
     @GetMapping(path = "api/cart/getCartItemsForUser/{userID}")
     public List<cartItem> getCartItemsForUser(@PathVariable long userID){

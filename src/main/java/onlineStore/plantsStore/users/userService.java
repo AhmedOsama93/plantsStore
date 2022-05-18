@@ -1,23 +1,33 @@
 package onlineStore.plantsStore.users;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
+import lombok.extern.slf4j.Slf4j;
+import onlineStore.plantsStore.Role.Role;
+import onlineStore.plantsStore.Role.roleRepo;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
+@Transactional
+@Slf4j
+
 public class userService {
 
     private final usersRepository usersRepository;
-
-    @Autowired
-    public userService(onlineStore.plantsStore.users.usersRepository usersRepository) {
-        this.usersRepository = usersRepository;
-    }
+    private final onlineStore.plantsStore.Role.roleRepo roleRepo;
 
     public List<users> getUsers(){
         return  usersRepository.findAll();
+    }
+
+    public void addRoleToUser(String email,String roleName){
+        users user=usersRepository.findusersByEmail(email);
+        Role role=roleRepo.findByName(roleName);
     }
 
     public void suspendUser(String email){
@@ -31,13 +41,13 @@ public class userService {
         usersRepository.save(user);
     }
 
-    public void addNewUser(users user) {
+    public users addNewUser(users user) {
         users user1 = usersRepository.findusersByEmail(user.getEmail());
 
         if(user1!=null){
             throw new IllegalStateException("email is taken");
         }else {
-            usersRepository.save(user);
+            return usersRepository.save(user);
         }
     }
 

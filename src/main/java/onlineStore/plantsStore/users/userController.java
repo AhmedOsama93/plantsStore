@@ -1,18 +1,19 @@
 package onlineStore.plantsStore.users;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.Data;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 public class userController {
     private final userService userService;
 
-    @Autowired
-    public userController(onlineStore.plantsStore.users.userService userService) {
-        this.userService = userService;
-    }
     //    *********************************************************************************************
     //                                            api test
     //    *********************************************************************************************
@@ -25,14 +26,27 @@ public class userController {
     //    *********************************************************************************************
 
     @GetMapping(path="api/user/getUsers")
-    public List<users> getUsers(){
-        return userService.getUsers();
+    public ResponseEntity<List<users>> getUsers(){
+        return ResponseEntity.ok().body(userService.getUsers());
     }
 
+//    @GetMapping(path="api/user/getUsers")
+//    public List<users> getUsers(){
+//        return userService.getUsers();
+//    }
+
     @PostMapping(path="api/user/registerNewUser")
-    public void registerNewUser(@RequestBody users user){
-        userService.addNewUser(user);
+    public ResponseEntity<users> registerNewUser(@RequestBody users user){
+        URI uri= URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/user/registerNewUser").toUriString());
+        return ResponseEntity.created(uri).body(userService.addNewUser(user));
     }
+
+    @PostMapping(path = "/roel/addRoleToUser")
+    public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
+        userService.addRoleToUser(form.getEmail(), form.getRoleName());
+        return ResponseEntity.ok().build();
+    }
+
 
     @PostMapping("api/user/suspend/{email}")
     public void suspend (@PathVariable String email){
@@ -44,5 +58,9 @@ public class userController {
         userService.editUserForAdmins(user);
     }
 
-
+}
+@Data
+class RoleToUserForm{
+    private String email;
+    private String roleName;
 }

@@ -1,10 +1,17 @@
 package onlineStore.plantsStore.users;
+import lombok.Data;
+import onlineStore.plantsStore.Role.Role;
 import onlineStore.plantsStore.products.product;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Set;
 
+import static javax.persistence.FetchType.EAGER;
+
 @Entity
+@Data
 @Table
 public class users implements Serializable {
     @Id
@@ -25,6 +32,9 @@ public class users implements Serializable {
     private String password;
     @ManyToMany
     private Set<product> cart;
+
+    @ManyToMany(fetch =EAGER)
+    private Collection<Role> roles=new ArrayList<>();
 
     private boolean isAdmin=false;
     private boolean isSeller=false;
