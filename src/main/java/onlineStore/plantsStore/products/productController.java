@@ -15,15 +15,15 @@ public class productController {
         this.productService=productService;
     }
 
-    @GetMapping(path="api/product/getProduct")
+    @GetMapping(path="user/getProduct")
     public List<product> getProduct(){return productService.getProducts();}
 
-    @PostMapping(path="api/product/addNewProduct" )
+    @PostMapping(path="admin/addNewProduct" )
     public void addNewProduct(@ModelAttribute  product product){
         productService.addNewProduct(product);
     }
 
-    @PostMapping(path="api/product/editProduct")
+    @PostMapping(path="admin/editProduct")
     public void editProduct(@RequestBody product product) {
         productService.editProduct(product);
     }

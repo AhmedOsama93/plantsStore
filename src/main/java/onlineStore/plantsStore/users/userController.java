@@ -25,7 +25,7 @@ public class userController {
 
     //    *********************************************************************************************
 
-    @GetMapping(path="api/user/getUsers")
+    @GetMapping(path="admin/user/getUsers")
     public ResponseEntity<List<users>> getUsers(){
         return ResponseEntity.ok().body(userService.getUsers());
     }
@@ -35,25 +35,25 @@ public class userController {
 //        return userService.getUsers();
 //    }
 
-    @PostMapping(path="api/user/registerNewUser")
+    @PostMapping(path="visitor/registerNewUser")
     public ResponseEntity<users> registerNewUser(@RequestBody users user){
         URI uri= URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/user/registerNewUser").toUriString());
         return ResponseEntity.created(uri).body(userService.addNewUser(user));
     }
 
-    @PostMapping(path = "/roel/addRoleToUser")
+    @PostMapping(path = "/admin/addRoleToUser")
     public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
         userService.addRoleToUser(form.getEmail(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
 
 
-    @PostMapping("api/user/suspend/{email}")
+    @PostMapping("admin/suspend/{email}")
     public void suspend (@PathVariable String email){
         userService.suspendUser(email);
     }
 
-    @PostMapping(path="api/user/editUserForAdmin")
+    @PostMapping(path="admin/editUserForAdmin")
     public void editUserForAdmins(@RequestBody users user){
         userService.editUserForAdmins(user);
     }

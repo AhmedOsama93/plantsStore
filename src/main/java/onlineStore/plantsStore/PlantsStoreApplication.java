@@ -28,20 +28,21 @@ public class PlantsStoreApplication {
 	CommandLineRunner MaincommandLineRunner(userService userService){
 		return args -> {
 			//take care to change it in each run
-			userService.addNewUser(
-					new users(
-                    5,
-                    "abdo2",
-                    "admin2",
-                    "admin5",
-                    "123",
-                    true,
-                    true
-            )
-			);
-
-
-			userService.addRoleToUser("admin1@gmail.com", "ROLE_ADMIN");
+//			userService.addNewUser(
+//					new users(
+//                    5,
+//                    "abdo2",
+//                    "admin2",
+//                    "admin5",
+//                    "123",
+//                    true,
+//                    true
+//            )
+//			);
+//
+//
+//			userService.addRoleToUser("admin5", "ROLE_ADMIN");
+//			userService.addRoleToUser("admin5", "ROLE_USER");
 			//userService.addRoleToUser("admin", "ROLE_ADMIN");
 		};
 	}

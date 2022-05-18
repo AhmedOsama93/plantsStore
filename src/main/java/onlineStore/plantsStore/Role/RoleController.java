@@ -22,7 +22,7 @@ public class RoleController {
 //        roleService.addNewRole(roleName);
 //    }
 
-    @PostMapping(path="api/role/addNewRole")
+    @PostMapping(path="admin/addNewRole")
     public ResponseEntity<Role> addRole(@RequestBody Role role){
         URI uri= URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/role/addNewRole").toUriString());
         return ResponseEntity.created(uri).body(roleService.addNewRole(role));
