@@ -15,10 +15,10 @@ public class cartService {
     public cartService(cartRepository cartRepository){
         this.cartRepository=cartRepository;
     }
-    public void addToCart(long userID,long productId, int quantity){
-        cart c1 = cartRepository.findcartByUserAndProduct(userID,productId);
+    public void addToCart(String username,long productId, int quantity){
+        cart c1 = cartRepository.findcartByUserAndProduct(username,productId);
         if(c1==null){
-            cartIdentity id1=new cartIdentity(userID,productId);
+            cartIdentity id1=new cartIdentity(username,productId);
             c1 = new cart(id1,quantity);
         }
         else {
@@ -26,7 +26,7 @@ public class cartService {
         }
         cartRepository.save(c1);
     }
-    public List<cartItem> getCartItemsForUser(long userId){
-        return cartRepository.getCartItemsForUser(userId);
+    public List<cartItem> getCartItemsForUser(String username){
+        return cartRepository.getCartItemsForUser(username);
     }
 }

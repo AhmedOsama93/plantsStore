@@ -15,7 +15,7 @@ public class cartConfig {
 
         return args -> {
             cart c = new cart(
-                    new cartIdentity(5,2)
+                    new cartIdentity("admin@gmail.com",5)
                     ,5
             );
             cartRepository.saveAll(List.of(c));

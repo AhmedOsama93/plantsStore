@@ -14,7 +14,7 @@ import static javax.persistence.FetchType.EAGER;
 @Data
 @Table
 public class users implements Serializable {
-    @Id
+
     @SequenceGenerator(
             name="user_sequence",
             sequenceName="user_sequence",
@@ -28,6 +28,7 @@ public class users implements Serializable {
     private long id;
     private String fName;
     private String lName;
+    @Id
     private String username;
     private String password;
     @ManyToMany

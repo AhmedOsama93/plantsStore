@@ -12,21 +12,21 @@ import java.util.List;
 @Configuration
 public class userConfig   {
 
-//    @Bean
-//    CommandLineRunner commandLineRunner(usersRepository repository){
-//        return args->{
-//            users abdo = new users(
-//                    1,
-//                    "abdo",
-//                    "admin",
-//                    "admin1@gmail.com",
-//                    "123",
-//                    true,
-//                    true
-//            );
-//            repository.saveAll(List.of(abdo));
-//        };
-//    }
+    @Bean
+    CommandLineRunner commandLineRunner(usersRepository repository){
+        return args->{
+            users abdo = new users(
+                    1,
+                    "abdo",
+                    "admin",
+                    "admin@gmail.com",
+                    "123",
+                    true,
+                    true
+            );
+            repository.saveAll(List.of(abdo));
+        };
+    }
 //    @Bean
 //    public WebMvcConfigurer corsConfigurer() {
 //        return new WebMvcConfigurer() {

@@ -12,10 +12,10 @@ import java.util.Optional;
 
 @Repository
 public interface cartRepository extends JpaRepository<cart,cartIdentity> {
-    @Query("select c from cart c where c.id.userId=?1 and c.id.productID=?2 ")
-    cart findcartByUserAndProduct(long  userId,long productId);
+    @Query("select c from cart c where c.id.username=?1 and c.id.productID=?2 ")
+    cart findcartByUserAndProduct(String  username,long productId);
 
-    @Query("select  new onlineStore.plantsStore.cart.cartItem (c.id.productID ,c.quantity) from cart c where c.id.userId=?1")
-    List<cartItem> getCartItemsForUser(long  userId);
+    @Query("select  new onlineStore.plantsStore.cart.cartItem (c.id.productID ,c.quantity) from cart c where c.id.username=?1")
+    List<cartItem> getCartItemsForUser(String  userId);
 
 }
