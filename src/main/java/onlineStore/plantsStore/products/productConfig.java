@@ -25,13 +25,13 @@ public class productConfig {
             repository.saveAll(List.of(p1));
         };
     }
-    @Bean
-    public WebMvcConfigurer corsConfigurer2() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**");
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer2() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/api/**");
+//            }
+//        };
+//    }
 }

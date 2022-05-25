@@ -21,13 +21,13 @@ public class cartConfig {
             cartRepository.saveAll(List.of(c));
         };
     }
-    @Bean
-    public WebMvcConfigurer corsConfigurer3() {
-        return new WebMvcConfigurer() {
-            @Override
-            public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/api/**");
-            }
-        };
-    }
+//    @Bean
+//    public WebMvcConfigurer corsConfigurer3() {
+//        return new WebMvcConfigurer() {
+//            @Override
+//            public void addCorsMappings(CorsRegistry registry) {
+//                registry.addMapping("/api/**");
+//            }
+//        };
+//    }
 }

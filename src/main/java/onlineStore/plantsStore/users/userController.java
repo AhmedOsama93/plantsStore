@@ -2,14 +2,18 @@ package onlineStore.plantsStore.users;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
+import org.apache.tomcat.util.http.parser.Authorization;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
 
-@RestController
+@Controller
+//@RestController
 @RequiredArgsConstructor
 public class userController {
     private final userService userService;
@@ -20,14 +24,14 @@ public class userController {
 
     @GetMapping(path="api/home")
     public String ex1(){
-        return "Hello World";
-    }
+        return "wellcome";
+    }//this return the wellcome.html in resources/templates
 
     //    *********************************************************************************************
 
     @GetMapping(path="admin/user/getUsers")
     public ResponseEntity<List<users>> getUsers(){
-        return ResponseEntity.ok().body(userService.getUsers());
+      return ResponseEntity.ok().body(userService.getUsers());
     }
 
 //    @GetMapping(path="api/user/getUsers")

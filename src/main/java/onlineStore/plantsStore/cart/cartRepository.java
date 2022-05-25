@@ -17,4 +17,5 @@ public interface cartRepository extends JpaRepository<cart,cartIdentity> {
 
     @Query("select  new onlineStore.plantsStore.cart.cartItem (c.id.productID ,c.quantity) from cart c where c.id.userId=?1")
     List<cartItem> getCartItemsForUser(long  userId);
+
 }
