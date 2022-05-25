@@ -41,8 +41,8 @@ public class PlantsStoreApplication {
 //			);
 //
 //
-//			userService.addRoleToUser("admin5", "ROLE_ADMIN");
-//			userService.addRoleToUser("admin5", "ROLE_USER");
+			userService.addRoleToUser("admin@gmail.com", "ROLE_ADMIN");
+			userService.addRoleToUser("admin@gmail.com", "ROLE_USER");
 			//userService.addRoleToUser("admin", "ROLE_ADMIN");
 		};
 	}

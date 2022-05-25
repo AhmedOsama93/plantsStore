@@ -15,6 +15,7 @@ public class cartService {
     public cartService(cartRepository cartRepository){
         this.cartRepository=cartRepository;
     }
+
     public void addToCart(String username,long productId, int quantity){
         cart c1 = cartRepository.findcartByUserAndProduct(username,productId);
         if(c1==null){
@@ -26,7 +27,7 @@ public class cartService {
         }
         cartRepository.save(c1);
     }
-    public List<cartItem> getCartItemsForUser(String username){
-        return cartRepository.getCartItemsForUser(username);
+    public List<cart> getCartItemsForUser(String username){
+        return cartRepository.findcartByUser(username);
     }
 }

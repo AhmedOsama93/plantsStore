@@ -17,7 +17,7 @@ public class orderConfig {
 
         return args -> {
             orders o = new orders(
-                    new orderIdentity(5,2,2)
+                    new orderIdentity("admin@gmail.com",2,3)
                     , LocalDateTime.now()
                     ,5
                     ,"delivered"

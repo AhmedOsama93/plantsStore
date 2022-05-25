@@ -2,6 +2,7 @@ package onlineStore.plantsStore.products;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,8 +20,9 @@ public class productController {
     public List<product> getProduct(){return productService.getProducts();}
 
     @PostMapping(path="admin/addNewProduct" )
-    public void addNewProduct(@ModelAttribute  product product){
+    public ResponseEntity<?> addNewProduct(@RequestBody  product product){
         productService.addNewProduct(product);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping(path="admin/editProduct")

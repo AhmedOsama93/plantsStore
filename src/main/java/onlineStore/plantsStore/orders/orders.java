@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 public class orders {
     @EmbeddedId
-    orderIdentity id;
+    private orderIdentity id;
     private LocalDateTime orderDate;
     private int quantity;
     private String state;

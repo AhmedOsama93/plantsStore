@@ -1,6 +1,8 @@
 package onlineStore.plantsStore.cart;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
@@ -8,6 +10,8 @@ import java.io.Serializable;
 
 @Embeddable
 @AllArgsConstructor
+@Setter
+@Getter
 public class cartIdentity implements Serializable {
     private   String username;
     private long productID;

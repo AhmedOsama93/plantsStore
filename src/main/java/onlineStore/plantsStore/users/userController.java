@@ -43,7 +43,8 @@ public class userController {
     public ResponseEntity<users> registerNewUser(@RequestBody users user){
         URI uri= URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/user/registerNewUser").toUriString());
         return ResponseEntity.created(uri).body(userService.addNewUser(user));
-    }
+    }//change it
+
 
     @PostMapping(path = "/admin/addRoleToUser")
     public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){

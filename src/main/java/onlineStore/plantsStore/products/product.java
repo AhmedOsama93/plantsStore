@@ -30,9 +30,9 @@ public class product implements Serializable {
     @Override
     public boolean equals(Object obj)
     {
-        if(this == obj)
-        if(obj == null || obj.getClass()!= this.getClass())
-            return true;
+//        if(this == obj)
+//        if(obj == null || obj.getClass()!= this.getClass())
+//            return true;
         if(obj == null || obj.getClass()!= this.getClass())
             return false;
         product p = (product) obj;

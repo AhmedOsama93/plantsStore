@@ -10,7 +10,7 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class orderIdentity implements Serializable {
-    private   long userId;
+    private   String username;
     private long productID;
     private int orderNo;
     @Override
@@ -22,11 +22,11 @@ public class orderIdentity implements Serializable {
         if(obj == null || obj.getClass()!= this.getClass())
             return false;
         orderIdentity o = (orderIdentity) obj;
-        return (o.userId == this.userId && o.productID == this.productID &&o.orderNo==this.orderNo);
+        return (o.username == this.username && o.productID == this.productID &&o.orderNo==this.orderNo);
     }
     @Override
     public int hashCode()
     {
-        return (int) this.userId+(int) this.productID+(int) this.orderNo;
+        return  this.username.hashCode() +(int) this.productID+(int) this.orderNo;
     }
 }

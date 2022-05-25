@@ -25,10 +25,11 @@ public class productService {
         if(product1!=null){
             throw new IllegalStateException("product name already exists");
         }else {
-            if(product.getSeason().equals("\"")||product.getSeason().equals(",")||product.getSeason().equals("")){
+            System.out.println(product);
+            if(product.getSeason()==null||product.getSeason().equals(",")||product.getSeason().equals("")){
                 product.setSeason(null);
             }
-            if(product.getSoil().equals("\"")||product.getSoil().equals(",")||product.getSoil().equals("")){
+            if(product.getSoil()==null||product.getSoil().equals(",")||product.getSoil().equals("")){
                 product.setSoil(null);
             }
             productRepository.save(product);

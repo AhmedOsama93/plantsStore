@@ -48,8 +48,10 @@ public class userService  implements UserDetailsService {
     public void addRoleToUser(String email,String roleName){
         users user=usersRepository.findusersByEmail(email);
         Role role=roleRepo.findByName(roleName);
-        user.getRoles().add(role);
-        usersRepository.save(user);
+        if(!user.getRoles().contains(role)){
+            user.getRoles().add(role);
+            usersRepository.save(user);
+        }
     }
 
     public void suspendUser(String email){

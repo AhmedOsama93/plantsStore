@@ -40,6 +40,7 @@ public class users implements Serializable {
     private boolean isAdmin=false;
     private boolean isSeller=false;
     private boolean isActive=false;
+    private int numOfOrders=0;
 
     @Override
     public boolean equals(Object obj)
@@ -61,7 +62,10 @@ public class users implements Serializable {
     public users() {
         
     }
-
+    public int NewOrderCount(){
+        numOfOrders++;
+        return numOfOrders;
+    }
     public long getId() {
         return id;
     }
@@ -112,6 +116,30 @@ public class users implements Serializable {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public Set<product> getCart() {
+        return cart;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public int getNumOfOrders() {
+        return numOfOrders;
+    }
+
+    public void setCart(Set<product> cart) {
+        this.cart = cart;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
+    }
+
+    public void setNumOfOrders(int numOfOrders) {
+        this.numOfOrders = numOfOrders;
     }
 
     public void setActive(boolean active) {

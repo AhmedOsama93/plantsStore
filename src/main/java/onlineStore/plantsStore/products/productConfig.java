@@ -20,7 +20,10 @@ public class productConfig {
                     "category1",
                     20,
                     50,
+                    "winter",
+                    "soil3",
                     true
+
             );
             repository.saveAll(List.of(p1));
         };

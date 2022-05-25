@@ -15,7 +15,10 @@ public interface cartRepository extends JpaRepository<cart,cartIdentity> {
     @Query("select c from cart c where c.id.username=?1 and c.id.productID=?2 ")
     cart findcartByUserAndProduct(String  username,long productId);
 
-    @Query("select  new onlineStore.plantsStore.cart.cartItem (c.id.productID ,c.quantity) from cart c where c.id.username=?1")
-    List<cartItem> getCartItemsForUser(String  userId);
+    @Query("select c from cart c where c.id.username=?1  ")
+    List<cart> findcartByUser(String  username);
+
+//    @Query("select  new onlineStore.plantsStore.cart.cartItem (c.id.productID ,c.quantity) from cart c where c.id.username=?1")
+//    List<cartItem> getCartItemsForUser(String  username);
 
 }
