@@ -27,7 +27,7 @@ public class cartController {
     @GetMapping(path = "user/cart/getCartItemsForUser/{username}")
     public List<cart> getCartItemsForUser(@PathVariable String username){
         //@RequestHeader(name="Authorization") String token
-        System.out.println();
+
         return cartService.getCartItemsForUser(username);
     }
 //    public String getUsernameFromToken(String token) {

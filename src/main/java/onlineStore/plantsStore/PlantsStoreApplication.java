@@ -1,5 +1,6 @@
 package onlineStore.plantsStore;
 
+import onlineStore.plantsStore.SendEmail.sendVerifyCode;
 import onlineStore.plantsStore.users.userService;
 import onlineStore.plantsStore.users.users;
 import org.springframework.boot.CommandLineRunner;
@@ -22,7 +23,8 @@ public class PlantsStoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PlantsStoreApplication.class, args);
-
+//		sendVerifyCode s = new sendVerifyCode();
+//		s.sendEmail("a.osama9392@gmail.com","a7maaaaaaa","e4t8ltyastaaaaa");
 	}
 	@Bean
 	CommandLineRunner MaincommandLineRunner(userService userService){
