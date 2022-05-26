@@ -1,54 +1,50 @@
 package onlineStore.plantsStore.SendEmail;
-import lombok.NoArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.stereotype.Service;
-import javax.mail.MessagingException;
+
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import java.io.File;
+import java.util.Locale;
+import java.util.Properties;
+import java.util.UUID;
 
-@Service
-@NoArgsConstructor
-public class sendVerifyCode{
-    @Autowired
-    private JavaMailSender mailSender;
-
-    public void sendEmail(String toEmail, String body, String subject) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("bba776506@gmail.com");
-        message.setTo(toEmail);
-        message.setText(body);
-        message.setSubject(subject);
-
-        mailSender.send(message);
-        System.out.println("Mail Send...");
+public class sendVerifyCode {
+    String setCode(){
+        UUID uuid = UUID.randomUUID();
+        String uuidAsString = uuid.toString();
+        String verify = uuidAsString.substring(3,8).toUpperCase();
+        return verify;
     }
-    public void sendEmailWithAttachment(String toEmail,
-                                        String body,
-                                        String subject,
-                                        String attachment) throws MessagingException {
+    public void sendCode(String toMail) {
 
-        MimeMessage mimeMessage = mailSender.createMimeMessage();
+        final String username = "plantsstore2022@gmail.com";
+        final String password = "sdudpunotibtfoor";
+        String verify=setCode();
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true"); //TLS
+        Session session = Session.getInstance(prop,
+                new javax.mail.Authenticator() {
+                    protected PasswordAuthentication getPasswordAuthentication() {
+                        return new PasswordAuthentication(username, password);
+                    }
+                });
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("from@gmail.com"));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(toMail)
+            );
+            message.setSubject("Dear Client Welcome to Plant Store");
+            message.setText("\n\n The verify code is:       "+ verify);
+            Transport.send(message);
+            System.out.println("Done");
 
-        MimeMessageHelper mimeMessageHelper
-                = new MimeMessageHelper(mimeMessage, true);
-
-        mimeMessageHelper.setFrom("bba776506@gmail.com");
-        mimeMessageHelper.setTo(toEmail);
-        mimeMessageHelper.setText(body);
-        mimeMessageHelper.setSubject(subject);
-
-        FileSystemResource fileSystem
-                = new FileSystemResource(new File(attachment));
-
-        mimeMessageHelper.addAttachment(fileSystem.getFilename(),
-                fileSystem);
-
-        mailSender.send(mimeMessage);
-        System.out.println("Mail Send...");
-
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
+
 }
