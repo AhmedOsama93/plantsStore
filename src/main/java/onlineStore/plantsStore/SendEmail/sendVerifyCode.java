@@ -6,29 +6,49 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
-
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
-@RestController
+
+@Service
+@NoArgsConstructor
 public class sendVerifyCode{
     @Autowired
     private JavaMailSender mailSender;
-    @GetMapping(path="/sendEmail/verify")
-    public void sendSimpleEmail(String toEmail,
-                                String body,
-                                String subject) {
-        SimpleMailMessage message = new SimpleMailMessage();
 
-        message.setFrom("spring.email.from@gmail.com");
+    public void sendEmail(String toEmail, String body, String subject) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("bba776506@gmail.com");
         message.setTo(toEmail);
         message.setText(body);
         message.setSubject(subject);
 
         mailSender.send(message);
-        System.out.println("Mail Send");
+        System.out.println("Mail Send...");
+    }
+    public void sendEmailWithAttachment(String toEmail,
+                                        String body,
+                                        String subject,
+                                        String attachment) throws MessagingException {
+
+        MimeMessage mimeMessage = mailSender.createMimeMessage();
+
+        MimeMessageHelper mimeMessageHelper
+                = new MimeMessageHelper(mimeMessage, true);
+
+        mimeMessageHelper.setFrom("bba776506@gmail.com");
+        mimeMessageHelper.setTo(toEmail);
+        mimeMessageHelper.setText(body);
+        mimeMessageHelper.setSubject(subject);
+
+        FileSystemResource fileSystem
+                = new FileSystemResource(new File(attachment));
+
+        mimeMessageHelper.addAttachment(fileSystem.getFilename(),
+                fileSystem);
+
+        mailSender.send(mimeMessage);
+        System.out.println("Mail Send...");
+
     }
 }

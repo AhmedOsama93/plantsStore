@@ -72,6 +72,10 @@ public class userService  implements UserDetailsService {
             throw new IllegalStateException("email is taken");
         }else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(null);
+            user.setSeller(false);
+            user.setActive(false);
+            user.setAdmin(false);
             return usersRepository.save(user);
         }
     }

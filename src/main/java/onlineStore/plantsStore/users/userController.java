@@ -12,8 +12,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
 import java.util.List;
 
-@Controller
-//@RestController
+//@Controller
+@RestController
 @RequiredArgsConstructor
 public class userController {
     private final userService userService;
@@ -40,9 +40,10 @@ public class userController {
 //    }
 
     @PostMapping(path="visitor/registerNewUser")
-    public ResponseEntity<users> registerNewUser(@RequestBody users user){
-        URI uri= URI.create(ServletUriComponentsBuilder.fromCurrentContextPath().path("api/user/registerNewUser").toUriString());
-        return ResponseEntity.created(uri).body(userService.addNewUser(user));
+    public ResponseEntity<?> registerNewUser(@RequestBody users user){
+        userService.addNewUser(user);
+        return ResponseEntity.ok().build();
+
     }//change it
 
 
@@ -54,13 +55,15 @@ public class userController {
 
 
     @PostMapping("admin/suspend/{email}")
-    public void suspend (@PathVariable String email){
+    public ResponseEntity<?> suspend (@PathVariable String email){
         userService.suspendUser(email);
+        return ResponseEntity.ok().build();
     }
 
     @PostMapping(path="admin/editUserForAdmin")
-    public void editUserForAdmins(@RequestBody users user){
+    public ResponseEntity<?> editUserForAdmins(@RequestBody users user){
         userService.editUserForAdmins(user);
+        return ResponseEntity.ok().build();
     }
 
 }
