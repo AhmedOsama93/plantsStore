@@ -8,10 +8,10 @@ import java.util.Properties;
 import java.util.UUID;
 
 public class sendVerifyCode {
-    String setCode(){
+    public String setCode(){
         UUID uuid = UUID.randomUUID();
         String uuidAsString = uuid.toString();
-        String verify = uuidAsString.substring(3,8).toUpperCase();
+        String verify = uuidAsString.substring(0,5).toUpperCase();
         return verify;
     }
     public void sendCode(String toMail) {
@@ -40,7 +40,6 @@ public class sendVerifyCode {
             message.setSubject("Dear Client Welcome to Plant Store");
             message.setText("\n\n The verify code is:       "+ verify);
             Transport.send(message);
-            System.out.println("Done");
 
         } catch (MessagingException e) {
             e.printStackTrace();
