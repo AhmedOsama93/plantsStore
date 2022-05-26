@@ -8,17 +8,17 @@ import java.util.Properties;
 import java.util.UUID;
 
 public class sendVerifyCode {
-    public String setCode(){
+    public String generateVerifyCode(){
         UUID uuid = UUID.randomUUID();
         String uuidAsString = uuid.toString();
         String verify = uuidAsString.substring(0,5).toUpperCase();
         return verify;
     }
-    public void sendCode(String toMail) {
+    public void sendCode(String toMail,String verify) {
 
         final String username = "plantsstore2022@gmail.com";
         final String password = "sdudpunotibtfoor";
-        String verify=setCode();
+
         Properties prop = new Properties();
         prop.put("mail.smtp.host", "smtp.gmail.com");
         prop.put("mail.smtp.port", "587");

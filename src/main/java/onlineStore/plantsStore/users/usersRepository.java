@@ -14,5 +14,6 @@ public interface usersRepository extends JpaRepository<users,Long> {
 
    users findusersByEmail(String email);
 
-
+    @Query("select u from users u where u.verifyCode=?1")
+    users findusersByVC(String VC);
 }
