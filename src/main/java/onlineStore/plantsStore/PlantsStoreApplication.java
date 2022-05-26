@@ -23,8 +23,8 @@ public class PlantsStoreApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(PlantsStoreApplication.class, args);
-		sendVerifyCode s = new sendVerifyCode();
-		s.sendCode("a.osama9392@gmail.com");
+//		sendVerifyCode s = new sendVerifyCode();
+//		s.sendCode("a.osama9392@gmail.com");
 	}
 	@Bean
 	CommandLineRunner MaincommandLineRunner(userService userService){
