@@ -1,6 +1,7 @@
 package onlineStore.plantsStore.products;
 
 
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,10 @@ public class productController {
 
         return ResponseEntity.ok().body(productService.getProducts());
     }
-
+    @GetMapping(path="productSeasonStat" )
+    public ResponseEntity<SeasonStat[]> productSeasonStat(){
+        return ResponseEntity.ok().body(productService.getSeasonStat());
+    }
     @PostMapping(path="admin/addNewProduct" )
     public ResponseEntity<?> addNewProduct(@RequestBody  product product){
         productService.addNewProduct(product);
@@ -40,4 +44,9 @@ public class productController {
         return ResponseEntity.ok().build();
     }
 
+}
+@Data
+class SeasonStat{
+    String season;
+    int productNo;
 }

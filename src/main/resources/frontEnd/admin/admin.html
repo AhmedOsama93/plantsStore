@@ -1,41 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>admin</title>
-        <script type="text/javascript" src="adminHeader.js"></script>
-        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-        <script type="text/javascript">
-            // Load google charts
-            google.charts.load('current', {'packages':['corechart']});
-            google.charts.setOnLoadCallback(drawChart);
+<head>
+    <meta charset="UTF-8">
+    <title>admin</title>
+    <script type="text/javascript" src="adminHeader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        // Load google charts
+        google.charts.load('current', {'packages':['corechart']});
+        google.charts.setOnLoadCallback(drawChart);
 
-            // Draw the chart and set the chart values
-            function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                    ['product', 'quantity'],
-                    ['summer planets', 10],
-                    ['winter planets', 8],
-                    ['spring planets', 8],
-                    ['autumn planets', 7],
-                    ['fertilizers', 4],
-                    ['tools', 4]
-                ]);
-                var options = {'title':'products sold', 'width':550, 'height':400,pieHole: 0.4,};
-                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-                chart.draw(data, options);
-            }
-        </script>
-    </head>
-    <body>
-    <div id="header"></div>
-    <div class="main">
-        <div id="piechart"></div>
+        // Draw the chart and set the chart values
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['product', 'quantity'],
+                ['summer planets', 10],
+                ['winter planets', 8],
+                ['spring planets', 8],
+                ['autumn planets', 7],
+                ['fertilizers', 4],
+                ['tools', 4]
+            ]);
+            var options = {'title':'products sold', 'width':550, 'height':400,pieHole: 0.4,};
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+<div id="header"></div>
+<div class="main">
+    <div id="piechart"></div>
 
-    </div>
+</div>
 
-    </body>
+</body>
 
 </html>
 

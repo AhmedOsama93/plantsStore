@@ -27,6 +27,14 @@ public class cartService {
         }
         cartRepository.save(c1);
     }
+    public void deleteOneCartItem(String username,long productId){
+        cart c1 = cartRepository.findcartByUserAndProduct(username,productId);
+        cartRepository.delete(c1);
+    }
+    public void deleteAllCartItem(String username){
+        List<cart> c1 = cartRepository.findcartByUser(username);
+        cartRepository.deleteAll(c1);
+    }
     public void addToCartExactQuantity(String username,long productId, int quantity){
         cart c1 = cartRepository.findcartByUserAndProduct(username,productId);
         if(c1==null){
@@ -40,5 +48,8 @@ public class cartService {
     }
     public List<cart> getCartItemsForUser(String username){
         return cartRepository.findcartByUser(username);
+    }
+    public Integer getCartSize(String username){
+        return cartRepository.findcartByUser(username).size();
     }
 }

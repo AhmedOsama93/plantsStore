@@ -28,8 +28,31 @@ public class cartController {
         String token = token1.substring("Bearer ".length());
         DecodedJWT decodedJWT= verifier.verify(token);
         String username = decodedJWT.getSubject();
+
         cartService.addToCart(username,productID,quantity);
  //       cartService.addToCart(username,productID,quantity);
+        return ResponseEntity.ok().build();
+    }
+
+    @PostMapping(path = "user/cart/deleteOneCartItem/{productID}")
+    public ResponseEntity<?> deleteOneCartItem(@RequestHeader(name="Authorization") String token1, @PathVariable long productID){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+        cartService.deleteOneCartItem(username,productID);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping(path = "user/cart/deleteAllCartItem")
+    public ResponseEntity<?> deleteAllCartItem(@RequestHeader(name="Authorization") String token1){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+
+        cartService.deleteAllCartItem(username);
         return ResponseEntity.ok().build();
     }
 
@@ -40,6 +63,7 @@ public class cartController {
         String token = token1.substring("Bearer ".length());
         DecodedJWT decodedJWT= verifier.verify(token);
         String username = decodedJWT.getSubject();
+
         cartService.addToCartExactQuantity(username,productID,quantity);
         //       cartService.addToCart(username,productID,quantity);
         return ResponseEntity.ok().build();
@@ -57,8 +81,15 @@ public class cartController {
 
         return ResponseEntity.ok().body(cartService.getCartItemsForUser(username));
     }
-//    public String getUsernameFromToken(String token) {
-//        Claims claims = JWT.parser().setSigningKey("secret").parseClaimsJws(token).getBody();
-//        return claims.getSubject();
-//    }
+    @GetMapping(path = "user/cart/getCartSize")
+    public ResponseEntity<Integer> getCartSize(@RequestHeader(name="Authorization") String token1){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+
+        return ResponseEntity.ok().body(cartService.getCartSize(username));
+    }
+
 }
