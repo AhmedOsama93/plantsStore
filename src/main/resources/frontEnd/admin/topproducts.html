@@ -30,7 +30,7 @@
 
             function listAllProducts() {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "http://localhost:8081/user/getProduct", true);
+                xhttp.open("GET", "http://localhost:8081/user/getTopProduct", true);
                 xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzY4NzMyOX0.i7ZfX9b6eAbx_qD8qpUA9KBecOaTJuYVZW53uBz44yQ");
                 xhttp.send();
 
@@ -40,14 +40,17 @@
                     if (this.readyState == 4 && this.status == 200) {
                         JSON.parse(this.responseText).forEach(function (data, index) {
                             tbody.innerHTML +=
-                                "<tr><td>" + data.id +
-                                "</td>" + "<td>" + data.name +
+                                "<tr>" +
+                                "<td>" + (index+1) +
+                                "</td>" +
+                                "<td>" + data.id +
+                                "</td>" +  "<td>" + data.name +
                                 "</td>" + "<td>" + data.category +
                                 "</td>" + "<td>" + data.quantityAvailable +
                                 "</td>" + "<td>" + data.price +
                                 "</td>" + "<td>" + data.season +
                                 "</td>" + "<td>" + data.soil +
-                                "</td>" + "<td>" + data.active + "</td></tr>";
+                                "</td> </tr>";
                         });
                     }
                 };
@@ -57,11 +60,12 @@
     <body>
         <div id="header"></div>
         <div class="main">
-            <h2>produsts:</h2>
+            <h2>Top 10 produsts:</h2>
 
             <table id="productTable">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>ID</th>
                         <th>product name</th>
                         <th>Category</th>
@@ -69,13 +73,12 @@
                         <th>Price</th>
                         <th>season</th>
                         <th>soil</th>
-                        <th>Active</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
             </table>
             <br>
-            <button onclick="window.location.href='addProduct.html'">add product</button>
+
         </div>
     </body>
 </html>

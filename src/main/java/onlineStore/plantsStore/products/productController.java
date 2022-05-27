@@ -21,8 +21,11 @@ public class productController {
 
     @GetMapping(path="user/getProduct")
     public ResponseEntity<List<product>> getProduct(){
-
         return ResponseEntity.ok().body(productService.getProducts());
+    }
+    @GetMapping(path="user/getTopProduct")
+    public ResponseEntity<List<product>> getTopProduct(){
+        return ResponseEntity.ok().body(productService.getTopProducts());
     }
     @GetMapping(path="productSeasonStat" )
     public ResponseEntity<SeasonStat[]> productSeasonStat(){

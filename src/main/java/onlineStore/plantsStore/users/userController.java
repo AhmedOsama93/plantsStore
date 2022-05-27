@@ -56,6 +56,17 @@ public class userController {
         userService.verifyCode(verifyCode);
         return ResponseEntity.ok().build();
     }
+    @PostMapping(path="visitor/forgetPasswordRequest/{email}")
+    public ResponseEntity<?>forgetPasswordRequest(@PathVariable String email){
+        userService.forgetPasswordRequest(email);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping(path="visitor/changeForgetPassword")
+    public ResponseEntity<?>forgetPasswordRequest(@RequestBody forgetPasswordForm forgetPasswordForm){
+        userService.changeForgetPassword(forgetPasswordForm.getCode(),forgetPasswordForm.getNewPassword1(),forgetPasswordForm.getNewPassword2());
+        return ResponseEntity.ok().build();
+    }
+
     @GetMapping(path = "/visitor/isAdmin")//test it
     public ResponseEntity<Boolean>isAdmin(@RequestHeader(name="Authorization") String token1){
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
@@ -86,6 +97,12 @@ public class userController {
         userService.suspendUser(email);
         return ResponseEntity.ok().build();
     }
+    @PostMapping("admin/activateUser/{email}")
+    public ResponseEntity<?> activateUser (@PathVariable String email){
+        userService.activateUser(email);
+        return ResponseEntity.ok().build();
+    }
+
 
     @PostMapping(path="admin/editUserForAdmin")
     public ResponseEntity<?> editUserForAdmins(@RequestBody users user){
@@ -103,6 +120,12 @@ public class userController {
         return ResponseEntity.ok().build();
     }
 
+}
+@Data
+class forgetPasswordForm{
+    private String code;
+    private String newPassword1;
+    private String newPassword2;
 }
 @Data
 class RoleToUserForm{

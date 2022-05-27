@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 @Entity
 @Table
-public class product implements Serializable {
+public class product implements Comparable<product>, Serializable {
     @Id
     @SequenceGenerator(
             name="product_sequence",
@@ -39,6 +39,7 @@ public class product implements Serializable {
     public void decquantityAvailable(int num){
         quantityAvailable-=num;
     }
+
     @Override
     public boolean equals(Object obj)
     {
@@ -155,5 +156,11 @@ public class product implements Serializable {
                 ", price=" + price +
                 ", active=" + active +
                 '}';
+    }
+
+
+    @Override
+    public int compareTo(product o) {
+        return o.getNumOrderd()-this.getNumOrderd();
     }
 }

@@ -53,6 +53,8 @@ window.onload = function ()
         "    <a href=\"admin.html\">Dashboard</a>\n" +
         "    <a href=\"users.html\">Users</a>\n" +
         "    <a href=\"products.html\">Products</a>\n" +
+        "    <a href=\"topproducts.html\">Top 10 Product</a>\n" +
+        "    <a href=\"index.html\">User View</a>\n" +
         "</div>\n" +
         "\n" +
         "</body>\n" +

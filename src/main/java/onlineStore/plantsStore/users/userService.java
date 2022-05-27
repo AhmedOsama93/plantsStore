@@ -75,7 +75,16 @@ public class userService  implements UserDetailsService {
             user.setActive(2);
             user.getRoles().remove(r);
         }
-        else if(user.getActive()==2){
+//        else if(user.getActive()==2){
+//            user.setActive(1);
+//            user.getRoles().add(r);
+//        }
+        usersRepository.save(user);
+    }
+    public void activateUser(String email){
+        users  user = usersRepository.findusersByEmail(email);
+        Role r = roleRepo.findByName("ROLE_USER");
+        if(user.getActive()==2||user.getActive()==0){
             user.setActive(1);
             user.getRoles().add(r);
         }
@@ -101,6 +110,33 @@ public class userService  implements UserDetailsService {
 
         }
     }
+    public void forgetPasswordRequest(String email){
+        users user1 = usersRepository.findusersByEmail(email);
+        if(user1==null){
+            throw new IllegalStateException("no such user");
+        }
+        sendVerifyCode vc = new sendVerifyCode();
+        String verifyCode = vc.generateVerifyCode();
+        vc.sendCode(email,verifyCode);
+        user1.setVerifyCodePassword(verifyCode);
+    }
+
+    public void changeForgetPassword(String code,String newPass1,String newPass2){
+        try {
+            users user1 = usersRepository.findusersByVCP(code);
+            if(user1!=null && user1.getVerifyCodePassword().equals(code) && newPass1.equals(newPass2)){
+                user1.setPassword(passwordEncoder.encode(newPass1));
+                user1.setVerifyCodePassword(null);
+                usersRepository.save(user1);
+            }
+            else {
+                throw new IllegalStateException("wrong code");
+            }
+        }
+        catch (Exception e){
+          //  throw new IllegalStateException(e.getMessage());
+        }
+    }
     public void editUserForUser(String username,users user){
         users user1 = usersRepository.findusersByEmail(username);
         if(user.getfName()!=null){
@@ -124,7 +160,7 @@ public class userService  implements UserDetailsService {
     }
     public void verifyCode(String code){
         users user1 = usersRepository.findusersByVC(code);
-        if(user1.getVerifyCode().equals(code)){
+        if(user1!=null&&user1.getVerifyCode().equals(code)){
             user1.setActive(1);
             user1.setVerifyCode(null);
             Role r = roleRepo.findByName("ROLE_USER");

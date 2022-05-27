@@ -4,6 +4,8 @@ import onlineStore.plantsStore.users.usersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,6 +21,22 @@ public class productService {
     public List<product> getProducts(){
         return productRepository.findAll();
     }
+
+    public List<product> getTopProducts(){
+        List<product> p1 = productRepository.findAll();
+        Collections.sort(p1);
+        List<product> p2 = new ArrayList<>() ;
+        int size;
+        if(p1.size()>10)
+            size = 10;
+        else
+            size=p1.size();
+        for (int i = 0; i <size ; i++) {
+            p2.add(p1.get(i));
+        }
+        return p2;
+    }
+
     public void deleteProduct(long id){
         product p =productRepository.getById(id);
         productRepository.delete(p);

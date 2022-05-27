@@ -34,6 +34,7 @@ public class users implements Serializable {
     @ManyToMany
     private Set<product> cart;
     private String verifyCode;
+    private String verifyCodePassword;
     private String phoneNo;
     private String address1;
     private String address2;
@@ -67,6 +68,14 @@ public class users implements Serializable {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public void setVerifyCodePassword(String verifyCodePassword) {
+        this.verifyCodePassword = verifyCodePassword;
+    }
+
+    public String getVerifyCodePassword() {
+        return verifyCodePassword;
     }
 
     public String getPhoneNo() {
