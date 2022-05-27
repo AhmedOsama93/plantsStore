@@ -28,6 +28,16 @@ public class orderService {
 
         List<cart> cartItems= new ArrayList<>();
         cartItems = cartRepository.findcartByUser(username);
+        doOrder(username, cartItems);
+    }
+    public void orderCartItem(String username,long productID){
+        List<cart> cartItems= new ArrayList<>();
+        cartItems.add( cartRepository.findcartByUserAndProduct(username,productID));
+        doOrder(username, cartItems);
+
+    }
+
+    private void doOrder(String username, List<cart> cartItems) {
         if(!isQuantityAvalable(cartItems)){
             throw new IllegalStateException("There Is No Available Quantity");
         }
@@ -39,6 +49,7 @@ public class orderService {
         usersRepository.save(u);
         cartRepository.deleteAll(cartItems);
     }
+
     public boolean isQuantityAvalable(List<cart> cartItems){
         for (int i = 0; i < cartItems.size(); i++) {
             product p = productRepository.getById(cartItems.get(i).getId().getProductID());

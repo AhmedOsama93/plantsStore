@@ -27,6 +27,17 @@ public class cartService {
         }
         cartRepository.save(c1);
     }
+    public void addToCartExactQuantity(String username,long productId, int quantity){
+        cart c1 = cartRepository.findcartByUserAndProduct(username,productId);
+        if(c1==null){
+            cartIdentity id1=new cartIdentity(username,productId);
+            c1 = new cart(id1,quantity);
+        }
+        else {
+            c1.setQuantity(quantity);
+        }
+        cartRepository.save(c1);
+    }
     public List<cart> getCartItemsForUser(String username){
         return cartRepository.findcartByUser(username);
     }

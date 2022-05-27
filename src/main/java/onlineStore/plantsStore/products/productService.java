@@ -19,7 +19,10 @@ public class productService {
     public List<product> getProducts(){
         return productRepository.findAll();
     }
-
+    public void deleteProduct(long id){
+        product p =productRepository.getById(id);
+        productRepository.delete(p);
+    }
     public void addNewProduct(product product){
         product product1 = productRepository.findproductsByName(product.getName());
         if(product1!=null){

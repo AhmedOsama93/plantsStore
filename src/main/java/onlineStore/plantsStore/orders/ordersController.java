@@ -25,7 +25,6 @@ public class ordersController {
 
     @PostMapping(path = "user/order")
     public ResponseEntity<?> order( @RequestHeader(name="Authorization") String token1){
-        //@RequestHeader(name="Authorization") String token, -> parameter
 
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
@@ -34,6 +33,17 @@ public class ordersController {
         String username = decodedJWT.getSubject();
 
         orderService1.order(username);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping(path = "user/orderOneCartItem/{productID}")
+    public ResponseEntity<?> order( @RequestHeader(name="Authorization") String token1,@PathVariable long productID){
+
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+        orderService1.orderCartItem(username,productID);
         return ResponseEntity.ok().build();
     }
 }

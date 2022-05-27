@@ -33,6 +33,17 @@ public class cartController {
         return ResponseEntity.ok().build();
     }
 
+    @PostMapping(path = "user/cartExactQuantity/{productID}/{quantity}")
+    public ResponseEntity<?> addItemToCartExactQuantity(@RequestHeader(name="Authorization") String token1, @PathVariable long productID, @PathVariable int quantity){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+        cartService.addToCartExactQuantity(username,productID,quantity);
+        //       cartService.addToCart(username,productID,quantity);
+        return ResponseEntity.ok().build();
+    }
 
     //the return type will be changed according to the front end
     @GetMapping(path = "user/cart/getCartItemsForUser")

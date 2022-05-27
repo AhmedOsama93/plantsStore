@@ -29,7 +29,11 @@ public class productController {
         productService.addNewProduct(product);
         return ResponseEntity.ok().build();
     }
-
+    @PostMapping(path="admin/deleteProduct/{id}")
+    public ResponseEntity<?>deleteProduct(@PathVariable long id){
+        productService.deleteProduct(id);
+        return ResponseEntity.ok().build();
+    }
     @PostMapping(path="admin/editProduct")
     public ResponseEntity<?> editProduct(@RequestBody product product) {
         productService.editProduct(product);
