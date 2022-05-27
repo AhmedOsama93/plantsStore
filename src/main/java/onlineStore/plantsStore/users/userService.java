@@ -57,11 +57,14 @@ public class userService  implements UserDetailsService {
 
     public void suspendUser(String email){
         users  user = usersRepository.findusersByEmail(email);
+        Role r = roleRepo.findByName("ROLE_USER");
         if(user.getActive()==1){
             user.setActive(2);
+            user.getRoles().remove(r);
         }
         else if(user.getActive()==2){
             user.setActive(1);
+            user.getRoles().add(r);
         }
         usersRepository.save(user);
     }
@@ -91,6 +94,8 @@ public class userService  implements UserDetailsService {
         if(user1.getVerifyCode().equals(code)){
             user1.setActive(1);
             user1.setVerifyCode(null);
+            Role r = roleRepo.findByName("ROLE_USER");
+            user1.getRoles().add(r);
             usersRepository.save(user1);
         }else {
             throw new IllegalStateException("Wrong Verify Code");

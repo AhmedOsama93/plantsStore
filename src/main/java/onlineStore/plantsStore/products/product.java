@@ -25,8 +25,20 @@ public class product implements Serializable {
     private String season;
     private String soil;
     private boolean active = false;
+    private int numOrderd=0;
 
-
+    public int getNumOrderd() {
+        return numOrderd;
+    }
+    public void incNumOrderd(int num){
+        numOrderd+=num;
+    }
+    public void setNumOrderd(int numOrderd) {
+        this.numOrderd = numOrderd;
+    }
+    public void decquantityAvailable(int num){
+        quantityAvailable-=num;
+    }
     @Override
     public boolean equals(Object obj)
     {
