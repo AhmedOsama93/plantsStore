@@ -1,5 +1,9 @@
 package onlineStore.plantsStore.users;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.JWTVerifier;
+import com.auth0.jwt.algorithms.Algorithm;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -29,9 +33,10 @@ public class userController {
 
     //    *********************************************************************************************
 
-    @GetMapping(path="admin/user/getUsers")
+    @GetMapping(path="admin/getUsers")
     public ResponseEntity<List<users>> getUsers(){
-      return ResponseEntity.ok().body(userService.getUsers());
+
+        return ResponseEntity.ok().body(userService.getUsers());
     }
 
 //    @GetMapping(path="api/user/getUsers")
@@ -46,6 +51,11 @@ public class userController {
 
     }//change it
 
+    @PostMapping(path="visitor/enterVerifyCode/{verifyCode}")
+    public ResponseEntity<?> enterVerifyCode(@PathVariable String verifyCode){
+        userService.verifyCode(verifyCode);
+        return ResponseEntity.ok().build();
+    }
 
     @PostMapping(path = "/admin/addRoleToUser")
     public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){

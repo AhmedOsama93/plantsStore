@@ -30,7 +30,8 @@
 
             function listAllProducts() {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "http://localhost:8081/api/product/getProduct", true);
+                xhttp.open("GET", "http://localhost:8081/user/getProduct", true);
+                xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzY2MDE1OH0.7oQ71Mzo0dT_D_yT-27M17RyY1_C9YYMr84wv0yKrh4");
                 xhttp.send();
 
                 xhttp.onreadystatechange = function () {

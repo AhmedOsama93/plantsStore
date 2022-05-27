@@ -33,13 +33,26 @@ public class users implements Serializable {
     private String password;
     @ManyToMany
     private Set<product> cart;
+    private String verifyCode;
+
+
+    public String getVerifyCode() {
+        return verifyCode;
+    }
+
+    public void setVerifyCode(String verifyCode) {
+        this.verifyCode = verifyCode;
+    }
 
     @ManyToMany(fetch =EAGER)
     private Collection<Role> roles=new ArrayList<>();
 
     private boolean isAdmin=false;
     private boolean isSeller=false;
-    private boolean isActive=false;
+    private int Active = 0;
+    //0->new user not active(cuz verify code)
+    //1->active
+    //2-> susbended (by admin)
     private int numOfOrders=0;
 
     @Override
@@ -70,6 +83,14 @@ public class users implements Serializable {
         return id;
     }
 
+    public void setActive(int active) {
+        Active = active;
+    }
+
+    public int getActive() {
+        return Active;
+    }
+
     public String getfName() {
         return fName;
     }
@@ -90,9 +111,6 @@ public class users implements Serializable {
         return isAdmin;
     }
 
-    public boolean isActive() {
-        return isActive;
-    }
 
     public void setId(long id) {
         this.id = id;
@@ -142,9 +160,6 @@ public class users implements Serializable {
         this.numOfOrders = numOfOrders;
     }
 
-    public void setActive(boolean active) {
-        isActive = active;
-    }
 
     public users(String fName, String lName, String username, String password) {
         this.fName = fName;
@@ -160,7 +175,7 @@ public class users implements Serializable {
         this.username = username;
         this.password = password;
         this.isAdmin = isAdmin;
-        this.isActive = isActive;
+        this.Active = Active;
     }
 
     @Override
@@ -172,7 +187,7 @@ public class users implements Serializable {
                 ", email='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", isAdmin=" + isAdmin +
-                ", isActive=" + isActive +
+                ", isActive=" + Active +
                 '}';
     }
 }
