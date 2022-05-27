@@ -56,7 +56,24 @@ public class userController {
         userService.verifyCode(verifyCode);
         return ResponseEntity.ok().build();
     }
-
+    @GetMapping(path = "/visitor/isAdmin")//test it
+    public ResponseEntity<Boolean>isAdmin(@RequestHeader(name="Authorization") String token1){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+        return ResponseEntity.ok().body(userService.isAdmin(username));
+    }
+    @GetMapping(path = "/visitor/isUser")//test it
+    public ResponseEntity<Boolean>isUser(@RequestHeader(name="Authorization") String token1){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+        return ResponseEntity.ok().body(userService.isUser(username));
+    }
     @PostMapping(path = "/admin/addRoleToUser")
     public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
         userService.addRoleToUser(form.getEmail(), form.getRoleName());
@@ -73,6 +90,16 @@ public class userController {
     @PostMapping(path="admin/editUserForAdmin")
     public ResponseEntity<?> editUserForAdmins(@RequestBody users user){
         userService.editUserForAdmins(user);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping(path="user/editUserForUser")
+    public ResponseEntity<?> editUserForUser(@RequestHeader(name="Authorization") String token1,users users){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+        userService.editUserForUser(username,users);
         return ResponseEntity.ok().build();
     }
 

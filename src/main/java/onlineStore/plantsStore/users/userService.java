@@ -45,7 +45,20 @@ public class userService  implements UserDetailsService {
         return  usersRepository.findAll();
     }
 
-
+    public boolean isAdmin(String username){
+        users u=usersRepository.findusersByEmail(username);
+        if(u.isAdmin()){
+            return true;
+        }
+        return false;
+    }
+    public boolean isUser(String username){
+        users u=usersRepository.findusersByEmail(username);
+        if(u.getActive()==1){
+            return true;
+        }
+        return false;
+    }
     public void addRoleToUser(String email,String roleName){
         users user=usersRepository.findusersByEmail(email);
         Role role=roleRepo.findByName(roleName);
@@ -88,7 +101,27 @@ public class userService  implements UserDetailsService {
 
         }
     }
-
+    public void editUserForUser(String username,users user){
+        users user1 = usersRepository.findusersByEmail(username);
+        if(user.getfName()!=null){
+            user1.setfName(user.getfName());
+        }
+        if(user.getlName()!=null){
+            user1.setlName(user.getlName());
+        }
+        if(user.getPhoneNo()!=null){
+            user1.setPhoneNo(user.getPhoneNo());
+        }
+        if(user.getAddress1()!=null){
+            user1.setAddress1(user.getAddress1());
+        }
+        if(user.getAddress2()!=null){
+            user1.setAddress2(user.getAddress2());
+        }
+        if(user.getCity()!=null){
+            user1.setCity(user.getCity());
+        }
+    }
     public void verifyCode(String code){
         users user1 = usersRepository.findusersByVC(code);
         if(user1.getVerifyCode().equals(code)){

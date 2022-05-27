@@ -21,8 +21,8 @@ public class userConfig   {
                     "admin",
                     "admin@gmail.com",
                     "$2a$10$0iGFreRcDbWAkC6Mf0osjOTGhuEV96QeTFOk68asnYPGuZoR4Sv6q",//123 encripted
-                    true,
                     true
+                    ,1
             );
             repository.saveAll(List.of(abdo));
         };

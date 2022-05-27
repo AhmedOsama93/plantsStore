@@ -41,6 +41,7 @@ public class cartController {
         String token = token1.substring("Bearer ".length());
         DecodedJWT decodedJWT= verifier.verify(token);
         String username = decodedJWT.getSubject();
+
         cartService.deleteOneCartItem(username,productID);
         return ResponseEntity.ok().build();
     }
