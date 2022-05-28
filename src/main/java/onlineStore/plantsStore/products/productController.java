@@ -23,7 +23,7 @@ public class productController {
     public ResponseEntity<Integer>getProductCount(){
         return ResponseEntity.ok().body(productService.getProductCount());
     }
-    @GetMapping(path="user/getProduct")
+    @GetMapping(path="visitor/getProduct")
     public ResponseEntity<List<product>> getProduct(){
         return ResponseEntity.ok().body(productService.getProducts());
     }

@@ -46,10 +46,9 @@ public class userController {
 
 
     @PostMapping(path="visitor/registerNewUser")
-    public ResponseEntity<?> registerNewUser(@RequestBody users user){
+    public ResponseEntity<?> registerNewUser(@RequestParam users user){
         userService.addNewUser(user);
         return ResponseEntity.ok().build();
-
     }//change it
 
     @PostMapping(path="visitor/enterVerifyCode/{verifyCode}")
@@ -67,8 +66,17 @@ public class userController {
         userService.changeForgetPassword(forgetPasswordForm.getCode(),forgetPasswordForm.getNewPassword1(),forgetPasswordForm.getNewPassword2());
         return ResponseEntity.ok().build();
     }
+    @GetMapping(path = "/user/getMyData")
+    public ResponseEntity<users>getUserData(@RequestHeader(name="Authorization") String token1){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
 
-    @GetMapping(path = "/visitor/isAdmin")//test it
+        return ResponseEntity.ok().body(userService.getUserData(username));
+    }
+    @GetMapping(path = "/visitor/isAdmin")
     public ResponseEntity<Boolean>isAdmin(@RequestHeader(name="Authorization") String token1){
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
@@ -77,7 +85,7 @@ public class userController {
         String username = decodedJWT.getSubject();
         return ResponseEntity.ok().body(userService.isAdmin(username));
     }
-    @GetMapping(path = "/visitor/isUser")//test it
+    @GetMapping(path = "/visitor/isUser")
     public ResponseEntity<Boolean>isUser(@RequestHeader(name="Authorization") String token1){
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();

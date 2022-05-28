@@ -93,11 +93,13 @@ public class userService  implements UserDetailsService {
         }
         usersRepository.save(user);
     }
-
+    public users getUserData(String username){
+        return usersRepository.findusersByEmail(username);
+    }
     public users addNewUser(users user) {
         users user1 = usersRepository.findusersByEmail(user.getUsername());
 
-        if(user1!=null && user1.getActive()!=0){
+        if(user1!=null || user1.getActive()!=0){
             throw new IllegalStateException("email is taken");
         }else {
             sendVerifyCode vc = new sendVerifyCode();
