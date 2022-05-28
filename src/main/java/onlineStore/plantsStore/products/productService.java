@@ -21,6 +21,9 @@ public class productService {
     public List<product> getProducts(){
         return productRepository.findAll();
     }
+    public product getProductById(long id){
+        return productRepository.findproductsByID(id);
+    }
 
     public List<product> getTopProducts(){
         List<product> p1 = productRepository.findAll();

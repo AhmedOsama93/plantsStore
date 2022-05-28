@@ -20,8 +20,13 @@ public class productController {
     }
 
     @GetMapping(path="user/getProduct")
+
     public ResponseEntity<List<product>> getProduct(){
         return ResponseEntity.ok().body(productService.getProducts());
+    }
+    @GetMapping(path="user/getProductByID/{id}")
+    public ResponseEntity<product> getProductById(@PathVariable long id){
+        return ResponseEntity.ok().body(productService.getProductById(id));
     }
     @GetMapping(path="user/getTopProduct")
     public ResponseEntity<List<product>> getTopProduct(){

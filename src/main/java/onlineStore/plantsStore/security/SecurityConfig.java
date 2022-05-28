@@ -14,6 +14,8 @@ import org.springframework.security.config.annotation.web.servlet.configuration.
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.http.HttpMethod.GET;
@@ -40,7 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        customAuthenticationFilter.setFilterProcessesUrl();
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(STATELESS);
-
+//        http
+//                .formLogin()
+//                .loginPage("/login")
+//                .successHandler(successHandler())
+//                .permitAll()
+//                        ;
 //        http.authorizeRequests().anyRequest().permitAll();
         http.authorizeRequests().antMatchers(GET,"/user/**").hasAnyAuthority("ROLE_USER");
         http.authorizeRequests().antMatchers(GET,"/admin/**").hasAnyAuthority("ROLE_ADMIN");
@@ -53,4 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception{
         return super.authenticationManagerBean();
     }
+//    @Bean
+//    public AuthenticationSuccessHandler successHandler() {
+//        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+//        handler.setUseReferer(true);
+//        return handler;
+//    }
 }

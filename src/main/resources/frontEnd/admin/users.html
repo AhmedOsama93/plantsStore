@@ -34,7 +34,7 @@
         function listAllUsers() {
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "http://localhost:8081/admin/getUsers", true);
-            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzY2MDE1OH0.7oQ71Mzo0dT_D_yT-27M17RyY1_C9YYMr84wv0yKrh4");
+            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzcyODQ0N30.lp15vlhtui-JLaWopTKqsZX4bxGtv44JqiKNJwr56IQ");
             xhttp.send();
 
             xhttp.onreadystatechange = function () {
@@ -46,8 +46,8 @@
                             "<tr><td>" + data.id + "</td>" +
                             "<td>" + data.fName + "</td>" +
                             "<td>" + data.lName + "</td>" +
-                            "<td>" + data.email + "</td>" +
-                            "<td>" + data.password + "</td>" +
+                            "<td>" + data.username + "</td>" +
+                            "<td>" + data.phoneNo + "</td>" +
                             "<td>" + data.admin + "</td>" +
                             "<td>" + data.active + "</td></tr>"
 
@@ -73,7 +73,7 @@
             <th>first name</th>
             <th>last name</th>
             <th>email</th>
-            <th>password</th>
+            <th>phone No</th>
             <th>admin</th>
             <th>active</th>
         </tr>

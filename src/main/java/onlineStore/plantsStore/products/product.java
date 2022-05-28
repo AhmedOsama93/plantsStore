@@ -24,7 +24,9 @@ public class product implements Comparable<product>, Serializable {
     private double price;
     private String season;
     private String soil;
-    private boolean active = false;
+    private boolean active = true;
+    private String Photo;
+    private boolean indoor ;
     private int numOrderd=0;
 
     public int getNumOrderd() {
@@ -63,6 +65,22 @@ public class product implements Comparable<product>, Serializable {
 
     public long getId() {
         return id;
+    }
+
+    public void setPhoto(String photo) {
+        Photo = photo;
+    }
+
+    public void setIndoor(boolean indoor) {
+        this.indoor = indoor;
+    }
+
+    public String getPhoto() {
+        return Photo;
+    }
+
+    public boolean isIndoor() {
+        return indoor;
     }
 
     public String getName() {

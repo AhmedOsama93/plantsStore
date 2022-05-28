@@ -1,43 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>admin</title>
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
     <script type="text/javascript" src="adminHeader.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
-        // Load google charts
-        google.charts.load('current', {'packages':['corechart']});
+        google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);
 
-        // Draw the chart and set the chart values
         function drawChart() {
+
             var data = google.visualization.arrayToDataTable([
-                ['product', 'quantity'],
-                ['summer planets', 10],
-                ['winter planets', 8],
-                ['spring planets', 8],
-                ['autumn planets', 7],
-                ['fertilizers', 4],
-                ['tools', 4]
+                ['Task', 'Hours per Day'],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
+                ['Watch TV', 2],
+                ['Sleep', 7]
             ]);
-            var options = {'title':'products sold', 'width':550, 'height':400,pieHole: 0.4,};
+
+            var options = {
+                title: 'My Daily Activities'
+            };
+
             var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
             chart.draw(data, options);
         }
     </script>
-</head>
-<body>
-<div id="header"></div>
-<div class="main">
-    <div id="piechart"></div>
+    <script type="text/javascript">
 
-</div>
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ['Dinosaur', 'Length'],
+                ['Acrocanthosaurus (top-spined lizard)', 12.2],
+                ['Albertosaurus (Alberta lizard)', 9.1],
+                ['Allosaurus (other lizard)', 12.2],
+                ['Apatosaurus (deceptive lizard)', 22.9],
+                ['Archaeopteryx (ancient wing)', 0.9],
+                ['Argentinosaurus (Argentina lizard)', 36.6],
+                ['Baryonyx (heavy claws)', 9.1],
+                ['Brachiosaurus (arm lizard)', 30.5],
+                ['Ceratosaurus (horned lizard)', 6.1],
+                ['Coelophysis (hollow form)', 2.7],
+                ['Compsognathus (elegant jaw)', 0.9],
+                ['Deinonychus (terrible claw)', 2.7],
+                ['Diplodocus (double beam)', 27.1],
+                ['Dromicelomimus (emu mimic)', 3.4],
+                ['Gallimimus (fowl mimic)', 5.5],
+                ['Mamenchisaurus (Mamenchi lizard)', 21.0],
+                ['Megalosaurus (big lizard)', 7.9],
+                ['Microvenator (small hunter)', 1.2],
+                ['Ornithomimus (bird mimic)', 4.6],
+                ['Oviraptor (egg robber)', 1.5],
+                ['Plateosaurus (flat lizard)', 7.9],
+                ['Sauronithoides (narrow-clawed lizard)', 2.0],
+                ['Seismosaurus (tremor lizard)', 45.7],
+                ['Spinosaurus (spiny lizard)', 12.2],
+                ['Supersaurus (super lizard)', 30.5],
+                ['Tyrannosaurus (tyrant lizard)', 15.2],
+                ['Ultrasaurus (ultra lizard)', 30.5],
+                ['Velociraptor (swift robber)', 1.8]]);
+
+            var options = {
+                title: 'Lengths of dinosaurs, in meters',
+                legend: { position: 'none' },
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+    <link href="css/theme.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="main">
+        <div class="page-wrapper">
+
+            <div class="page-content--bgf7">
+
+                <section class="statistic statistic2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item statistic__item--green">
+                                    <h2 class="number">10,368</h2>
+                                    <span class="desc">Site Users</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-account-o"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item statistic__item--orange">
+                                    <h2 class="number">30</h2>
+                                    <span class="desc">Products</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-shopping-cart"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item statistic__item--blue">
+                                    <h2 class="number">106</h2>
+                                    <span class="desc">Products Sold</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-calendar-note"></i>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-3">
+                                <div class="statistic__item statistic__item--red">
+                                    <h2 class="number">$1,060,386</h2>
+                                    <span class="desc">total earnings</span>
+                                    <div class="icon">
+                                        <i class="zmdi zmdi-money"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="statistic-chart">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3 class="title-5 m-b-35">statistics</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="flex: 1 0 45.333333%; max-width: 50.333333%;" class="col-md-6 col-lg-4">
+                                <div class="statistic-chart-1">
+                                    <h3 class="title-3 m-b-30">Pie chart</h3>
+                                    <div id="piechart" style="width: 400px; height: 300px;"></div>
+                                </div>
+                            </div>
+                            <div style="flex: 1 0 45.333333%; max-width: 50.333333%;" class="col-md-6 col-lg-4">
+                                <div class="top-campaign">
+                                    <h3 class="title-3 m-b-30">top campaigns</h3>
+                                    <div class="table-responsive">
+                                        <table class="table table-top-campaign">
+                                            <tbody>
+                                                <tr>
+                                                    <td>1. Australia</td>
+                                                    <td>$70,261.65</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>2. United Kingdom</td>
+                                                    <td>$46,399.22</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>3. Turkey</td>
+                                                    <td>$35,364.90</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>4. Germany</td>
+                                                    <td>$20,366.96</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>5. France</td>
+                                                    <td>$10,366.96</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4"
+                                style="flex: 0 0 45.333333%;max-width: 77.333333%;margin: auto;">
+                                <div class="chart-percent-2">
+                                    <h3 class="title-3 m-b-30">Histogram</h3>
+                                    <div class="chart-wrap">
+                                        <div class="chartjs-size-monitor"
+                                            style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                                            <div class="chartjs-size-monitor-expand"
+                                                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                                <div
+                                                    style="position:absolute;width:1000000px;height:1000000px;left:0;top:0">
+                                                </div>
+                                            </div>
+                                            <div class="chartjs-size-monitor-shrink"
+                                                style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                                                <div style="position:absolute;width:200%;height:200%;left:0; top:0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div id="chart_div" style="width: 600px; height: 500px;"></div>
+
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+
+        </div>
+    </div>
 
 </body>
 
 </html>
-
-
-
