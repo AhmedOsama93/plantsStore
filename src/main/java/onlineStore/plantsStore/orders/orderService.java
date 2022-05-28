@@ -23,7 +23,23 @@ public class orderService {
         this.usersRepository = usersRepository;
         this.productRepository = productRepository;
     }
-
+    public int getProductSoldCount(){
+        List<orders> orders =orderRepository.findAll();
+        int productSold=0;
+        for (int i = 0; i < orders.size(); i++) {
+            productSold+=orders.get(i).getQuantity();
+        }
+        return productSold;
+    }
+    public int getTotalIncome(){
+        List<orders> orders =orderRepository.findAll();
+        int totalIncome=0;
+        for (int i = 0; i < orders.size(); i++) {
+            long productId = orders.get(i).getId().getProductID();
+            totalIncome+=(orders.get(i).getQuantity() * productRepository.getById(productId).getPrice() );
+        }
+        return totalIncome;
+    }
     public  void order(String username){
 
         List<cart> cartItems= new ArrayList<>();

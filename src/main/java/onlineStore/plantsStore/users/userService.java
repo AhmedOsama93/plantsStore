@@ -44,6 +44,9 @@ public class userService  implements UserDetailsService {
     public List<users> getUsers(){
         return  usersRepository.findAll();
     }
+    public int getUsersCount(){
+        return  usersRepository.findAll().size();
+    }
 
     public boolean isAdmin(String username){
         users u=usersRepository.findusersByEmail(username);

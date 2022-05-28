@@ -21,7 +21,14 @@ public class ordersController {
         this.orderService1 = orderService;
     }
 
-
+    @GetMapping(path = "admin/getProductSoldCount")
+    private ResponseEntity<Integer>getProductSoldCount(){
+        return ResponseEntity.ok().body(orderService1.getProductSoldCount());
+    }
+    @GetMapping(path = "admin/getTotalIncome")
+    private ResponseEntity<Integer>getTotalIncome(){
+        return ResponseEntity.ok().body(orderService1.getTotalIncome());
+    }
 
     @PostMapping(path = "user/order")
     public ResponseEntity<?> order( @RequestHeader(name="Authorization") String token1){

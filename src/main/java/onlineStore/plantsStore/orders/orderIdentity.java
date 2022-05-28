@@ -29,4 +29,28 @@ public class orderIdentity implements Serializable {
     {
         return  this.username.hashCode() +(int) this.productID+(int) this.orderNo;
     }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public long getProductID() {
+        return productID;
+    }
+
+    public int getOrderNo() {
+        return orderNo;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setProductID(long productID) {
+        this.productID = productID;
+    }
+
+    public void setOrderNo(int orderNo) {
+        this.orderNo = orderNo;
+    }
 }
