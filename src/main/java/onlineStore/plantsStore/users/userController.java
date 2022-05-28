@@ -38,11 +38,12 @@ public class userController {
 
         return ResponseEntity.ok().body(userService.getUsers());
     }
+    @GetMapping(path="admin/getUsersCount")
+    public ResponseEntity<Integer> getUsersCount(){
 
-//    @GetMapping(path="api/user/getUsers")
-//    public List<users> getUsers(){
-//        return userService.getUsers();
-//    }
+        return ResponseEntity.ok().body(userService.getUsersCount());
+    }
+
 
     @PostMapping(path="visitor/registerNewUser")
     public ResponseEntity<?> registerNewUser(@RequestBody users user){

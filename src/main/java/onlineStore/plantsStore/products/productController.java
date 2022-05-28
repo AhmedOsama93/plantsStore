@@ -19,8 +19,11 @@ public class productController {
         this.productService=productService;
     }
 
+    @GetMapping(path="admin/getProductCount")
+    public ResponseEntity<Integer>getProductCount(){
+        return ResponseEntity.ok().body(productService.getProductCount());
+    }
     @GetMapping(path="user/getProduct")
-
     public ResponseEntity<List<product>> getProduct(){
         return ResponseEntity.ok().body(productService.getProducts());
     }
