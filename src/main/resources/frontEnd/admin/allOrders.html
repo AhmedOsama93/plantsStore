@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Table</title>
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
+    <!--    <script type="text/javascript" src="js/admin.js"></script>-->
+    <script type="text/javascript" src="adminHeader.js"></script>
+    <script type="text/javascript" src="loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['table'] });
+        google.charts.setOnLoadCallback(drawTable);
+
+        function drawTable() {
+            var cssClassNames = {
+                'headerRow': 'italic-green-font large-font bold-font',
+                'tableRow': '',
+                'oddTableRow': 'beige-background',
+                'selectedTableRow': 'orange-background large-font',
+                'hoverTableRow': '',
+                'headerCell': 'gold-border',
+                'tableCell': '',
+                'rowNumberCell': 'underline-blue-font'
+            };
+
+            var options = { 'width': '100%', 'height': '100%', 'showRowNumber': true, 'allowHtml': true, 'cssClassNames': cssClassNames };
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Product Name');
+            data.addColumn('string', 'User Fname');
+            data.addColumn('date', 'Order date');
+            data.addColumn('number', 'Quantity');
+            data.addColumn('number', 'Price')
+            data.addRows([
+                ['Mike', 'abdo', new Date(2000, 8, 5), { v: 10000, f: '10,000' }, { v: 10000, f: '$10,000' }],
+                ['Jim', 'abdo', new Date(2000, 8, 5), { v: 10000, f: '10,000' }, { v: 10000, f: '$10,000' }],
+                ['Alice', 'abdo', new Date(2000, 8, 5), { v: 10000, f: '10,000' }, { v: 10000, f: '$10,000' }],
+                ['Bob', 'abdo', new Date(2000, 8, 5), { v: 10000, f: '10,000' }, { v: 10000, f: '$10,000' }]
+            ]);
+
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+
+            table.draw(data, options);
+        }
+    </script>
+    <style>
+        .bold-green-font {
+            font-weight: bold;
+            color: green;
+        }
+
+        .bold-font {
+            font-weight: bold;
+        }
+
+        .right-text {
+            text-align: right;
+        }
+
+        .large-font {
+            font-size: 15px;
+        }
+
+        .italic-darkblue-font {
+            font-style: italic;
+            color: darkblue;
+        }
+
+        .italic-purple-font {
+            font-style: italic;
+            color: purple;
+        }
+
+        .underline-blue-font {
+            text-decoration: none;
+            color: #406E3F;
+        }
+
+        .gold-border {
+            border: 3px solid #406E3F;
+        }
+
+        .deeppink-border {
+            border: 3px solid deeppink;
+        }
+
+        .orange-background {
+            background-color: orange;
+        }
+
+        .orchid-background {
+            background-color: orchid;
+        }
+
+        .beige-background {
+            background-color: #8ed48d;
+        }
+    </style>
+    <link href="css/theme.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div id="header"></div>
+    <div class="main">
+        <div style="height: 60vh" id="table_div"></div>
+    </div>
+
+</body>
+
+</html>

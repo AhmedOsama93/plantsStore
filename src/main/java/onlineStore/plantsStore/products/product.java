@@ -60,6 +60,28 @@ public class product implements Comparable<product>, Serializable {
         return (int) this.id;
     }
 
+    public product(String name, String category, int quantityAvailable, double price, String season, String soil, String photo, boolean indoor, String description) {
+        this.name = name;
+        this.category = category;
+        this.quantityAvailable = quantityAvailable;
+        this.price = price;
+        this.season = season;
+        this.soil = soil;
+        Photo = photo;
+        this.indoor = indoor;
+        this.description = description;
+    }
+    public product(String name, String category, int quantityAvailable, double price, String season, String soil, boolean indoor, String description) {
+        this.name = name;
+        this.category = category;
+        this.quantityAvailable = quantityAvailable;
+        this.price = price;
+        this.season = season;
+        this.soil = soil;
+        this.indoor = indoor;
+        this.description = description;
+    }
+
     public product() {
 
     }

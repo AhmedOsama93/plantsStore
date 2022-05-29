@@ -4,6 +4,8 @@
         <meta charset="UTF-8">
         <title>products</title>
         <script type="text/javascript" src="adminHeader.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+              integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style>
             body{
                 background:#F1F1F1
@@ -30,8 +32,8 @@
 
             function listAllProducts() {
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "http://localhost:8081/user/getProduct", true);
-                xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzcyODQ0N30.lp15vlhtui-JLaWopTKqsZX4bxGtv44JqiKNJwr56IQ");
+                xhttp.open("GET", "http://localhost:8081/visitor/getProduct", true);
+                xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo");
                 xhttp.send();
 
                 xhttp.onreadystatechange = function () {

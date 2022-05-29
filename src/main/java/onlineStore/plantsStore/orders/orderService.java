@@ -31,6 +31,9 @@ public class orderService {
         }
         return productSold;
     }
+    public List<orders>getAllOrdersForUser(String username){
+        return orderRepository.findOrderByUsername(username);
+    }
     public int getTotalIncome(){
         List<orders> orders =orderRepository.findAll();
         int totalIncome=0;

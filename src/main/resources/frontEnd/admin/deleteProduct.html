@@ -37,7 +37,7 @@
             var x = document.getElementById("myText").value;
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "http://localhost:8081/user/getProductByID/"+x, true);
-            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1Mzc4NTEyOX0.bv1llsfZHQTUmvwzYHJWyQwdEaeSGxaDPY0rceqjI3w");
+            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo");
             xhttp.send();
 
             xhttp.onreadystatechange = function () {
@@ -58,6 +58,31 @@
                             "</td>" + "<td>" + data.active + "</td></tr>";
                 }
             };
+        }
+        function deleteProduct(){
+            let id=document.getElementById("myText").value;
+
+            const url = 'http://localhost:8081/admin/deleteProduct/'+id;
+            let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo"
+
+            let h = new Headers();
+            h.append('Accept', 'application/json');
+            h.append('Authorization', token);
+
+            let request = new Request(url,{
+                method: 'POST',
+                headers: h,
+                mode:'cors'
+            });
+
+            fetch(request).then((response)=>{
+                if (response.ok){
+                    // window.location.href = "../products.html";
+                    return response.json();
+                }
+            }).catch(e=>{
+                alert('cant add product');
+            })
         }
     </script>
 </head>
@@ -93,7 +118,7 @@
 
             <div>
 
-                <button vtype="submit" class="btn btn-primary" style="background-color: red;border-color: darkred">DELETE</button>
+                <button onclick="deleteProduct()" type="submit" class="btn btn-primary" style="background-color: red;border-color: darkred">DELETE</button>
 <!--                <button onclick="window.location.href='products.html'" type="submit"-->
 <!--                    class="btn btn-primary">cancel</button>-->
             </div>

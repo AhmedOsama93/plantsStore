@@ -3,7 +3,7 @@ if (sessionStorage.getItem('state') == 'loggedIn'){
 }
 function addProduct(){
     let chapter = sessionStorage.getItem('chapter');
-    const url = 'http://localhost:8081/user/getProduct/';
+    const url = 'http://localhost:8081/visitor/getProduct/';
     let h = new Headers();
     let token = sessionStorage.getItem('accessToken');
     h.append('Authorization', `Bearer ${token}`);
