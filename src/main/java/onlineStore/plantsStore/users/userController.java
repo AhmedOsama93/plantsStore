@@ -76,6 +76,10 @@ public class userController {
 
         return ResponseEntity.ok().body(userService.getUserData(username));
     }
+    @GetMapping(path = "/admin/getUserData/{username}")
+    public ResponseEntity<users>getUserDataForAdmin(@PathVariable String username){
+        return ResponseEntity.ok().body(userService.getUserData(username));
+    }
     @GetMapping(path = "/visitor/isAdmin")
     public ResponseEntity<Boolean>isAdmin(@RequestHeader(name="Authorization") String token1){
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());

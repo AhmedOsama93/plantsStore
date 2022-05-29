@@ -35,10 +35,12 @@ public class productController {
     public ResponseEntity<List<product>> getTopProduct(){
         return ResponseEntity.ok().body(productService.getTopProducts());
     }
-    @GetMapping(path="productSeasonStat" )
+    @GetMapping(path="admin/productSeasonStat" )
     public ResponseEntity<SeasonStat[]> productSeasonStat(){
         return ResponseEntity.ok().body(productService.getSeasonStat());
     }
+ //   @GetMapping(path="admin/productSeasonStat" )
+
     @PostMapping(path="admin/addNewProduct" )
     public ResponseEntity<?> addNewProduct(@RequestBody  product product){
         productService.addNewProduct(product);

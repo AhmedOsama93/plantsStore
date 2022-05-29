@@ -27,6 +27,7 @@ public class product implements Comparable<product>, Serializable {
     private boolean active = true;
     private String Photo;
     private boolean indoor ;
+    private String description;
     private int numOrderd=0;
 
     public int getNumOrderd() {
@@ -61,6 +62,14 @@ public class product implements Comparable<product>, Serializable {
 
     public product() {
 
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     public long getId() {

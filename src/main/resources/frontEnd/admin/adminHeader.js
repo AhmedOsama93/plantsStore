@@ -47,7 +47,7 @@ window.onload = function ()
         "<body>\n" +
         "\n" +
         "<div class=\"sidenav\">\n" +
-        "    <h1 style=\"padding-left: 30px\">site name</h1>\n" +
+        "    <h1 style=\"padding-left: 30px\">Dracena </h1>\n" +
         "\n" +
         "\n" +
         "    <a href=\"admin.html\">Dashboard</a>\n" +
