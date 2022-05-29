@@ -5,7 +5,6 @@ import onlineStore.plantsStore.products.product;
 import onlineStore.plantsStore.users.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,5 +98,22 @@ public class orderService {
             orders.add(o);
         }
         return orders;
+    }
+    public List<OrdersDone> CustomersOfOrders(){
+        List<OrdersDone>ords = new ArrayList<OrdersDone>();
+        List<orders>orders = orderRepository.findAll();
+        for (int i = 0; i < orders.size(); i++) {
+            users user ;
+            user = usersRepository.findusersByEmail(orders.get(i).getId().getUsername());
+            long o =orders.get(i).getId().getProductID();
+            OrdersDone ordersDone = new OrdersDone();
+            ordersDone.Pname = productRepository.getById(o).getName();
+            ordersDone.fname = user.getfName();
+            ordersDone.orderDate= orders.get(i).getOrderDate();
+            ordersDone.quantity = orders.get(i).getQuantity();
+            ordersDone.price =productRepository.getById(o).getPrice();
+            ords.add(ordersDone);
+        }
+        return ords;
     }
 }

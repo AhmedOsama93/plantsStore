@@ -5,10 +5,8 @@ import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTVerifier;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.interfaces.DecodedJWT;
-import onlineStore.plantsStore.users.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 //@Controller
@@ -29,7 +27,10 @@ public class ordersController {
     private ResponseEntity<Integer>getTotalIncome(){
         return ResponseEntity.ok().body(orderService1.getTotalIncome());
     }
-
+    @GetMapping(path = "orders/customerOfOrders")
+    public ResponseEntity<ResponseEntity<OrdersDone>> CustomersOfOrders() {
+        return ResponseEntity.(CustomersOfOrders());
+    }
     @PostMapping(path = "user/order")
     public ResponseEntity<?> order( @RequestHeader(name="Authorization") String token1){
 
@@ -53,5 +54,7 @@ public class ordersController {
         orderService1.orderCartItem(username,productID);
         return ResponseEntity.ok().build();
     }
+
 }
+
 

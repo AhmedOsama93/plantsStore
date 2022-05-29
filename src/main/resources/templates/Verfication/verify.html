@@ -6,13 +6,16 @@
     <link rel="stylesheet" type="text/css" href="css/verify.css">
 </head>
 <body>
-<div id="verify-form">
-    <div class="container">
-        <h1 >Enter Verify Code</h1>
-        <div class="userInput">
-            <input type="text" id='code'>
+<div class="verify-form">
+    <h1 style="color: #406E3F; margin: 10px;">Verify Code</h1>
+    <div>
+        <input id="email" type="text" placeholder="verify code">
+        <br>
+        <div>
+            <div >
+                <button href="logIn.html"  onclick = "verify()" class="verify" >confirm</button>
+            </div>
         </div>
-        <button onclick="verify()">CONFIRM</button>
     </div>
 </div>
 <script src="js/verify.js"></script>
