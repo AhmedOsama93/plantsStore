@@ -44,14 +44,13 @@ public class userController {
         return ResponseEntity.ok().body(userService.getUsersCount());
     }
 
-
     @PostMapping(path="visitor/registerNewUser")
     public ResponseEntity<?> registerNewUser(@RequestParam users user){
         userService.addNewUser(user);
         return ResponseEntity.ok().build();
     }
     @PostMapping(path="admin/addUserForAdmin")
-    public ResponseEntity<?> addUserForAdmin(@RequestBody users user){
+    public ResponseEntity<?> addUserForAdmin( users user){
         userService.addNewUserForAdmin(user);
         return ResponseEntity.ok().build();
     }//change it
@@ -107,7 +106,7 @@ public class userController {
         return ResponseEntity.ok().body(userService.isUser(username));
     }
     @PostMapping(path = "/admin/addRoleToUser")
-    public ResponseEntity<?>addRoleToUser(@RequestBody RoleToUserForm form){
+    public ResponseEntity<?>addRoleToUser( RoleToUserForm form){
         userService.addRoleToUser(form.getEmail(), form.getRoleName());
         return ResponseEntity.ok().build();
     }

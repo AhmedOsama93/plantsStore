@@ -33,11 +33,11 @@
     </style>
     <script>
 
-        function myFunction() {
+        function refreshuser() {
             var x = document.getElementById("myText").value;
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "http://localhost:8081/admin/getUserData/"+x, true);
-            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1Mzc4MzgzMH0.IbnEl25PF1R_E-9WeUFjGNjHobOsNp3Rd62Cbm-cRFs");
+            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo");
             xhttp.send();
 
             xhttp.onreadystatechange = function () {
@@ -58,6 +58,36 @@
                 }
             };
         }
+
+        function addRole(){
+            let username=document.getElementById("myText").value;
+            let role=document.getElementById("role").value;
+            const url = 'http://localhost:8081/admin/addRoleToUser';
+            let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo"
+
+            let h = new Headers();
+            h.append('Accept', 'application/json');
+            h.append('Authorization', token);
+
+            let formData = new FormData();
+            formData.append("email", username);
+            formData.append("roleName", role);
+
+            let request = new Request(url,{
+                method: 'POST',
+                headers: h,
+                body: formData,
+                mode:'cors'
+            });
+            fetch(request).then((response)=>{
+                if (response.ok){
+                    // window.location.href = "../products.html";
+                    return response.json();
+                }
+            }).catch(e=>{
+                alert('cant add role');
+            })
+        }
     </script>
 </head>
 
@@ -66,11 +96,11 @@
     <div class="main">
         <br>
         <H2 style="text-align: center;">ADD ROLE TO USER</H2>
-        <form >
+        <form name="RoleToUserForm" >
 
             <div class="form-group">
                 <label >Username</label>
-                <input onchange="myFunction()" name="id"  type="text" id="myText" class="form-control" placeholder="username">
+                <input onchange="refreshuser()" name="id" type="text" id="myText" class="form-control" placeholder="username">
             </div>
 
             <table id="userTable" >
@@ -91,16 +121,15 @@
             <br>
             <div>
 
-                <select class="form-control" name="role">
+                <select class="form-control" name="role" id="role">
                     <option></option>
                     <option value="ROLE_ADMIN">Admin</option>
                     <option value="ROLE_USER">User</option>
 
                 </select>
                 <br>
-                <button vtype="submit" class="btn btn-primary" >ADD ROLE</button>
-<!--                <button onclick="window.location.href='products.html'" type="submit"-->
-<!--                    class="btn btn-primary">cancel</button>-->
+                <button vtype="submit" onclick="addRole()" class="btn btn-primary" >ADD ROLE</button>
+
             </div>
 
         </form>

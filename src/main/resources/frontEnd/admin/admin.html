@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>admin</title>
     <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
-<!--    <script type="text/javascript" src="js/admin.js"></script>-->
+    <!--    <script type="text/javascript" src="js/admin.js"></script>-->
     <script type="text/javascript" src="adminHeader.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script type="text/javascript">
@@ -14,11 +14,11 @@
         google.charts.setOnLoadCallback(drawChart);
 
         function drawChart() {
-            let token="Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1Mzc4NDI3NH0.yQJH6A1i0W642CusSWJjZ3XvFVMvvkCS8VVGNZTOPIY"
+            let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo"
 
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "http://localhost:8081/admin/productSeasonStat", true);
-            xhttp.setRequestHeader("Authorization",token);
+            xhttp.setRequestHeader("Authorization", token);
             xhttp.send();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
@@ -35,7 +35,7 @@
                     ]);
                     var options = {
                         title: 'plants we are selling',
-                        'width':500 , 'height':300,pieHole: 0.4
+                        'width': 500, 'height': 300, pieHole: 0.4
                     };
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
@@ -45,38 +45,38 @@
             }
             var xhttp1 = new XMLHttpRequest();
             xhttp1.open("GET", "http://localhost:8081/admin/getUsersCount", true);
-            xhttp1.setRequestHeader("Authorization",token);
+            xhttp1.setRequestHeader("Authorization", token);
             xhttp1.send();
             xhttp1.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("siteUsers").innerText=this.responseText;
+                    document.getElementById("siteUsers").innerText = this.responseText;
                 }
             }
             var xhttp2 = new XMLHttpRequest();
             xhttp2.open("GET", "http://localhost:8081/admin/getProductSoldCount", true);
-            xhttp2.setRequestHeader("Authorization",token);
+            xhttp2.setRequestHeader("Authorization", token);
             xhttp2.send();
             xhttp2.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("ProductsSoldNum").innerText=this.responseText;
+                    document.getElementById("ProductsSoldNum").innerText = this.responseText;
                 }
             }
             var xhttp3 = new XMLHttpRequest();
             xhttp3.open("GET", "http://localhost:8081/admin/getProductCount", true);
-            xhttp3.setRequestHeader("Authorization",token);
+            xhttp3.setRequestHeader("Authorization", token);
             xhttp3.send();
             xhttp3.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("ProductsNum").innerText=this.responseText;
+                    document.getElementById("ProductsNum").innerText = this.responseText;
                 }
             }
             var xhttp4 = new XMLHttpRequest();
             xhttp4.open("GET", "http://localhost:8081/admin/getTotalIncome", true);
-            xhttp4.setRequestHeader("Authorization",token);
+            xhttp4.setRequestHeader("Authorization", token);
             xhttp4.send();
             xhttp4.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
-                    document.getElementById("totalEarnings").innerText='$ '+this.responseText;
+                    document.getElementById("totalEarnings").innerText = '$ ' + this.responseText;
                 }
             }
         }
@@ -103,6 +103,91 @@
             chart.draw(data, options);
         }
     </script>
+    <script type="text/javascript" src="loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["corechart"] });
+        google.charts.setOnLoadCallback(drawChart);
+        function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+                ["Task", "Hours per Day"],
+                ["Work", 11],
+                ["Eat", 2],
+                ["Commute", 2],
+                ["Watch TV", 2],
+                ["Sleep", 7],
+            ]);
+
+            var options = {
+                title: "My Daily Activities",
+                pieHole: 0.4,
+            };
+
+            var chart = new google.visualization.PieChart(
+                document.getElementById("donutchart")
+            );
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', { 'packages': ['corechart'] });
+        google.charts.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+
+            var data = google.visualization.arrayToDataTable([
+                ['Task', 'Hours per Day'],
+                ['Work', 11],
+                ['Eat', 2],
+                ['Commute', 2],
+                ['Watch TV', 2],
+                ['Sleep', 7]
+            ]);
+
+            var options = {
+                title: 'My Daily Activities'
+            };
+
+            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+            chart.draw(data, options);
+        }
+    </script>
+    <script type="text/javascript" src="loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load("current", { packages: ["bar"] });
+        google.charts.setOnLoadCallback(drawStuff);
+
+        function drawStuff() {
+            var data = new google.visualization.arrayToDataTable([
+                ["Move", "Percentage"],
+                ["King's pawn (e4)", 44],
+                ["Queen's pawn (d4)", 31],
+                ["Knight to King 3 (Nf3)", 12],
+                ["Queen's bishop pawn (c4)", 10],
+                ["Other", 3],
+            ]);
+
+            var options = {
+                width: 800,
+                legend: { position: "none" },
+                chart: {
+                    title: "Chess opening moves",
+                    subtitle: "popularity by percentage",
+                },
+                axes: {
+                    x: {
+                        0: { side: "top", label: "White to move" }, // Top x-axis.
+                    },
+                },
+                bar: { groupWidth: "90%" },
+            };
+
+            var chart = new google.charts.Bar(document.getElementById("top_x_div"));
+            // Convert the Classic options to Material options.
+            chart.draw(data, google.charts.Bar.convertOptions(options));
+        }
+    </script>
     <link href="css/theme.css" rel="stylesheet" media="all">
 </head>
 
@@ -127,7 +212,7 @@
                             </div>
                             <div class="col-md-6 col-lg-3">
                                 <div class="statistic__item statistic__item--orange">
-                                    <h2 class="number"id="ProductsNum"></h2>
+                                    <h2 class="number" id="ProductsNum"></h2>
                                     <span class="desc">Products</span>
                                     <div class="icon">
                                         <i class="zmdi zmdi-shopping-cart"></i>
@@ -169,38 +254,10 @@
                                 </div>
                             </div>
                             <div style="flex: 1 0 45.333333%; max-width: 50.333333%;" class="col-md-6 col-lg-4">
-                                <div class="top-campaign">
-                                    <h3 class="title-3 m-b-30">top campaigns</h3>
-                                    <div class="table-responsive">
-                                        <table class="table table-top-campaign">
-                                            <tbody>
-                                                <tr>
-                                                    <td>1. Australia</td>
-                                                    <td>$70,261.65</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>2. United Kingdom</td>
-                                                    <td>$46,399.22</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>3. Turkey</td>
-                                                    <td>$35,364.90</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>4. Germany</td>
-                                                    <td>$20,366.96</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>5. France</td>
-                                                    <td>$10,366.96</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
+                                <div id="donutchart" style="width: 500px; height: 385px"></div>
                             </div>
                             <div class="col-md-6 col-lg-4"
-                                style="flex: 0 0 45.333333%;max-width: 77.333333%;margin: auto;">
+                                style="flex: 0 0 45.333333%;max-width: 80.333333%;margin: auto;">
                                 <div class="chart-percent-2">
                                     <h3 class="title-3 m-b-30">Histogram</h3>
                                     <div class="chart-wrap">
@@ -218,8 +275,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div id="chart_div" style="width: 600px; height: 500px;"></div>
-
+                                        <div id="top_x_div" style="width: 800px; height: 600px"></div>
 
                                     </div>
 

@@ -42,7 +42,7 @@ public class productController {
  //   @GetMapping(path="admin/productSeasonStat" )
 
     @PostMapping(path="admin/addNewProduct" )
-    public ResponseEntity<?> addNewProduct(@RequestBody  product product){
+    public ResponseEntity<?> addNewProduct(product product){
         productService.addNewProduct(product);
         return ResponseEntity.ok().build();
     }
@@ -52,7 +52,7 @@ public class productController {
         return ResponseEntity.ok().build();
     }
     @PostMapping(path="admin/editProduct")
-    public ResponseEntity<?> editProduct(@RequestBody product product) {
+    public ResponseEntity<?> editProduct( product product) {
         productService.editProduct(product);
         return ResponseEntity.ok().build();
     }

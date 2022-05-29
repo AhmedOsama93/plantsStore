@@ -37,7 +37,7 @@
             var x = document.getElementById("myText").value;
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "http://localhost:8081/admin/getUserData/"+x, true);
-            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzgxNzQwNn0.bLLlh1hkjHln-Uxjnrm2D7GVxtKWvFiZAsVfawRcRhQ");
+            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo");
             xhttp.send();
 
             xhttp.onreadystatechange = function () {

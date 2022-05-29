@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>addProduct</title>
     <link rel="stylesheet" href="./css/addproduct.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -19,6 +20,54 @@
                 document.getElementById("plantOptions").style.display = "none";
 
         }
+        function addNewProduct(){
+
+            let ProductName=document.getElementById("PinputName").value;
+            let Pquantity=document.getElementById("Pquantity").value;
+            let pPrice=document.getElementById("pPrice").value;
+            let pDec=document.getElementById("pDec").value;
+            let catigory=document.getElementById("select").value;
+            let pSeason=document.getElementById("pSeason").value;
+            let pSoil=document.getElementById("pSoil").value;
+            var pIndoor=false;
+            if(document.getElementById("pIndoor").value==="in door"){
+                pIndoor=true;
+            }
+
+            const url = 'http://localhost:8081/admin/addNewProduct';
+            let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo"
+
+            let h = new Headers();
+            h.append('Accept', 'application/json');
+            h.append('Authorization', token);
+
+            let formData = new FormData();
+            formData.append("name", ProductName);
+            formData.append("category", catigory);
+            formData.append("quantityAvailable", Pquantity);
+            formData.append("price", pPrice);
+            formData.append("season", pSeason);
+            formData.append("soil", pSoil);
+            formData.append("description", pDec);
+            formData.append("indoor", pIndoor);
+
+            let request = new Request(url,{
+                method: 'POST',
+                headers: h,
+                body: formData,
+                mode:'cors'
+            });
+            fetch(request).then((response)=>{
+                if (response.ok){
+                    console.log("done")
+                    window.location.href = "products.html";
+                    return response.json();
+                }
+            }).catch(e=>{
+                alert('cant add product');
+            })
+        }
+
     
     </script>
     <style>
@@ -33,24 +82,24 @@
     <div class="main">
         <br>
         <H2 style="text-align: center">ADD NEW PRODUCT</H2>
-        <form action="http://localhost:8081/admin/addNewProduct"  method="POST">
+        <form name="product">
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <label>Product Name:</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder="Product Name">
+                    <input type="text" class="form-control" id="PinputName" placeholder="Product Name">
                 </div>
                 <div class="form-group col-md-6">
                     <label >Available quantity</label>
-                    <input type="number" name="quantity" class="form-control" id="inputPassword4" placeholder="quantity">
+                    <input type="number" name="quantity" class="form-control" id="Pquantity" placeholder="quantity">
                 </div>
             </div>
             <div class="form-group">
                 <label >Price</label>
-                <input type="number" name="Price" class="form-control" id="inputAddress" placeholder="Price">
+                <input type="number" name="Price" class="form-control" id="pPrice" placeholder="Price">
             </div>
             <div class="form-group">
                 <label >Description</label>
-                <input type="text" name="description" class="form-control" id="inputAddress2" placeholder="Description">
+                <input type="text" name="description" class="form-control" id="pDec" placeholder="Description">
             </div>
 
             <div class="form-group ">
@@ -65,7 +114,7 @@
 
         <p id="plantOptions" style="display: none">
                 <label>season:</label>
-                <select name="season" class="form-control">
+                <select name="season" id="pSeason" class="form-control">
                     <option></option>
                     <option value="summer">summer</option>
                     <option value="winter">winter</option>
@@ -75,7 +124,7 @@
                 
                 
                 <label>soil:</label>
-                <select class="form-control" name="soil">
+                <select class="form-control" id="pSoil" name="soil">
                     <option></option>
                     <option value="Sandy soil">Sandy soil</option>
                     <option value="Clay Soil">Clay Soil</option>
@@ -85,7 +134,7 @@
                     <option value="CLoam Soi">Loam Soi</option>
                 </select>
             <label>in Door:</label>
-                <select class="form-control" name="indoor">
+                <select class="form-control" id="pIndoor" name="indoor">
                     <option></option>
                     <option value="in door">in door</option>
                     <option value="out door">out door</option>
@@ -98,9 +147,7 @@
 
             <div>
 
-                <button value="add product" type="submit" class="btn btn-primary">Submit</button>
-<!--                <button onclick="window.location.href='products.html'" type="submit"-->
-<!--                    class="btn btn-primary">cancel</button>-->
+                <button onclick = "addNewProduct()" value="add product" type="submit" class="btn btn-primary">Submit</button>
             </div>
 
         </form>

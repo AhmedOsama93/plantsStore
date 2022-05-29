@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 //@Controller
 @RestController
 public class ordersController {
@@ -42,6 +44,17 @@ public class ordersController {
 
         orderService1.order(username);
         return ResponseEntity.ok().build();
+    }
+    @PostMapping(path = "user/getAllOrdersForuser")
+    public ResponseEntity<List<orders>>getAllOrdersForAdmin(@RequestHeader(name="Authorization") String token1){
+
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
+
+        return ResponseEntity.ok().body(orderService1.getAllOrdersForUser(username));
     }
     @PostMapping(path = "user/orderOneCartItem/{productID}")
     public ResponseEntity<?> order( @RequestHeader(name="Authorization") String token1,@PathVariable long productID){

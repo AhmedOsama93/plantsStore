@@ -64,8 +64,15 @@ public class userService  implements UserDetailsService {
     }
     public void addRoleToUser(String email,String roleName){
         users user=usersRepository.findusersByEmail(email);
+        if(roleName.equals("ROLE_ADMIN")){
+            user.setAdmin(true);
+            user.setActive(1);
+        }
+        else if (roleName.equals("ROLE_USER"))
+            user.setActive(1);
         Role role=roleRepo.findByName(roleName);
         if(!user.getRoles().contains(role)){
+                user.setActive(1);
             user.getRoles().add(role);
             usersRepository.save(user);
         }
