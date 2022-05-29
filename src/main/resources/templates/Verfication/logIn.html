@@ -11,28 +11,29 @@
     <h1 style="color: #406E3F; margin: 10px;">Login</h1>
 
         
-    <form action="http://localhost:8081/login" method="POST">
-        <input id="username" name="username" type="text" placeholder="Email" id="">
-        <input id="password" name="password" type="text" placeholder="Password" id="0">
+    <div>
+        <input id="email" type="text" placeholder="Email">
+        <input id="pass" type="text" placeholder="Password">
         <br>
         
         <div>
-            <div class="clearfix">
-                <a href="wellcome.html">
-                    <button type="submit" href="wellcome.html" class="login" >LogIn</button>
-                </a>
+            <div>
+                
+                    <button onclick = "login()" class="login " >LogIn</button>
+               
             </div>
         </div>
         <a href="signUp.html"style="color: #406E3F; margin: 5px;">
             <h4 for="text">Sign Up</h4>
         </a>
-        <a href="logIn.html" style="color: #406E3F; margin: 5px;">
+        <a href="logIn.html"style="color: #406E3F; margin: 5px;">
             <h4 for="text">Forgot Password?</h4>
         </a>
         <a href="../home/home.html"style="color: #406E3F; margin: 5px;">
             <h4 for="text">Continue as a GUEST</h4>
            </a>
-    </form>
+    </div>
 </div>
+<script src="js/login.js"></script>
 </body>
 </html>

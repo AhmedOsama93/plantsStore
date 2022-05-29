@@ -1,0 +1,193 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+body{
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+} 
+img{
+    height: 250px;
+    width: 250px;
+    object-fit: contain;
+}   
+#footer {
+    text-align: center;
+    padding: 3px;
+    background-color: rgba(0, 0, 0,0.8);
+    color: rgb(255, 255, 255);
+  }
+  .footerUL{
+    border: 15px;
+    margin: 10;
+    list-style-type: none;
+    /* padding: 10; */
+    overflow: hidden;
+}
+.logo{
+    float: left;
+    width: 150px;
+    height: 43px;
+    margin: 4px;
+    margin-left: 8px;
+    padding: 0px;
+}
+.footerUL{
+    border: 15px;
+    margin: 10;
+    list-style-type: none;
+    padding: 10;
+    overflow: hidden;
+}
+.table{
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0 15px;
+}
+.tableDiv{
+text-align: center;
+margin: 20px;
+}
+.input1{
+    padding: 10px;
+    border: 2px solid #406E3F;
+    border-radius: 10px;
+    width: 48%;
+    background-color: white;
+    height: 15px;
+    color: #406E3F;
+    font-size: 18px;
+    transition: 0.08s;
+    box-shadow: 0 4px 8px 0 #406E3F;
+}
+.button1{
+    margin: 0.5px;
+    border: 2px solid #406E3F;
+    border-radius: 10px;
+    width: 48%;
+    background-color: white;
+    height: 35px;
+    color: #406E3F;
+    transition: 0.08s;
+    box-shadow: 0 4px 8px 0 #406E3F;
+}
+.orderDiv{
+    width: 30%;
+    margin-left: auto; 
+    margin-right: 0;
+}
+.orderAll{
+    
+    background-color: #406E3F;
+    color: white;
+    margin: 0.5px;
+    width: 68%;
+
+    height: 45px; 
+    border: 1px solid green;
+    border-radius: 10px;
+    transition: 0.08s;
+    box-shadow: 0 4px 8px 0 #406E3F;
+}
+.order, .delete{
+    background-color: #406E3F;
+    color: white;
+    margin: 0.5px;
+    width: 48%;
+    height: 35px;
+    border: 1px solid green;
+    border-radius: 10px;
+    transition: 0.08s;
+    box-shadow: 0 4px 8px 0 #406E3F;
+}
+.order:hover, .delete:hover{
+    transform: scale(1.03);
+}
+.delete{
+    background-color: #D70000;
+    border: 1px solid #D70000;
+}
+td{
+
+    border-bottom: 1px solid #406E3F; 
+    border-top: 1px solid #406E3F; 
+    
+    /* border: 1px solid #406E3F;  */
+ 
+
+}
+.td1{
+    border-left: 1px solid #406E3F; 
+    border-top-left-radius:30px ;
+    border-bottom-left-radius:30px ;
+}
+.td3{
+    border-right: 1px solid #406E3F; 
+   
+    border-top-right-radius:30px ;
+    border-bottom-right-radius:30px ;
+}
+
+.search{
+    padding-left: 18px;
+    margin-left: 18px;
+    margin-top: 18px;
+    border: 0.5px solid green;
+    border-bottom-left-radius: 20px;
+    float: right;
+    border-top-left-radius: 20px;
+    width: 50%;
+    background-color: white;
+    height: 33px;
+}
+
+.searchButton{
+    background-color: white;
+    margin-right: 18px;
+    margin-top: 18px;
+    float: right;
+    width: 20%;
+    height: 35px;
+    border: 0.5px solid green;
+    border-bottom-right-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.searchDiv{
+    float: right;
+}
+.cart{
+    float: right;
+}
+li{
+    float: left;
+    margin: 2px;
+    padding: 2px;
+     
+}
+li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  .cart {
+    background-color: #0B1D10;
+    border-radius: 10px;
+    margin-right: 10px;
+  }
+.ul {
+    border: 1px solid green;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 15px;
+    list-style-type: none;
+    margin: 0;
+    padding: 2px;
+    overflow: hidden;
+    background-color: #406E3F;
+  }

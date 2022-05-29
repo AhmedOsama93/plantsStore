@@ -1,0 +1,55 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    
+}
+body{
+  background-color: white;
+}
+
+.signUp-form{   
+    margin: auto;
+    text-align: center;
+    padding: 20px;
+    width:40%;
+    margin-top: 20px;
+    border: 1px solid #406E3F; 
+    box-shadow: 0 1px 2px 0 #406E3F;
+    border-radius: 20px;
+}
+#email, #pass{
+    padding-left: 10px;
+    padding-right: 10px;  
+    margin: 10px;
+    border: 0.5px solid #406E3F;
+    border-radius: 10px;
+    width: 50%;
+    box-shadow: 0 1px 2px 0 #406E3F;
+    background-color: white;
+    height: 35px;
+}
+.login{
+    margin: 10px;
+    border: 2px solid #406E3F;
+    border-radius: 10px;
+    width: 20%;
+    background-color: #406E3F;
+    height: 35px;
+    color: white;
+    transition: 0.08s;
+    box-shadow: 0 1px 2px 0 #406E3F;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="css/signUp.css">
+        <meta charset="UTF-8">
+    </head>
+    <body>
+        <div class="container">
+            <div class="signUp-form">
+            <div>
+               <h1 style="color: #406E3F;">Sign Up</h1>
+               <p style="margin: 20px;color: #406E3F;">Please fill in this form to create an <strong>ACCOUNT</strong>. 
+                <br>
+                Or You can browse as a <strong>GUEST</strong> .
+                </p>
+               <hr style="margin: 20px;">
+               <label style="color: #406E3F;"><b >First Name</b></label><br>
+               <input id="fname" type="text" name="fName" placeholder="Enter Email" required>
+               <br>
+               <label style="color: #406E3F;"><b >Last Name</b></label><br>
+               <input id="lName" type="text" name="lname" placeholder="Enter Email" required>
+               <br>
+               <label style="color: #406E3F;"><b >Address</b></label><br>
+               <input id="address" type="text"name="address1" placeholder="Enter Email" required>
+               <br>
+               <label style="color: #406E3F;"><b >City</b></label><br>
+               <input id="city" type="text" name="city" placeholder="Enter Email" required>
+               <br>
+               <label style="color: #406E3F;"><b >Phone</b></label><br>
+               <input id="phone" type="text" name="phoneNo" placeholder="Enter Email" required>
+               <br>
+               <label style="color: #406E3F;"><b >Username</b></label><br>
+               <input id="user" type="text" name = "username" placeholder="Enter Username" required>
+               <br>
+               <label style="color: #406E3F;"><b >Password</b></label><br>
+               <input id="pass" type="text " name="password" placeholder="Enter Password" required>
+               <br>
+               <label style="color: #406E3F;"><b >Confirm Password</b></label><br>
+               <input id="con" type="password" placeholder="Confirm Password" required>
+               <div class="clearfix">
+                   
+                    <button  class="signupbtn" onclick="sign()">send verify code</button>
+                 
+               </div>
+               <a href="logIn.html"style="color: #406E3F; margin: 5px;">
+                <h4 for="text">Already have an ACCOUNT</h4>
+               </a>
+               <a href="../home/home.html"style="color: #406E3F; margin: 5px;">
+                <h4 for="text">Continue as a GUEST</h4>
+               </a>
+               
+            </div>
+            </div>
+        </div>
+        <script src="js/signUp.js"></script>
+    </body>
+</html>

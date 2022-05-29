@@ -26,10 +26,10 @@ public class userController {
     //                                            api test
     //    *********************************************************************************************
 
-    @GetMapping(path="api/home")
-    public String ex1(){
-        return "wellcome";
-    }//this return the wellcome.html in resources/templates
+//    @GetMapping(path="api/home")
+//    public String ex1(){
+//        return "wellcome";
+//    }//this return the wellcome.html in resources/templates
 
     //    *********************************************************************************************
 
