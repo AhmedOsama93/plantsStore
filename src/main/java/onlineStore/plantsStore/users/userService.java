@@ -96,10 +96,18 @@ public class userService  implements UserDetailsService {
     public users getUserData(String username){
         return usersRepository.findusersByEmail(username);
     }
+    public boolean isEmailTaken(String username){
+        if(usersRepository.findusersByEmail(username)!=null)
+            return true;
+        return false;
+    }
     public users addNewUser(users user) {
         users user1 = usersRepository.findusersByEmail(user.getUsername());
 
-        if(user1!=null || user1.getActive()!=0){
+        if(user1!=null){
+            if (user1.getActive()!=0){
+                throw new IllegalStateException("email is suspended");
+            }
             throw new IllegalStateException("email is taken");
         }else {
             sendVerifyCode vc = new sendVerifyCode();
@@ -113,6 +121,23 @@ public class userService  implements UserDetailsService {
             user.setVerifyCode(verifyCode);
             return usersRepository.save(user);
 
+        }
+    }
+    public users addNewUserForAdmin(users user) {
+        users user1 = usersRepository.findusersByEmail(user.getUsername());
+
+        if(user1!=null){
+            if (user1.getActive()!=0){
+                throw new IllegalStateException("email is suspended");
+            }
+            throw new IllegalStateException("email is taken");
+        }else {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(null);
+            user.setSeller(false);
+            user.setActive(1);
+            user.setAdmin(false);
+            return usersRepository.save(user);
         }
     }
     public void forgetPasswordRequest(String email){

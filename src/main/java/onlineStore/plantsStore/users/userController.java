@@ -49,8 +49,16 @@ public class userController {
     public ResponseEntity<?> registerNewUser(@RequestParam users user){
         userService.addNewUser(user);
         return ResponseEntity.ok().build();
+    }
+    @PostMapping(path="admin/addUserForAdmin")
+    public ResponseEntity<?> addUserForAdmin(@RequestBody users user){
+        userService.addNewUserForAdmin(user);
+        return ResponseEntity.ok().build();
     }//change it
-
+    @GetMapping(path = "visitor/isEmailTaken/{email}")
+    public ResponseEntity<Boolean>isEmailTaken(@PathVariable String email){
+        return ResponseEntity.ok().body(userService.isEmailTaken(email));
+    }
     @PostMapping(path="visitor/enterVerifyCode/{verifyCode}")
     public ResponseEntity<?> enterVerifyCode(@PathVariable String verifyCode){
         userService.verifyCode(verifyCode);
