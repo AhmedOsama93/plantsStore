@@ -30,8 +30,8 @@ public class ordersController {
         return ResponseEntity.ok().body(orderService1.getTotalIncome());
     }
     @GetMapping(path = "orders/customerOfOrders")
-    public ResponseEntity<ResponseEntity<OrdersDone>> CustomersOfOrders() {
-        return ResponseEntity.(CustomersOfOrders());
+    public ResponseEntity<List<OrdersDone>> CustomersOfOrders() {
+            return ResponseEntity.ok().body(orderService1.CustomersOfOrders());
     }
     @PostMapping(path = "user/order")
     public ResponseEntity<?> order( @RequestHeader(name="Authorization") String token1){
