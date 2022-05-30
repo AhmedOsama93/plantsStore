@@ -34,7 +34,7 @@ public class ordersController {
     private ResponseEntity<Integer>getTotalIncome(){
         return ResponseEntity.ok().body(orderService1.getTotalIncome());
     }
-    @GetMapping(path = "orders/customerOfOrders")
+    @GetMapping(path = "Orders/customerOfOrders")
     public ResponseEntity<List<OrdersDone>> CustomersOfOrders() {
             return ResponseEntity.ok().body(orderService1.CustomersOfOrders());
     }
