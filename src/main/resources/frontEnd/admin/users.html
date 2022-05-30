@@ -44,7 +44,7 @@
                 if (this.readyState == 4 && this.status == 200) {
                     JSON.parse(this.responseText).forEach(function (data, index) {
                         tbody.innerHTML +=
-                            "<tr><td>" + data.id + "</td>" +
+                            "<tr>"+
                             "<td>" + data.fName + "</td>" +
                             "<td>" + data.lName + "</td>" +
                             "<td>" + data.username + "</td>" +
@@ -70,7 +70,6 @@
     <table id="usersTable">
         <thead>
         <tr>
-            <th>ID</th>
             <th>first name</th>
             <th>last name</th>
             <th>email</th>

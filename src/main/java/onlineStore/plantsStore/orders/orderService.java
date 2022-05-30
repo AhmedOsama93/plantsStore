@@ -30,6 +30,25 @@ public class orderService {
         }
         return productSold;
     }
+    public List<Integer>getinOutDooRCount(){
+        List<orders> orders =orderRepository.findAll();
+        int in=0,out=0;
+        for (int i = 0; i < orders.size(); i++) {
+            long productId=orders.get(i).getId().getProductID();
+            product p1 = productRepository.findproductsByID(productId);
+            if(p1!=null){
+                if(p1.isIndoor())
+                    in++;
+                else
+                    out++;
+            }
+        }
+        List<Integer> output=new ArrayList<>();
+        output.add(in);
+        output.add(out);
+        return output;
+
+    }
     public List<orders>getAllOrdersForUser(String username){
         return orderRepository.findOrderByUsername(username);
     }

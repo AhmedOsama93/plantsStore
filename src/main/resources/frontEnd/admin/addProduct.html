@@ -4,14 +4,24 @@
 <head>
     <meta charset="UTF-8">
     <title>addProduct</title>
-    <link rel="stylesheet" href="./css/addproduct.css">
+    <link rel="stylesheet" href="css/addproduct.css">
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
+    <script type="text/javascript" src="addProduct.js"></script>
     <script type="text/javascript" src="adminHeader.js"></script>
-    <script>
 
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
+    <script>
+        var regName = /^[a-zA-Z]+$/;
+        var regPrice = /^[1-1000]+$/;
+
+        var isValidPinputName = false;
+        var isValidPquantity = false;
+        var isValidpPrice = false;
+        var isValidpDec = false;
+        var isValidinputState = false;
         function myFunction() {
             var x = document.getElementById("select").value;
             if (x === "plants")
@@ -20,18 +30,122 @@
                 document.getElementById("plantOptions").style.display = "none";
 
         }
+        function onLoad(){
+
+            var productNameWarning = document.getElementById("productNameWarning");
+            var quantityWarning = document.getElementById("quantityWarning");
+            var priceWarning = document.getElementById("priceWarning");
+            var descriptionWarning = document.getElementById("descriptionWarning");
+            var categoryWarning = document.getElementById("categoryWarning");
+
+        }
         function addNewProduct(){
 
-            let ProductName=document.getElementById("PinputName").value;
-            let Pquantity=document.getElementById("Pquantity").value;
-            let pPrice=document.getElementById("pPrice").value;
-            let pDec=document.getElementById("pDec").value;
+
+            var ProductName = document.getElementById("PinputName").value;
+
+
+            if(ProductName == "")
+            {
+                productNameWarning.classList.remove("warning-hide");
+                productNameWarning.setAttribute('title', 'Name is required')
+                isValidPinputName = false;
+            }
+
+            else {
+                productNameWarning.classList.add("warning-hide");
+                isValidPinputName = true;
+            }
+
+            var Pquantity = document.getElementById("Pquantity").value;
+
+            if(Pquantity < 0 || Pquantity  > 1000)
+            {
+                quantityWarning.classList.remove("warning-hide");
+                quantityWarning.setAttribute('title', 'Quantity should not be less than 0 or more than 1000')
+                isValidPquantity = false;
+            }
+
+            else if(Pquantity == "")
+            {
+                quantityWarning.classList.remove("warning-hide");
+                quantityWarning.setAttribute('title', 'Quantity is required')
+                isValidPquantity = false;
+            }
+
+            else{
+                quantityWarning.classList.add("warning-hide");
+                isValidPquantity = true;
+            }
+
+            var pPrice=document.getElementById("pPrice").value;
+
+            if(pPrice == "")
+            {
+                priceWarning.classList.remove("warning-hide");
+                priceWarning.setAttribute('title', 'Price should not be less than 1 or more than 1000')
+                isValidpPrice = false;
+            }
+
+            if(pPrice < 1 || pPrice > 1000)
+            {
+                priceWarning.classList.remove("warning-hide");
+                priceWarning.setAttribute('title', 'Price should not be less than 1 or more than 1000')
+                isValidpPrice = false;
+            }
+
+            else{
+                priceWarning.classList.add("warning-hide");
+                isValidpPrice = true;
+            }
+
+
+            var pDec=document.getElementById("pDec").value;
+
+            if(pDec == "")
+            {
+                descriptionWarning.classList.remove("warning-hide");
+                descriptionWarning.setAttribute('title', 'Description is required')
+                isValidpDec = false;
+            }
+
+            else{
+                descriptionWarning.classList.add("warning-hide");
+                isValidpDec = true;
+            }
+
+            var select = document.getElementById("select").value;
+
+            if(select == "")
+            {
+                categoryWarning.classList.remove("warning-hide");
+                categoryWarning.setAttribute('title', 'Category is required')
+                isValidinputState = false;
+            }
+
+            else{
+                categoryWarning.classList.add("warning-hide");
+                isValidinputState = true;
+            }
+
+            if(isValidPinputName && isValidPquantity && isValidpPrice && isValidpDec && isValidinputState)
+            {
+                alert("Success");
+            }
+            else
+            {
+
+                return false;
+
+            }
+
+
             let catigory=document.getElementById("select").value;
             let pSeason=document.getElementById("pSeason").value;
             let pSoil=document.getElementById("pSoil").value;
             var pIndoor=false;
             if(document.getElementById("pIndoor").value==="in door"){
-                pIndoor=true;
+                 pIndoor=true;
             }
 
             const url = 'http://localhost:8081/admin/addNewProduct';
@@ -59,8 +173,7 @@
             });
             fetch(request).then((response)=>{
                 if (response.ok){
-                    console.log("done")
-                    window.location.href = "products.html";
+                    // window.location.href = "../products.html";
                     return response.json();
                 }
             }).catch(e=>{
@@ -68,7 +181,7 @@
             })
         }
 
-    
+
     </script>
     <style>
         body{
@@ -78,41 +191,45 @@
 </head>
 
 <body >
-    <div id="header"></div>
-    <div class="main">
-        <br>
-        <H2 style="text-align: center">ADD NEW PRODUCT</H2>
-        <form name="product">
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label>Product Name:</label>
-                    <input type="text" class="form-control" id="PinputName" placeholder="Product Name">
-                </div>
-                <div class="form-group col-md-6">
-                    <label >Available quantity</label>
-                    <input type="number" name="quantity" class="form-control" id="Pquantity" placeholder="quantity">
-                </div>
+<div id="header"></div>
+<div class="main">
+    <br>
+    <H2 style="text-align: center">ADD NEW PRODUCT</H2>
+    <form name="product" onload="onLoad()">
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label>Product Name:</label>
+                <input  type="text" class="form-control" id="PinputName" placeholder="Product Name">
+                <i id="productNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
             </div>
-            <div class="form-group">
-                <label >Price</label>
-                <input type="number" name="Price" class="form-control" id="pPrice" placeholder="Price">
+            <div class="form-group col-md-6">
+                <label >Available quantity</label>
+                <input type="number" name="quantity" class="form-control" id="Pquantity" placeholder="quantity">
+                <i id="quantityWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
             </div>
-            <div class="form-group">
-                <label >Description</label>
-                <input type="text" name="description" class="form-control" id="pDec" placeholder="Description">
-            </div>
+        </div>
+        <div class="form-group">
+            <label >Price</label>
+            <input type="number" name="Price" class="form-control" id="pPrice" placeholder="Price">
+            <i id="priceWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+        </div>
+        <div class="form-group">
+            <label >Description</label>
+            <input type="text" name="description" class="form-control" id="pDec" placeholder="Description">
+            <i id="descriptionWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+        </div>
 
-            <div class="form-group ">
-                <label >Category</label>
-                <select id="select"name="category" onchange="myFunction()" id="inputState" class="form-control">
-                    <option selected></option>
-                    <option value="plants">plants</option>
-                    <option value="tools">tools</option>
-                    <option value="fertilizers">fertilizers</option>
-                </select>
-                
+        <div class="form-group ">
+            <label >Category</label>
+            <select id="select"name="category" onchange="myFunction()"  class="form-control">
+                <option selected></option>
+                <option value="plants">plants</option>
+                <option value="tools">tools</option>
+                <option value="fertilizers">fertilizers</option>
+            </select>
+            <i id="categoryWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
 
-        <p id="plantOptions" style="display: none">
+            <p id="plantOptions" style="display: none">
                 <label>season:</label>
                 <select name="season" id="pSeason" class="form-control">
                     <option></option>
@@ -121,8 +238,8 @@
                     <option value="autumn">autumn</option>
                     <option value="spring">spring</option>
                 </select>
-                
-                
+
+
                 <label>soil:</label>
                 <select class="form-control" id="pSoil" name="soil">
                     <option></option>
@@ -133,7 +250,7 @@
                     <option value="Chalk Soil">Chalk Soil</option>
                     <option value="CLoam Soi">Loam Soi</option>
                 </select>
-            <label>in Door:</label>
+                <label>in Door:</label>
                 <select class="form-control" id="pIndoor" name="indoor">
                     <option></option>
                     <option value="in door">in door</option>
@@ -141,17 +258,17 @@
 
                 </select>
             </p>
-    
 
-            </div>
 
-            <div>
+        </div>
 
-                <button onclick = "addNewProduct()" value="add product" type="submit" class="btn btn-primary">Submit</button>
-            </div>
+        <div>
 
-        </form>
-    </div>
+            <button  id="sub"  onclick = " return addNewProduct()" value="add product" type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+</div>
 
 
 

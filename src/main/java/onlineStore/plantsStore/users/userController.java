@@ -106,7 +106,7 @@ public class userController {
         return ResponseEntity.ok().body(userService.isUser(username));
     }
     @PostMapping(path = "/admin/addRoleToUser")
-    public ResponseEntity<?>addRoleToUser( RoleToUserForm form){
+    public ResponseEntity<?>addRoleToUser(RoleToUserForm form){
         userService.addRoleToUser(form.getEmail(), form.getRoleName());
         return ResponseEntity.ok().build();
     }
@@ -125,7 +125,7 @@ public class userController {
 
 
     @PostMapping(path="admin/editUserForAdmin")
-    public ResponseEntity<?> editUserForAdmins(@RequestBody users user){
+    public ResponseEntity<?> editUserForAdmins(users user){
         userService.editUserForAdmins(user);
         return ResponseEntity.ok().build();
     }

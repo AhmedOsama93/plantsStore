@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>addProduct</title>
-    <link rel="stylesheet" href="./css/addproduct.css">
+    <link rel="stylesheet" href="css/addproduct.css">
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -33,6 +34,10 @@
     </style>
     <script>
 
+        function onLoad(){
+            var productIDWarning = document.getElementById("productIDWarning");
+        }
+
         function myFunction() {
             var x = document.getElementById("myText").value;
             var xhttp = new XMLHttpRequest();
@@ -59,7 +64,35 @@
                 }
             };
         }
+        function onSubmitClick()
+        {
+            var isValidID = false;
+            var myText=document.getElementById("myText").value;
+
+            if(myText == "")
+            {
+                productIDWarning.classList.remove("warning-hide");
+                productIDWarning.setAttribute('title', 'ID is required')
+                isValidID = false;
+            }
+
+            else{
+                productIDWarning.classList.add("warning-hide");
+                isValidID = true;
+            }
+
+            if(isValidID){
+                alert("Success");
+                return  true;
+            }
+            else{
+                return false;
+            }
+        }
         function deleteProduct(){
+            if(!onSubmitClick())
+                return false;
+
             let id=document.getElementById("myText").value;
 
             const url = 'http://localhost:8081/admin/deleteProduct/'+id;
@@ -81,7 +114,7 @@
                     return response.json();
                 }
             }).catch(e=>{
-                alert('cant add product');
+                alert('cant delete product');
             })
         }
     </script>
@@ -97,6 +130,7 @@
             <div class="form-group">
                 <label >Product ID</label>
                 <input onchange="myFunction()" name="id"  type="number" id="myText" class="form-control" placeholder="id">
+                <i id="productIDWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
             </div>
 
             <table id="productTable" >
@@ -118,9 +152,8 @@
 
             <div>
 
-                <button onclick="deleteProduct()" type="submit" class="btn btn-primary" style="background-color: red;border-color: darkred">DELETE</button>
-<!--                <button onclick="window.location.href='products.html'" type="submit"-->
-<!--                    class="btn btn-primary">cancel</button>-->
+                <button onclick="return deleteProduct()" type="submit" class="btn btn-primary" style="background-color: red;border-color: darkred">DELETE</button>
+
             </div>
 
         </form>

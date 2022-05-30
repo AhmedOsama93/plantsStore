@@ -43,6 +43,7 @@
             h.append('Authorization', token);
 
             let formData = new FormData();
+            formData.append("id", id);
             formData.append("name", ProductName);
             formData.append("category", catigory);
             formData.append("quantityAvailable", Pquantity);

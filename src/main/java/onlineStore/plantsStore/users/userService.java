@@ -65,15 +65,20 @@ public class userService  implements UserDetailsService {
     public void addRoleToUser(String email,String roleName){
         users user=usersRepository.findusersByEmail(email);
         if(roleName.equals("ROLE_ADMIN")){
+            Role r1 = roleRepo.findByName("ROLE_USER");
+            Role r2 = roleRepo.findByName("ROLE_ADMIN");
             user.setAdmin(true);
             user.setActive(1);
+            user.getRoles().add(r1);
+            user.getRoles().add(r2);
         }
-        else if (roleName.equals("ROLE_USER"))
+        else if (roleName.equals("ROLE_USER")){
+            Role r1 = roleRepo.findByName("ROLE_USER");
             user.setActive(1);
+            user.getRoles().add(r1);
+        }
         Role role=roleRepo.findByName(roleName);
         if(!user.getRoles().contains(role)){
-                user.setActive(1);
-            user.getRoles().add(role);
             usersRepository.save(user);
         }
     }
@@ -140,7 +145,8 @@ public class userService  implements UserDetailsService {
             throw new IllegalStateException("email is taken");
         }else {
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRoles(null);
+            Role r1 = roleRepo.findByName("ROLE_USER");
+            user.getRoles().add(r1);
             user.setSeller(false);
             user.setActive(1);
             user.setAdmin(false);
@@ -208,8 +214,15 @@ public class userService  implements UserDetailsService {
         }
     }
 
-    public void editUserForAdmins(users user){
-        usersRepository.save(user);
+    public void editUserForAdmins(users newUser){
+//        users oldUser =usersRepository.findusersByEmail(newUser.getUsername());
+//            oldUser.setfName(newUser.getfName());
+//            oldUser.setlName(newUser.getlName());
+//            oldUser.setPhoneNo(newUser.getPhoneNo());
+//            oldUser.setAddress1(newUser.getAddress1());
+//            oldUser.setAddress2(newUser.getAddress2());
+//            oldUser.setCity(newUser.getCity());
+            usersRepository.save(newUser);
     }
 
 

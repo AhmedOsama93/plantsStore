@@ -27,19 +27,48 @@
                     console.log(data1);
 
                     var data = google.visualization.arrayToDataTable([
-                        ['Task', 'Hours per Day'],
+                        ['season', 'Plants We Have'],
                         [data1[0].season, data1[0].productNo],
                         [data1[1].season, data1[1].productNo],
                         [data1[2].season, data1[2].productNo],
                         [data1[3].season, data1[3].productNo]
                     ]);
                     var options = {
-                        title: 'plants we are selling',
+                        title: 'Plants We Are Selling',
                         'width': 500, 'height': 300, pieHole: 0.4
                     };
                     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
                     chart.draw(data, options);
+                }
+            }
+
+            var xhttpc2 = new XMLHttpRequest();
+            xhttpc2.open("GET", "http://localhost:8081/admin/getInOutDoorCount", true);
+            xhttpc2.setRequestHeader("Authorization", token);
+            xhttpc2.send();
+            xhttpc2.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+
+                    const cahrt2data = this.responseText;
+                    console.log("data2");
+                    console.log(cahrt2data);
+                    var v1 = parseInt(cahrt2data[1]);
+                    var v2 = parseInt(cahrt2data[3]);
+                    console.log(v1);
+                    console.log(v2);
+                    var data22 = google.visualization.arrayToDataTable([
+                        ['season', 'plants we Sold'],
+                        ['in Door', v1 ],
+                        ['out Door', v2 ],
+                    ]);
+                    var options2 = {
+                        title: 'Plants We Sold ',
+                        pieHole: 0.4,
+                    };
+                    var chart2 = new google.visualization.PieChart(document.getElementById('donutchart'));
+
+                    chart2.draw(data22, options2);
                 }
 
             }
@@ -81,78 +110,11 @@
             }
         }
     </script>
-    <script type="text/javascript">
 
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ['Dinosaur', 'Length'],
-                ['Acrocanthosaurus (top-spined lizard)', 12.2],
-                ['Albertosaurus (Alberta lizard)', 9.1],
-
-                ['Ultrasaurus (ultra lizard)', 30.5],
-                ['Velociraptor (swift robber)', 1.8]]);
-
-            var options = {
-                title: 'Lengths of dinosaurs, in meters',
-                legend: { position: 'none' },
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
-            chart.draw(data, options);
-        }
-    </script>
     <script type="text/javascript" src="loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load("current", { packages: ["corechart"] });
-        google.charts.setOnLoadCallback(drawChart);
-        function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-                ["Task", "Hours per Day"],
-                ["Work", 11],
-                ["Eat", 2],
-                ["Commute", 2],
-                ["Watch TV", 2],
-                ["Sleep", 7],
-            ]);
 
-            var options = {
-                title: "My Daily Activities",
-                pieHole: 0.4,
-            };
 
-            var chart = new google.visualization.PieChart(
-                document.getElementById("donutchart")
-            );
-            chart.draw(data, options);
-        }
-    </script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
-        google.charts.load('current', { 'packages': ['corechart'] });
-        google.charts.setOnLoadCallback(drawChart);
-
-        function drawChart() {
-
-            var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Work', 11],
-                ['Eat', 2],
-                ['Commute', 2],
-                ['Watch TV', 2],
-                ['Sleep', 7]
-            ]);
-
-            var options = {
-                title: 'My Daily Activities'
-            };
-
-            var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-            chart.draw(data, options);
-        }
-    </script>
     <script type="text/javascript" src="loader.js"></script>
     <script type="text/javascript">
         google.charts.load("current", { packages: ["bar"] });

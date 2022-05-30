@@ -71,7 +71,6 @@ public class productService {
         if(product1!=null){
             throw new IllegalStateException("product name already exists");
         }else {
-            System.out.println(product);
             if(product.getSeason()==null||product.getSeason().equals(",")||product.getSeason().equals("")){
                 product.setSeason(null);
             }
@@ -80,10 +79,18 @@ public class productService {
             }
             productRepository.save(product);
         }
-        System.out.println(product);
     }
 
     public void editProduct(product product){
-        productRepository.save(product);
+
+
+            if(product.getSeason()==null||product.getSeason().equals(",")||product.getSeason().equals("")){
+                product.setSeason(null);
+            }
+            if(product.getSoil()==null||product.getSoil().equals(",")||product.getSoil().equals("")){
+                product.setSoil(null);
+            }
+            productRepository.save(product);
+
     }
 }
