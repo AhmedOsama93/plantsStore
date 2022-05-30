@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <title>products</title>
+        <title>top products</title>
         <script type="text/javascript" src="adminHeader.js"></script>
         <style>
             body{
@@ -30,8 +30,10 @@
 
             function listAllProducts() {
                 var xhttp = new XMLHttpRequest();
+                let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1NDUxNTcxN30.w1_2cHpnzqg9mo_6S2_LCTCtVl7-oNDFlVNMitp14rc"
+
                 xhttp.open("GET", "http://localhost:8081/user/getTopProduct", true);
-                xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo");
+                xhttp.setRequestHeader("Authorization",token);
                 xhttp.send();
 
                 xhttp.onreadystatechange = function () {
