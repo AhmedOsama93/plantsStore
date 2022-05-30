@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <title>edit user</title>
     <link rel="stylesheet" href="./css/addproduct.css">
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
@@ -33,11 +35,36 @@
     </style>
     <script>
 
-        function myFunction() {
+        var regName = /^[a-zA-Z]+$/;
+        var regPhone = /^[0-9]+$/;
+        var isValiduserName = false;
+        var isValidFirstName = false;
+        var isValidLastName = false;    
+       
+        var isValidPhone = false;
+        var isValidCity = false;
+        var isValidAddress1 = false;
+        var isValidAddress2 = false;
+
+
+    function onLoad(){
+        var userNameWarning = document.getElementById("userNameWarning");
+        var firstNameWarning = document.getElementById("firstNameWarning");
+        var lastNameWarning = document.getElementById("lastNameWarning");
+    
+        var phoneWarning = document.getElementById("phoneWarning");
+        var cityWarning = document.getElementById("cityWarning");
+        var address1Warning = document.getElementById("address1Warning");
+        var address2Warning = document.getElementById("address2Warning");
+    }
+
+        function myFunction() {//there is another token
+            let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1NDUxNTcxN30.w1_2cHpnzqg9mo_6S2_LCTCtVl7-oNDFlVNMitp14rc"
+
             var x = document.getElementById("myText").value;
             var xhttp = new XMLHttpRequest();
             xhttp.open("GET", "http://localhost:8081/admin/getUserData/"+x, true);
-            xhttp.setRequestHeader("Authorization","Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1MzkxMDc4MH0.5nwQlSIZJZdY1rF6vfeYV-3hzk6YB0AOgrCJGSVOozo");
+            xhttp.setRequestHeader("Authorization",token);
             xhttp.send();
 
             xhttp.onreadystatechange = function () {
@@ -65,6 +92,141 @@
         }
 
         function editUser(){
+
+        var myText = document.getElementById("myText").value;
+
+        if(!regName.test(myText) && myText != ""){
+            userNameWarning.classList.remove("warning-hide");
+            userNameWarning.setAttribute('title', 'only alphabets are allowed')
+            isValiduserName = false;
+        }
+         else if (regName.test(myText)){
+            userNameWarning.classList.add("warning-hide");
+            isValiduserName = true;
+        }
+        else if(myText == "")
+        {
+            userNameWarning.classList.remove("warning-hide");
+            userNameWarning.setAttribute('title', 'User name is required')
+            isValiduserName = false;
+        }
+
+        var firstName = document.getElementById("fname").value;
+        if(!regName.test(firstName) && firstName != ""){
+            firstNameWarning.classList.remove("warning-hide");
+            firstNameWarning.setAttribute('title', 'only alphabets are allowed')
+            isValidFirstName = false;
+        }
+        else if (regName.test(firstName)){
+            firstNameWarning.classList.add("warning-hide");
+            isValidFirstName = true;
+        }
+        else if(firstName == "")
+        {
+            firstNameWarning.classList.remove("warning-hide");
+            firstNameWarning.setAttribute('title', 'First name is required')
+            isValidFirstName = false;
+        }
+
+
+        var lastName = document.getElementById("lname").value;
+        if(!regName.test(lastName) && lastName != ""){
+            lastNameWarning.classList.remove("warning-hide");
+            lastNameWarning.setAttribute('title', 'only alphabets are allowed')
+            isValidLastName = false;
+        }
+        else if (regName.test(lastName)){
+            lastNameWarning.classList.add("warning-hide");
+            isValidLastName = true;
+        }
+        else if(lastName == "")
+        {
+            lastNameWarning.classList.remove("warning-hide");
+            lastNameWarning.setAttribute('title', 'Last name is required')
+            isValidLastName = false;
+        }
+
+        var Address1 = document.getElementById("Address1").value;
+    
+        if(Address1 == "")
+        {
+            address1Warning.classList.remove("warning-hide");
+            address1Warning.setAttribute('title', 'Address is required')
+            isValidAddress1 = false;
+        }
+
+        else {
+            address1Warning.classList.add("warning-hide");
+            isValidAddress1 = true;
+        }
+
+
+        var Address2 = document.getElementById("Address2").value;
+    
+        if(Address2 == "")
+        {
+            address2Warning.classList.remove("warning-hide");
+            address2Warning.setAttribute('title', 'Address is required')
+            isValidAddress2 = false;
+        }
+
+        else {
+            address2Warning.classList.add("warning-hide");
+            isValidAddress2 = true;
+        }
+
+        var City = document.getElementById("city").value;
+        if(!regName.test(City) && City != ""){
+            cityWarning.classList.remove("warning-hide");
+            cityWarning.setAttribute('title', 'only alphabets are allowed')
+            isValidCity = false;
+        }
+        else if (regName.test(City)){
+            cityWarning.classList.add("warning-hide");
+            isValidCity = true;
+        }
+        else if(City == "")
+        {
+            cityWarning.classList.remove("warning-hide");
+            cityWarning.setAttribute('title', 'City is required')
+            isValidCity = false;
+        }
+
+        var phone = document.getElementById("phoneno").value;
+        if(!regPhone.test(phone) && phone != "")
+        {
+            {
+                phoneWarning.classList.remove("warning-hide");
+                phoneWarning.setAttribute('title', 'Only numbers are allowed')
+                isValidPhone = false;
+            }
+        }
+        else if(phone == "")
+        {
+            phoneWarning.classList.remove("warning-hide");
+            phoneWarning.setAttribute('title', 'Phone is required')
+            isValidPhone = false;
+        }   
+        else if(regPhone.test(phone))
+        {
+            {
+                phoneWarning.classList.add("warning-hide");
+            
+                isValidPhone = true;
+            }
+        }
+
+        
+    if(isValiduserName && isValidFirstName && isValidLastName && isValidPhone && isValidCity && isValidAddress1 
+         && isValidAddress2 )
+        {
+            alert("Success");
+        }
+        else {
+            return false;
+        }
+    
+
             let username=document.getElementById("myText").value;
             let fName=document.getElementById("fname").value;
             let lName=document.getElementById("lname").value;
@@ -113,11 +275,13 @@
     <div class="main">
         <br>
         <H2 style="text-align: center;">EDIT USER</H2>
-        <form name="users">
+        <form name="users" onload="onLoad()">
 
             <div class="form-group">
                 <label >Username</label>
                 <input onchange="myFunction()" name="id"  type="text" id="myText" class="form-control" placeholder="username">
+                <i id="userNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
             </div>
 
             <table id="userTable" >
@@ -138,32 +302,44 @@
             <div class="form-group">
                 <label >Fname</label>
                 <input type="text" class="form-control"  id="fname" placeholder="fname">
+                <i id="firstNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
             </div>
             <div class="form-group">
                 <label >Lname</label>
                 <input type="text" class="form-control" id="lname" placeholder="lname">
+                <i id="lastNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
             </div>
             <div class="form-group">
                 <label >phone number</label>
                 <input type="text" class="form-control" id="phoneno" placeholder="phone number">
+                <i id="phoneWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
             </div>
             <div class="form-group">
                 <label >Address 1</label>
                 <input type="text" class="form-control" id="Address1" placeholder="Address 1">
+                <i id="address1Warning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
             </div>
             <div class="form-group">
                 <label >Address 2</label>
                 <input type="text" class="form-control" id="Address2" placeholder="Address 2">
+                <i id="address2Warning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
             </div>
             <div class="form-group">
                 <label >City</label>
                 <input type="text" class="form-control" id="city" placeholder="City">
+                <i id="cityWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
             </div>
 
             <br>
             <div>
                 <br>
-                <button type="submit" onclick="editUser()" class="btn btn-primary" >EDIT</button>
+                <button type="submit" onclick=" return editUser()" class="btn btn-primary" >EDIT</button>
             </div>
 
         </form>

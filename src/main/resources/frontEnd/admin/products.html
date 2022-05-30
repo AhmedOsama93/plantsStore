@@ -33,7 +33,7 @@
             function listAllProducts() {
                 let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1NDUxNTcxN30.w1_2cHpnzqg9mo_6S2_LCTCtVl7-oNDFlVNMitp14rc";
                 var xhttp = new XMLHttpRequest();
-                xhttp.open("GET", "http://localhost:8081/visitor/getProduct", true);
+                xhttp.open("GET", "http://localhost:8081/admin/getAllProduct", true);
                 xhttp.setRequestHeader("Authorization",token);
                 xhttp.send();
 
@@ -50,6 +50,7 @@
                                 "</td>" + "<td>" + data.price +
                                 "</td>" + "<td>" + data.season +
                                 "</td>" + "<td>" + data.soil +
+                                "</td>" + "<td>" + data.numOrderd +
                                 "</td>" + "<td>" + data.indoor +
                                 "</td>" + "<td>" + data.active + "</td></tr>";
                         });
@@ -73,6 +74,7 @@
                         <th>Price</th>
                         <th>season</th>
                         <th>soil</th>
+                        <th>Sold Count</th>
                         <th>in door</th>
                         <th>Active</th>
                     </tr>
@@ -82,8 +84,7 @@
             <br>
             <button onclick="window.location.href='addProduct.html'" class="btn btn-primary">add product</button>
             <button onclick="window.location.href='editProduct.html'" class="btn btn-primary">edit product</button>
-            <button onclick="window.location.href='#'" class="btn btn-primary">delete product</button>
-<!--            <button onclick="window.location.href='deleteProduct.html'" class="btn btn-primary">delete product</button>-->
+            <button onclick="window.location.href='DeActivate.html'" class="btn btn-primary">Activate/DeActivate product</button>
         </div>
     </body>
 </html>

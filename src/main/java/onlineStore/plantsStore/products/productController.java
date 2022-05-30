@@ -25,11 +25,19 @@ public class productController {
     }
     @GetMapping(path="visitor/getProduct")
     public ResponseEntity<List<product>> getProduct(){
-        return ResponseEntity.ok().body(productService.getProducts());
+        return ResponseEntity.ok().body(productService.getActiveProducts());
+    }
+    @GetMapping(path="admin/getAllProduct")
+    public ResponseEntity<List<product>> getAllProduct(){
+        return ResponseEntity.ok().body(productService.getAllProducts());
     }
     @GetMapping(path="user/getProductByID/{id}")
     public ResponseEntity<product> getProductById(@PathVariable long id){
-        return ResponseEntity.ok().body(productService.getProductById(id));
+        return ResponseEntity.ok().body(productService.getActiveProductById(id));
+    }
+    @GetMapping(path="admin/getProductByIdForAdmin/{id}")
+    public ResponseEntity<product> getProductByIdForAdmin(@PathVariable long id){
+        return ResponseEntity.ok().body(productService.getByIdForAdmin(id));
     }
     @GetMapping(path="user/getTopProduct")
     public ResponseEntity<List<product>> getTopProduct(){
@@ -46,9 +54,14 @@ public class productController {
         productService.addNewProduct(product);
         return ResponseEntity.ok().build();
     }
-    @PostMapping(path="admin/deleteProduct/{id}")
-    public ResponseEntity<?>deleteProduct(@PathVariable long id){
-        productService.deleteProduct(id);
+    @PostMapping(path="admin/deActivateProduct/{id}")
+    public ResponseEntity<?>deActivateProduct(@PathVariable long id){
+        productService.deActivateProduct(id);
+        return ResponseEntity.ok().build();
+    }
+    @PostMapping(path="admin/ActivateProduct/{id}")
+    public ResponseEntity<?>activateProduct(@PathVariable long id){
+        productService.ActivateProduct(id);
         return ResponseEntity.ok().build();
     }
     @PostMapping(path="admin/editProduct")

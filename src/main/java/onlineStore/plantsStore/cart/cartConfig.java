@@ -10,17 +10,18 @@ import java.util.List;
 
 @Configuration
 public class cartConfig {
-    @Bean
-    CommandLineRunner commandLineRunner3(cartRepository cartRepository){
+//    @Bean
+//    CommandLineRunner commandLineRunner3(cartRepository cartRepository){
+//
+//        return args -> {
+//            cart c = new cart(
+//                    new cartIdentity("admin@gmail.com",5)
+//                    ,5
+//            );
+//            cartRepository.saveAll(List.of(c));
+//        };
+//    }
 
-        return args -> {
-            cart c = new cart(
-                    new cartIdentity("admin@gmail.com",5)
-                    ,5
-            );
-            cartRepository.saveAll(List.of(c));
-        };
-    }
 //    @Bean
 //    public WebMvcConfigurer corsConfigurer3() {
 //        return new WebMvcConfigurer() {

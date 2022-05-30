@@ -12,18 +12,18 @@ import java.util.List;
 
 @Configuration
 public class orderConfig {
-    @Bean
-    CommandLineRunner orderCommandLineRunner( orderRepository orderRepository){
-
-        return args -> {
-            orders o = new orders(
-                    new orderIdentity("admin@gmail.com",2,3)
-                    , LocalDateTime.now()
-                    ,5
-                    ,"delivered"
-
-            );
-            orderRepository.saveAll(List.of(o));
-        };
-    }
+//    @Bean
+//    CommandLineRunner orderCommandLineRunner( orderRepository orderRepository){
+//
+//        return args -> {
+//            orders o = new orders(
+//                    new orderIdentity("admin@gmail.com",2,3)
+//                    , LocalDateTime.now()
+//                    ,5
+//                    ,"delivered"
+//
+//            );
+//            orderRepository.saveAll(List.of(o));
+//        };
+//    }
 }

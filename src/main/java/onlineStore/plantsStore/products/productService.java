@@ -18,13 +18,20 @@ public class productService {
         this.productRepository=productRepository;
     }
 
-    public List<product> getProducts(){
+    public List<product> getActiveProducts(){
+        return productRepository.getActiveProducts();
+    }
+    public List<product> getAllProducts(){
         return productRepository.findAll();
     }
     public int getProductCount(){
         return productRepository.findAll().size();
     }
-    public product getProductById(long id){
+
+    public product getActiveProductById(long id){
+        return productRepository.findActiveProductsByID(id);
+    }
+    public product getByIdForAdmin(long id){
         return productRepository.findproductsByID(id);
     }
 
@@ -43,9 +50,15 @@ public class productService {
         return p2;
     }
 
-    public void deleteProduct(long id){
+    public void deActivateProduct(long id){
         product p =productRepository.getById(id);
-        productRepository.delete(p);
+        p.setActive(false);
+        productRepository.save(p);
+    }
+    public void ActivateProduct(long id){
+        product p =productRepository.getById(id);
+        p.setActive(true);
+        productRepository.save(p);
     }
     public SeasonStat[] getSeasonStat(){
         SeasonStat s1 = new SeasonStat();
@@ -77,6 +90,7 @@ public class productService {
             if(product.getSoil()==null||product.getSoil().equals(",")||product.getSoil().equals("")){
                 product.setSoil(null);
             }
+            product.setActive(true);
             productRepository.save(product);
         }
     }

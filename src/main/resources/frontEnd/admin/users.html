@@ -45,6 +45,13 @@
                 tbody.innerHTML = "";
                 if (this.readyState == 4 && this.status == 200) {
                     JSON.parse(this.responseText).forEach(function (data, index) {
+                        let state;
+                        if(data.active===0)
+                            state="inactive";
+                        else if(data.active===1)
+                            state="active";
+                        else if(data.active===2)
+                            state="suspended";
                         tbody.innerHTML +=
                             "<tr>"+
                             "<td>" + data.fName + "</td>" +
@@ -52,7 +59,7 @@
                             "<td>" + data.username + "</td>" +
                             "<td>" + data.phoneNo + "</td>" +
                             "<td>" + data.admin + "</td>" +
-                            "<td>" + data.active + "</td></tr>"
+                            "<td>" + state + "</td></tr>"
 
                         ;
                     });

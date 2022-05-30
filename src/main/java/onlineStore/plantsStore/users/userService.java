@@ -90,10 +90,9 @@ public class userService  implements UserDetailsService {
             user.setActive(2);
             user.getRoles().remove(r);
         }
-//        else if(user.getActive()==2){
-//            user.setActive(1);
-//            user.getRoles().add(r);
-//        }
+        else if(user.getActive()==0){
+            user.setActive(2);
+        }
         usersRepository.save(user);
     }
     public void activateUser(String email){
@@ -201,9 +200,9 @@ public class userService  implements UserDetailsService {
             user1.setCity(user.getCity());
         }
     }
-    public void verifyCode(String code){
+    public void verifyCode(String code){//check
         users user1 = usersRepository.findusersByVC(code);
-        if(user1!=null&&user1.getVerifyCode().equals(code)){
+        if(user1!=null&&user1.getVerifyCode().equals(code) && user1.getActive()==0){
             user1.setActive(1);
             user1.setVerifyCode(null);
             Role r = roleRepo.findByName("ROLE_USER");
