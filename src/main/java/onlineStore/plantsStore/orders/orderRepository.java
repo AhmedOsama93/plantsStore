@@ -22,7 +22,7 @@ public interface orderRepository extends JpaRepository<orders, orderIdentity> {
     List<orders> findLastMonthOrders(LocalDateTime lastMonth);
 
     @Query("select distinct o.dayOfMonth from orders o where o.orderDate>?1")
-    List<Integer> findLastMonthOrdersDayCount(LocalDateTime lastMonth);
+    List<LocalDateTime> findLastMonthOrdersDayCount(LocalDateTime lastMonth);
 
 
 }

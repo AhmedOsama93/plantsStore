@@ -130,8 +130,11 @@
             xhttp.send();
             xhttp.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
+                    console.log("----------------")
                     console.log(this.responseText);
                     let jsonData = JSON.parse(this.responseText);
+                    console.log("----------------")
+                    console.log(JSON.parse(this.responseText));
                     var formateData = [];
                     formateData.push([]);
                     for (let i = 0; i < jsonData.length; i++) {
@@ -156,7 +159,7 @@
                                 0: { side: "bottom", label: "last month days" }, // Top x-axis.
                             },
                         },
-                        bar: { groupWidth: "100%" },
+                        bar: { groupWidth: "90%" },
                     };
 
                     var chart = new google.charts.Bar(document.getElementById("top_x_div"));

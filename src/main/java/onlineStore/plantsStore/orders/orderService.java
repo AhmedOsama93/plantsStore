@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import onlineStore.plantsStore.cart.cart;
 import onlineStore.plantsStore.products.product;
 import onlineStore.plantsStore.users.users;
+import org.hibernate.mapping.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import javax.persistence.Table;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -123,7 +125,7 @@ public class orderService {
             orderIdentity oi = new orderIdentity(cartList.get(i).getId().getUsername(),
                     cartList.get(i).getId().getProductID(),orderNo
                     );
-            orders o = new orders(oi, LocalDateTime.now(), LocalDateTime.now().getDayOfMonth(),cartList.get(i).getQuantity(),"Ordered");
+            orders o = new orders(oi, LocalDateTime.now(), LocalDateTime.now().withHour(0).withMinute(0).withSecond(0).withNano(0),cartList.get(i).getQuantity(),"Ordered");
             orders.add(o);
         }
         return orders;
@@ -151,7 +153,7 @@ public class orderService {
         List<orders>allorders= orderRepository.findLastMonthOrders(lastMonth);
         int dayCount = orderRepository.findLastMonthOrdersDayCount(lastMonth).size();
 
-        List<Integer> days = new ArrayList<>();
+        List<LocalDateTime> days = new ArrayList<>();
         List<Double> daysProfit = new ArrayList<>();
         List<dayStat> finalStat = new ArrayList<>();
         for (int i = 0; i < allorders.size(); i++) {
@@ -170,12 +172,17 @@ public class orderService {
             finalStat.get(i).day=days.get(i);
             finalStat.get(i).profit=daysProfit.get(i);
         }
+        Collections.sort(finalStat);
         return finalStat;
     }
 
 }
 @Data
-class dayStat{
-    int day;
+class dayStat implements Comparable<dayStat>{
+    LocalDateTime day;
     double profit;
+    @Override
+    public int compareTo(dayStat o) {
+        return this.day.compareTo(o.day);
+    }
 }
