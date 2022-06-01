@@ -175,6 +175,10 @@ public class orderService {
         Collections.sort(finalStat);
         return finalStat;
     }
+    public String getOrderDate(String username,long productID,int orderNo){
+        LocalDateTime date =  orderRepository.findOrderByUserAndProduct(username,productID,orderNo).getOrderDate();
+        return date.getDayOfMonth()+" / "+date.getMonthValue()+" / "+date.getYear();
+    }
 
 }
 @Data

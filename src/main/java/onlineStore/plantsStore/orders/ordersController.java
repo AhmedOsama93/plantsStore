@@ -72,7 +72,16 @@ public class ordersController {
         orderService1.orderCartItem(username,productID);
         return ResponseEntity.ok().build();
     }
+    @GetMapping(path = "user/getOrderDate/{productId}/{orderNo}")
+    private ResponseEntity<String>getOrderDate(@RequestHeader(name="Authorization") String token1, @PathVariable long productId, @PathVariable int orderNo){
+        Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
+        JWTVerifier verifier = JWT.require(algorithm).build();
+        String token = token1.substring("Bearer ".length());
+        DecodedJWT decodedJWT= verifier.verify(token);
+        String username = decodedJWT.getSubject();
 
+        return ResponseEntity.ok().body(orderService1.getOrderDate(username, productId,orderNo));
+    }
     @GetMapping(path = "admin/getMonthSelling")
     public ResponseEntity<List<dayStat>> getMonthSelling(){
         return ResponseEntity.ok().body(orderService1.getMonthSelling());
