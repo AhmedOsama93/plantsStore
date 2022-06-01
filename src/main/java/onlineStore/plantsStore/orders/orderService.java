@@ -119,6 +119,7 @@ public class orderService {
             productRepository.save(p);
         }
     }
+
     public List<orders> cartToOrder(List<cart> cartList,int orderNo){
         List<orders> orders = new ArrayList<>();
         for (int i = 0; i < cartList.size(); i++) {
@@ -130,8 +131,9 @@ public class orderService {
         }
         return orders;
     }
+
     public List<OrdersDone> CustomersOfOrders(){
-        List<OrdersDone>ords = new ArrayList<OrdersDone>();
+        List<OrdersDone>ords = new ArrayList<>();
         List<orders>orders = orderRepository.findAll();
         for (int i = 0; i < orders.size(); i++) {
             users user ;
@@ -146,6 +148,33 @@ public class orderService {
             ords.add(ordersDone);
         }
         return ords;
+    }
+
+    public List<Integer> aboutOrders(){
+        List<orders>orders = orderRepository.findAll();
+        List<Integer>Quant = new ArrayList<>();
+        List<Integer>aboutOrders=new ArrayList<>();
+        Integer sum = 0;
+        Integer More5 = 0, less5=0;
+        for (orders o:orders) {
+            sum+=o.getQuantity();
+            if (o.getQuantity()>5){
+                More5++;
+            }
+            else {
+                less5++;
+            }
+            Quant.add(o.getQuantity());
+        }
+        Integer mn = Collections.min(Quant);
+        Integer mx = Collections.max(Quant);
+        Integer avg = sum/orders.size();
+        aboutOrders.add(mn);
+        aboutOrders.add((int) avg);
+        aboutOrders.add(mx);
+        aboutOrders.add(More5);
+        aboutOrders.add(less5);
+        return aboutOrders;
     }
 
     public List<dayStat> getMonthSelling(){
