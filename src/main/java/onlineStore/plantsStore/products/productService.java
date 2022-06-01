@@ -31,6 +31,9 @@ public class productService {
     public product getActiveProductById(long id){
         return productRepository.findActiveProductsByID(id);
     }
+    public product getActiveProductByName(String name){
+        return productRepository.findActiveProductsByName(name);
+    }
     public product getByIdForAdmin(long id){
         return productRepository.findproductsByID(id);
     }

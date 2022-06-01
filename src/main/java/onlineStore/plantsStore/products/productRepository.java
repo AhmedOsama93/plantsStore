@@ -17,6 +17,8 @@ public interface productRepository extends JpaRepository<product,Long> {
     product findproductsByID(long id);
     @Query("select p from product p where p.id=?1 and p.active=TRUE")
     product findActiveProductsByID(long id);
+    @Query("select p from product p where p.name=?1 and p.active=TRUE")
+    product findActiveProductsByName(String name);
 
     @Query("select p from product p where p.season=?1")
     List<product> findproductsByseason(String season);

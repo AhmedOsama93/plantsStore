@@ -35,6 +35,10 @@ public class productController {
     public ResponseEntity<product> getProductById(@PathVariable long id){
         return ResponseEntity.ok().body(productService.getActiveProductById(id));
     }
+    @GetMapping(path="user/getProductByName/{name}")
+    public ResponseEntity<product> getProductByName(@PathVariable String name){
+        return ResponseEntity.ok().body(productService.getActiveProductByName(name));
+    }
     @GetMapping(path="admin/getProductByIdForAdmin/{id}")
     public ResponseEntity<product> getProductByIdForAdmin(@PathVariable long id){
         return ResponseEntity.ok().body(productService.getByIdForAdmin(id));
