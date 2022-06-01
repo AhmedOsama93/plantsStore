@@ -1,11 +1,18 @@
 package onlineStore.plantsStore.orders;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import onlineStore.plantsStore.cart.cart;
 import onlineStore.plantsStore.products.product;
 import onlineStore.plantsStore.users.users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -116,7 +123,7 @@ public class orderService {
             orderIdentity oi = new orderIdentity(cartList.get(i).getId().getUsername(),
                     cartList.get(i).getId().getProductID(),orderNo
                     );
-            orders o = new orders(oi, LocalDateTime.now(),cartList.get(i).getQuantity(),"Ordered");
+            orders o = new orders(oi, LocalDateTime.now(), LocalDateTime.now().getDayOfMonth(),cartList.get(i).getQuantity(),"Ordered");
             orders.add(o);
         }
         return orders;
@@ -138,4 +145,37 @@ public class orderService {
         }
         return ords;
     }
+
+    public List<dayStat> getMonthSelling(){
+        LocalDateTime lastMonth = LocalDateTime.now().minus (30, ChronoUnit.DAYS);
+        List<orders>allorders= orderRepository.findLastMonthOrders(lastMonth);
+        int dayCount = orderRepository.findLastMonthOrdersDayCount(lastMonth).size();
+
+        List<Integer> days = new ArrayList<>();
+        List<Double> daysProfit = new ArrayList<>();
+        List<dayStat> finalStat = new ArrayList<>();
+        for (int i = 0; i < allorders.size(); i++) {
+            if(!days.contains(allorders.get(i).getDayOfMonth())){
+                days.add(allorders.get(i).getDayOfMonth());
+                daysProfit.add(0.0);
+                finalStat.add(new dayStat());
+            }
+        }
+        for (int i = 0; i <allorders.size(); i++) {
+            int dayIndex = days.indexOf(allorders.get(i).getDayOfMonth());
+            double price = productRepository.getById(allorders.get(i).getId().getProductID()).getPrice();
+            daysProfit.set(dayIndex,daysProfit.get(dayIndex)+allorders.get(i).getQuantity() * price);
+        }
+        for (int i = 0; i < dayCount; i++) {
+            finalStat.get(i).day=days.get(i);
+            finalStat.get(i).profit=daysProfit.get(i);
+        }
+        return finalStat;
+    }
+
+}
+@Data
+class dayStat{
+    int day;
+    double profit;
 }

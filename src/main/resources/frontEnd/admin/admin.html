@@ -31,7 +31,8 @@
                         [data1[0].season, data1[0].productNo],
                         [data1[1].season, data1[1].productNo],
                         [data1[2].season, data1[2].productNo],
-                        [data1[3].season, data1[3].productNo]
+                        [data1[3].season, data1[3].productNo],
+                        [data1[4].season, data1[4].productNo]
                     ]);
                     var options = {
                         title: 'Plants We Are Selling',
@@ -121,33 +122,49 @@
         google.charts.setOnLoadCallback(drawStuff);
 
         function drawStuff() {
-            var data = new google.visualization.arrayToDataTable([
-                ["Move", "Percentage"],
-                ["King's pawn (e4)", 44],
-                ["Queen's pawn (d4)", 31],
-                ["Knight to King 3 (Nf3)", 12],
-                ["Queen's bishop pawn (c4)", 10],
-                ["Other", 3],
-            ]);
+            var xhttp = new XMLHttpRequest();
+            let token = "Bearer "+"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJyb2xlcyI6WyJST0xFX0FETUlOIiwiUk9MRV9VU0VSIl0sImlzcyI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MS9sb2dpbiIsImV4cCI6MTY1NDUxNTcxN30.w1_2cHpnzqg9mo_6S2_LCTCtVl7-oNDFlVNMitp14rc"
 
-            var options = {
-                width: 800,
-                legend: { position: "none" },
-                chart: {
-                    title: "Chess opening moves",
-                    subtitle: "popularity by percentage",
-                },
-                axes: {
-                    x: {
-                        0: { side: "top", label: "White to move" }, // Top x-axis.
-                    },
-                },
-                bar: { groupWidth: "90%" },
-            };
+            xhttp.open("GET", "http://localhost:8081/admin/getMonthSelling", true);
+            xhttp.setRequestHeader("Authorization",token);
+            xhttp.send();
+            xhttp.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    console.log(this.responseText);
+                    let jsonData = JSON.parse(this.responseText);
+                    var formateData = [];
+                    formateData.push([]);
+                    for (let i = 0; i < jsonData.length; i++) {
+                        formateData.push([]);
+                        formateData[i+1][0] = jsonData[i].day;
+                        formateData[i+1][1] = jsonData[i].profit;
+                    }
+                    console.log(formateData);
+                    formateData[0][0]="last month days";
+                    formateData[0][1]="selling in dollars";
+                    var data = new google.visualization.arrayToDataTable(formateData);
 
-            var chart = new google.charts.Bar(document.getElementById("top_x_div"));
-            // Convert the Classic options to Material options.
-            chart.draw(data, google.charts.Bar.convertOptions(options));
+                    var options = {
+                        width: 800,
+                        legend: { position: "none" },
+                        chart: {
+                            title: "EARNINGS LAST MONTH",
+                            subtitle: "selling in dollars",
+                        },
+                        axes: {
+                            x: {
+                                0: { side: "bottom", label: "last month days" }, // Top x-axis.
+                            },
+                        },
+                        bar: { groupWidth: "100%" },
+                    };
+
+                    var chart = new google.charts.Bar(document.getElementById("top_x_div"));
+                    // Convert the Classic options to Material options.
+                    chart.draw(data, google.charts.Bar.convertOptions(options));
+                }
+            }
+
         }
     </script>
     <link href="css/theme.css" rel="stylesheet" media="all">
@@ -221,7 +238,7 @@
                             <div class="col-md-6 col-lg-4"
                                 style="flex: 0 0 45.333333%;max-width: 80.333333%;margin: auto;">
                                 <div class="chart-percent-2">
-                                    <h3 class="title-3 m-b-30">Histogram</h3>
+<!--                                    <h3 class="title-3 m-b-30">Histogram</h3>-->
                                     <div class="chart-wrap">
                                         <div class="chartjs-size-monitor"
                                             style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">

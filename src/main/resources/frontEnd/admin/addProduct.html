@@ -130,7 +130,7 @@
 
             if(isValidPinputName && isValidPquantity && isValidpPrice && isValidpDec && isValidinputState)
             {
-                alert("Success");
+                // alert("Success");
             }
             else
             {
@@ -174,10 +174,11 @@
             fetch(request).then((response)=>{
                 if (response.ok){
                     // window.location.href = "../products.html";
-                    return response.json();
+                    // return response.json();
+                    // alert('product added');
                 }
             }).catch(e=>{
-                alert('cant add product');
+                // alert('cant add product');
             })
         }
 
@@ -237,7 +238,7 @@
                     <option value="winter">winter</option>
                     <option value="autumn">autumn</option>
                     <option value="spring">spring</option>
-                    <option value="allyear">all year</option>
+                    <option value="all year">all year</option>
                 </select>
 
 

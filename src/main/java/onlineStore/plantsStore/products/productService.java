@@ -76,7 +76,12 @@ public class productService {
         SeasonStat s4 = new SeasonStat();
         s4.season="spring";
         s4.productNo=productRepository.findproductsByseason(s4.season).size();
-        SeasonStat[] arr ={s1,s2,s3,s4};
+
+        SeasonStat s5 = new SeasonStat();
+        s5.season="all year";
+        s5.productNo=productRepository.findproductsByseason(s5.season).size();
+
+        SeasonStat[] arr ={s1,s2,s3,s4,s5};
         return arr;
     }
     public void addNewProduct(product product){

@@ -13,6 +13,7 @@ public class orders {
     @EmbeddedId
     private orderIdentity id;
     private LocalDateTime orderDate;
+    private int dayOfMonth;
     private int quantity;
     private String state;
 
