@@ -3,36 +3,102 @@
         <title>Home</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/home.css">
+    <style>
+        #banner {
+            width: 1128px; height: 90px; background-color: #090B20; animation: createBanner 0.50s ease-out 0.25s 1 backwards;
+        }
+        #logo {
+            height: 90px; background-color: #090B20; animation: flyLogo 0.75s ease-in-out 1s 1 backwards;
+        }
+        #bannerText {
+            font-family: 'Lato', sans-serif; color:#FFFFFF; text-align: center;
+            text-transform: uppercase; font-size: 150%; margin: 0; animation: flyBannerText 1s ease-in-out 2s 1 backwards;
+        }
+        #button {
+            text-align: center; margin-top: 15px; margin-bottom: 50px; animation: flyButton 1s ease-in-out 2.5s 1 backwards;
+        }
+        .link {
+            text-decoration: none; font-family: 'Lato', sans-serif; font-size: 20px; font-weight: bold; color:#FFFFFF; text-transform: uppercase; background-color: #090B20; padding: 20px 15px 20px 15px; text-align: center; border: 2px solid #4CAF50; border-color: #FFFFFF;
+        }
+        .Link:hover {
+            color: #090B20;background-color: #FFFFFF;
+        }
+        @keyframes flyLogo {
+            0% {opacity: 0; background-color:#090B20; }
+            100% {opacity: 1}
+        }
+        @keyframes createBanner {
+            0% {height: 0px;}
+            100% {height: 90px;}
+        }
+        @keyframes flyBannerText {
+            0% {opacity: 0; background-color:#090B20; }
+            100% {opacity: 1}
+        }
+        @keyframes flyButton {
+            0% {opacity: 0; margin-left:74px; margin-right:76px; margin-top: 15px; margin-bottom: 50px;  background-color:#090B20; }
+            100% {opacity: 1}
+        }
+    </style>
 </head>
 <body>
-    <nav >
-       <ul class="ul">
-          <img src="img/logo3.png" class="logo">
-          <li><a href="../Verfication/logIn.html" id  = "state">LOG IN</a></li>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="../User/profile.html">Profile</a></li>
-          <div class="searchDiv">
-              <li class="cart"><a href="../User/Cart.html">
-                  CART
-                    <label for="text" style="color: #ED3B3B; margin-left: 5px; font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;;">
-                        3
-                    </label></a></li>
-              <button class="searchButton">SEARCH</button>
-              <input type="text" class="search" placeholder="SEARCH">
-          </div>
-       </ul>
-    </nav>
+        <nav>
+        <ul class="ul">
+            <img src="img/logo3.png" class="logo">
+            <li><button onclick="log()" id="logState" style="background-color:#406E3F; color: white; border: #406E3F; margin-top: 16px; margin-left: 10px;">LOG IN</button></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="../User/profile.html">Profile</a></li>
+            <div class="searchDiv">
+                <li class="cart">
+                    <a href="../User/Cart.html">
+                        CART
+                    <label class = "cartSize" style="color: #ED3B3B; margin-left: 5px; font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;;">
+                    </label>
+                    </a>
+                </li>
+                <li class="ordered">
+                    <a href="../User/orders.html">
+                        ORDERED
+                    <label class = "cartSize" style="color: #ED3B3B; margin-left: 5px; font-size: 20px; font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;;">
+                    </label>
+                    </a>
+                </li>
+                <button class="searchButton">SEARCH</button>
+                <input type="text" class="search" placeholder="SEARCH">
+            </div>
+        </ul>
+
+        </nav>
+
         <div class="grid-container"></div>
         <div style="flex-grow:1"></div>
+        <table id="banner" cellpadding="0" cellspacing="0" border="0" >
+            <tr>
+                <td id="logo" width="20%">
+                    <img src="logo.png" height="90px">
+                </td>
+                <td width="10%">
+                </td>
+                <td id="bannerText" width="20%">
+                    <h4 style="margin: 0; text-align: center;">Helping Startups Globally</h4>
+                </td>
+                <td width="10%">
+                </td>
+                <td id="button" width="40%">
+                    <a class="link" href="https://www.pixpal.net/">Let's Do This!</a>
+                </td>
+            </tr>
+        </table>
+
         <div id="footer">
             <ul class="footerUL">
                 <div>
                     <img src="img/f.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
-                    <li><a href="https://www.facebook.com">Facebook</a></li>
+                    <li><a href="https://www.facebook.com/Dracaena.Plants">Facebook</a></li>
                 </div>
                 <div>
                     <img src="img/i.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
-                    <li><a href="https://www.instagram.com">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/Dracaena.Plants">Instagram</a></li>
                 </div>
                 <div>
                     <img src="img/w.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
@@ -43,6 +109,7 @@
                     <li><a href="https://www.linkedin.com">LinkedIn</a></li>
                 </div>  
             </ul>
+
         </div>
           
     <script src="js/script.js"></script>       

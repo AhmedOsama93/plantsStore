@@ -80,18 +80,18 @@ margin: 20px;
     margin-left: auto; 
     margin-right: 0;
 }
-.orderAll{
+.deleteAll{
     
-    background-color: #406E3F;
+    background-color: #A70000;
     color: white;
     margin: 0.5px;
     width: 68%;
 
     height: 45px; 
-    border: 1px solid green;
+    border: 1px solid #A70000;
     border-radius: 10px;
     transition: 0.08s;
-    box-shadow: 0 4px 8px 0 #406E3F;
+    box-shadow: 0 4px 8px 0 #A70000;
 }
 .order, .delete{
     background-color: #406E3F;

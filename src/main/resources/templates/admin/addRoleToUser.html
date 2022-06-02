@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>add role to user</title>
+    <link rel="stylesheet" href="css/addproduct.css">
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type="text/javascript" src="adminHeader.js"></script>
+
+    <style>
+        body{
+            background:#F1F1F1
+        }
+        table {
+            font-family: arial, sans-serif;
+            background: #ffffff;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #90EE90;
+        }
+    </style>
+    <script>
+
+        /*function onLoad(){
+    
+            var productNameWarning = document.getElementById("productNameWarning");
+            var quantityWarning = document.getElementById("quantityWarning");
+            
+    
+        }*/
+
+        function refreshuser() {
+            let token = "Bearer "+ sessionStorage.getItem('accessToken');
+
+            var x = document.getElementById("myText").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "http://localhost:8081/admin/getUserData/"+x, true);
+            xhttp.setRequestHeader("Authorization",token);
+            xhttp.send();
+
+            xhttp.onreadystatechange = function () {
+                var tbody = document.getElementById("userTable").querySelector("tbody");
+                tbody.innerHTML = "";
+                if (this.readyState == 4 && this.status == 200) {
+                   const data =JSON.parse(this.responseText);
+
+                    tbody.innerHTML +=
+                        "<tr>" +
+                        "<td>" + data.fName + "</td>" +
+                        "<td>" + data.lName + "</td>" +
+                        "<td>" + data.username + "</td>" +
+                        "<td>" + data.phoneNo + "</td>" +
+                        "<td>" + data.admin + "</td>" +
+                        "<td>" + data.active + "</td></tr>";
+
+                }
+            };
+        }
+        function onSubmitClick()
+        {
+            var isValidUserName = false;
+            var isValidSelection = false;
+
+
+            var myText=document.getElementById("myText").value;
+            var select = document.getElementById("role").value;
+
+            if(myText == "")
+            {
+                userNameWarning.classList.remove("warning-hide");
+                userNameWarning.setAttribute('title', 'User name is required')
+                isValidUserName = false;
+            }
+
+            else{
+                userNameWarning.classList.add("warning-hide");
+                isValidUserName = true;
+            }
+
+            if(select == "")
+            {
+                selectWarning.classList.remove("warning-hide");
+                selectWarning.setAttribute('title', 'Role is required')
+                isValidSelection = false;
+            }
+
+            else{
+                selectWarning.classList.add("warning-hide");
+                isValidSelection = true;
+            }
+
+            if(isValidUserName && isValidSelection){
+                alert("Success");
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        function addRole(){
+            if(!onSubmitClick())
+                return false;
+
+
+            let username=document.getElementById("myText").value;
+            let role=document.getElementById("role").value;
+            const url = 'http://localhost:8081/admin/addRoleToUser';
+            let token = "Bearer "+ sessionStorage.getItem('accessToken');
+
+            let h = new Headers();
+            h.append('Accept', 'application/json');
+            h.append('Authorization', token);
+
+            let formData = new FormData();
+            formData.append("email", username);
+            formData.append("roleName", role);
+
+            let request = new Request(url,{
+                method: 'POST',
+                headers: h,
+                body: formData,
+                mode:'cors'
+            });
+            fetch(request).then((response)=>{
+                if (response.ok){
+                    // window.location.href = "../products.html";
+                }
+            }).catch(e=>{
+            })
+        }
+    </script>
+</head>
+
+<body >
+    <div id="header"></div>
+    <div class="main">
+        <br>
+        <H2 style="text-align: center;">ADD ROLE TO USER</H2>
+        <form name="RoleToUserForm" >
+
+            <div class="form-group">
+                <label >Username</label>
+                <input onchange="refreshuser()" name="id" type="text" id="myText" class="form-control" placeholder="username">
+                <i id="userNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+
+            <table id="userTable" >
+                <thead>
+                <tr>
+                    <th>first name</th>
+                    <th>last name</th>
+                    <th>email</th>
+                    <th>phone No</th>
+                    <th>admin</th>
+                    <th>active</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+
+            <br>
+            <div>
+
+                <select class="form-control" name="RoleToUserForm" id="role">
+                    <option></option>
+                    <option value="ROLE_ADMIN">Admin</option>
+                    <option value="ROLE_USER">User</option>
+
+                </select>
+                <i id="selectWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+                <br>
+                <button vtype="submit" onclick="return addRole()" class="btn btn-primary" >ADD ROLE</button>
+
+            </div>
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

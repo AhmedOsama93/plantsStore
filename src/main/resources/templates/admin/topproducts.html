@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>top products</title>
+        <script type="text/javascript" src="adminHeader.js"></script>
+        <style>
+            body{
+                background:#F1F1F1
+            }
+            table {
+                font-family: arial, sans-serif;
+                background: #ffffff;
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            td, th {
+                border: 1px solid #dddddd;
+                text-align: left;
+                padding: 8px;
+            }
+
+            tr:nth-child(even) {
+                background-color: #90EE90;
+            }
+        </style>
+        <script>
+            listAllProducts();
+
+            function listAllProducts() {
+                var xhttp = new XMLHttpRequest();
+                let token = "Bearer "+ sessionStorage.getItem('accessToken');
+                xhttp.open("GET", "http://localhost:8081/user/getTopProduct", true);
+                xhttp.setRequestHeader("Authorization",token);
+                xhttp.send();
+
+                xhttp.onreadystatechange = function () {
+                    var tbody = document.getElementById("productTable").querySelector("tbody");
+                    tbody.innerHTML = "";
+                    if (this.readyState == 4 && this.status == 200) {
+                        JSON.parse(this.responseText).forEach(function (data, index) {
+                            tbody.innerHTML +=
+                                "<tr>" +
+                                "<td>" + (index+1) +
+                                "</td>" +
+                                "<td>" + data.id +
+                                "</td>" +  "<td>" + data.name +
+
+                                "</td>" +  "<td>" + data.numOrderd +
+                                "</td>" + "<td>" + data.price +
+                                "</td>" + "<td>" + data.price * data.numOrderd+ ' $'+
+
+                                "</td>" + "<td>" + data.category +
+                                "</td>" + "<td>" + data.quantityAvailable +
+
+                                "</td>" + "<td>" + data.season +
+                                "</td>" + "<td>" + data.soil +
+                                "</td> </tr>";
+                        });
+                    }
+                };
+            }
+        </script>
+    </head>
+    <body>
+        <div id="header"></div>
+        <div class="main">
+            <h2>Top 10 Products Sold:</h2>
+
+            <table id="productTable">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>ID</th>
+                        <th>product name</th>
+
+                        <th>Sold Count</th>
+                        <th>Price</th>
+                        <th>Earnings from this product</th>
+
+                        <th>Category</th>
+                        <th>available quantity</th>
+
+                        <th>season</th>
+                        <th>soil</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <br>
+
+        </div>
+    </body>
+</html>

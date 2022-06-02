@@ -19,24 +19,18 @@ function sign(){
         if (xhr.readyState === 4 && xhr.status === 200) {
             window.location.href = "verify.html";
         }
+        if(xhr.status !== 200){
+            alert('Already Signed up!')
+        }
     };
     var data =JSON.stringify( {
-        "getfName": fname,
-        "getlName": lname,
+        "fName": fname,
+        "lName": lname,
         "username":username,
         "password": password,
-        "verifyCode": "string",
-        "verifyCodePassword": "string",
         "phoneNo": phone,
         "address1": address,
-        "address2": "string",
         "city": city,
-        "completeContactInfo": true,
-        "numOfOrders": 0,
-        "active": 0,
-        "seller": true,
-        "admin": true,
-        "contactInfoComplete": true
       });
     xhr.send(data);
 }

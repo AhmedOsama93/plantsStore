@@ -14,18 +14,9 @@ function verify(){
     });
     fetch(request).then((response)=>{
             if (response.ok){
-                
-                window.location.href = "../home/index.html";
-                sessionStorage.setItem('state', 'loggedIn');
-                return response.json();
+                window.location.href = "login.html";
             }
-    }).then(e=>{
-        console.log(e);
-    sessionStorage.setItem('accessToken',e.access_token);
-    console.log(sessionStorage.getItem('accessToken'));
-            
     }).catch(e=>{
         alert('Invalid Verification Code');
     })
-
 }

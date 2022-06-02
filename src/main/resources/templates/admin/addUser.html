@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>addProduct</title>
+    <link rel="stylesheet" href="css/addproduct.css">
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type="text/javascript" src="adminHeader.js"></script>
+
+    <style>
+        body{
+            background:#F1F1F1
+        }
+        table {
+            font-family: arial, sans-serif;
+            background: #ffffff;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #90EE90;
+        }
+    </style>
+    <script>
+        var regName = /^[a-zA-Z]+$/;
+        var regPhone = /^[0-9]+$/;
+        var isValiduserName = false;
+        var isValidFirstName = false;
+        var isValidLastName = false;    
+        var isValidPassword = false;
+        var isValidConfirmation = false;
+        var isValidPhone = false;
+        var isValidCity = false;
+        var isValidAddress1 = false;
+        var isValidAddress2 = false;
+
+
+function onLoad(){
+    var userNameWarning = document.getElementById("userNameWarning");
+    var firstNameWarning = document.getElementById("firstNameWarning");
+    var lastNameWarning = document.getElementById("lastNameWarning");
+    var passwordWarning = document.getElementById("passwordWarning");
+    var confirmationWarning = document.getElementById("confirmationWarning");
+    var phoneWarning = document.getElementById("phoneWarning");
+    var cityWarning = document.getElementById("cityWarning");
+    var address1Warning = document.getElementById("address1Warning");
+    var address2Warning = document.getElementById("address2Warning");
+}
+function onSubmitClick(){
+    var username = document.getElementById("myText").value;
+
+    if(!regName.test(username) && username != ""){
+        userNameWarning.classList.remove("warning-hide");
+        userNameWarning.setAttribute('title', 'only alphabets are allowed')
+        isValiduserName = false;
+    }
+    else if (regName.test(username)){
+        userNameWarning.classList.add("warning-hide");
+        isValiduserName = true;
+    }
+    else if(username == "")
+    {
+        userNameWarning.classList.remove("warning-hide");
+        userNameWarning.setAttribute('title', 'User name is required')
+        isValiduserName = false;
+    }
+
+
+
+    var firstName = document.getElementById("fname").value;
+    if(!regName.test(firstName) && firstName != ""){
+        firstNameWarning.classList.remove("warning-hide");
+        firstNameWarning.setAttribute('title', 'only alphabets are allowed')
+        isValidFirstName = false;
+    }
+    else if (regName.test(firstName)){
+        firstNameWarning.classList.add("warning-hide");
+        isValidFirstName = true;
+    }
+    else if(firstName == "")
+    {
+        firstNameWarning.classList.remove("warning-hide");
+        firstNameWarning.setAttribute('title', 'First name is required')
+        isValidFirstName = false;
+    }
+
+    var lastName = document.getElementById("lname").value;
+    if(!regName.test(lastName) && lastName != ""){
+        lastNameWarning.classList.remove("warning-hide");
+        lastNameWarning.setAttribute('title', 'only alphabets are allowed')
+        isValidLastName = false;
+    }
+    else if (regName.test(lastName)){
+        lastNameWarning.classList.add("warning-hide");
+        isValidLastName = true;
+    }
+    else if(lastName == "")
+    {
+        lastNameWarning.classList.remove("warning-hide");
+        lastNameWarning.setAttribute('title', 'Last name is required')
+        isValidLastName = false;
+    }
+    
+    
+
+    var password = document.getElementById("password").value;
+
+    if(password == ""){
+        passwordWarning.classList.remove("warning-hide");
+        passwordWarning.setAttribute('title', 'Password is required');
+        isValidPassword = false;
+    }
+    else if(password.length < 8)
+    {
+        passwordWarning.classList.remove("warning-hide");
+        passwordWarning.setAttribute('title', 'Password must contain more than 7 characters');
+        isValidPassword = false;
+    }
+    else{
+        passwordWarning.classList.add("warning-hide");
+        isValidPassword = true;
+    }
+
+    var con = document.getElementById("confirmPassword").value;
+    if(con != password)
+    {
+        confirmationWarning.classList.remove("warning-hide");
+        confirmationWarning.setAttribute('title', 'Password confirmation does not match');
+        isValidConfirmation = false;
+    }
+    else if(con == "")
+    {
+        confirmationWarning.classList.remove("warning-hide");
+        confirmationWarning.setAttribute('title', 'Confirmation is required');
+        isValidConfirmation = false;
+    }
+    else
+    {
+        confirmationWarning.classList.add("warning-hide");
+        isValidConfirmation = true;
+    }
+
+
+    var address1 = document.getElementById("Address1").value;
+    
+     if(address1 == "")
+    {
+        address1Warning.classList.remove("warning-hide");
+        address1Warning.setAttribute('title', 'Address is required')
+        isValidAddress1 = false;
+    }
+
+    else {
+        address1Warning.classList.add("warning-hide");
+        isValidAddress1 = true;
+    }
+
+    var address2 = document.getElementById("Address2").value;
+    
+     if(address2 == "")
+    {
+        address2Warning.classList.remove("warning-hide");
+        address2Warning.setAttribute('title', 'Address is required')
+        isValidAddress2 = false;
+    }
+
+    else {
+        address2Warning.classList.add("warning-hide");
+        isValidAddress2 = true;
+    }
+    
+    var City = document.getElementById("city").value;
+    if(!regName.test(City) && City != ""){
+        cityWarning.classList.remove("warning-hide");
+        cityWarning.setAttribute('title', 'only alphabets are allowed')
+        isValidCity = false;
+    }
+    else if (regName.test(City)){
+        cityWarning.classList.add("warning-hide");
+        isValidCity = true;
+    }
+    else if(City == "")
+    {
+        cityWarning.classList.remove("warning-hide");
+        cityWarning.setAttribute('title', 'City is required')
+        isValidCity = false;
+    }
+    
+    var phone = document.getElementById("phoneno").value;
+    if(!regPhone.test(phone) && phone != "")
+    {
+        {
+            phoneWarning.classList.remove("warning-hide");
+            phoneWarning.setAttribute('title', 'Only numbers are allowed')
+            isValidPhone = false;
+        }
+    }
+    else if(phone == "")
+    {
+        phoneWarning.classList.remove("warning-hide");
+        phoneWarning.setAttribute('title', 'Phone is required')
+        isValidPhone = false;
+    }
+    else if(regPhone.test(phone))
+    {
+        {
+            phoneWarning.classList.add("warning-hide");
+            
+            isValidPhone = true;
+        }
+    }
+
+
+    if(isValiduserName && isValidFirstName && isValidLastName  && isValidPassword  && isValidConfirmation
+       && isValidPhone  
+        && isValidCity 
+        && isValidAddress1 
+         && isValidAddress2 )
+    {
+        alert("Success");
+        return true
+    }
+    else {
+        return false;
+    }
+}
+        function myFunction() {
+
+            let token = "Bearer "+ sessionStorage.getItem('accessToken');
+
+            var x = document.getElementById("myText").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "http://localhost:8081/admin/getUserData/"+x, true);
+            xhttp.setRequestHeader("Authorization",token);
+            xhttp.send();
+
+            xhttp.onreadystatechange = function () {
+                var tbody = document.getElementById("userTable").querySelector("tbody");
+                tbody.innerHTML = "";
+                if (this.readyState == 4 && this.status == 200) {
+                   const data =JSON.parse(this.responseText);
+
+                    tbody.innerHTML +=
+                        "<tr><td>" + data.id + "</td>" +
+                        "<td>" + data.fName + "</td>" +
+                        "<td>" + data.lName + "</td>" +
+                        "<td>" + data.username + "</td>" +
+                        "<td>" + data.phoneNo + "</td>" +
+                        "<td>" + data.admin + "</td>" +
+                        "<td>" + data.active + "</td></tr>";
+                    document.getElementById("fname").value=data.fName;
+                    document.getElementById("lname").value=data.lName;
+                    document.getElementById("phoneno").value=data.phoneNo;
+                    document.getElementById("Address1").value=data.address1;
+                    document.getElementById("Address2").value=data.address2;
+                    document.getElementById("city").value=data.city;
+                }
+            };
+        }
+
+        function addNewUser(){
+            if(!onSubmitClick())
+                return false;
+            let username=document.getElementById("myText").value;
+            let fname=document.getElementById("fname").value;
+            let lname=document.getElementById("lname").value;
+            let phoneno=document.getElementById("phoneno").value;
+            let Address1=document.getElementById("Address1").value;
+            let Address2=document.getElementById("Address2").value;
+            let city=document.getElementById("city").value;
+
+            const url = 'http://localhost:8081/admin/addUserForAdmin';
+            let token = "Bearer "+ sessionStorage.getItem('accessToken');
+            let h = new Headers();
+            h.append('Accept', 'application/json');
+            h.append('Authorization', token);
+
+            let formData = new FormData();
+            formData.append("username", username);
+            formData.append("password", password);
+            formData.append("fName", fname);
+            formData.append("lName", lname);
+            formData.append("phoneNo", phoneno);
+            formData.append("address1", Address1);
+            formData.append("address2", Address2);
+            formData.append("city", city);
+
+            let request = new Request(url,{
+                method: 'POST',
+                headers: h,
+                body: formData,
+                mode:'cors'
+            });
+            fetch(request).then((response)=>{
+                if (response.ok){
+                    // window.location.href = "../products.html";
+                }
+            }).catch(e=>{
+            })
+        }
+    </script>
+</head>
+
+<body >
+    <div id="header"></div>
+    <div class="main">
+        <br>
+        <H2 style="text-align: center;">ADD USER</H2>
+        <form onload="onLoad()">
+
+            <div class="form-group">
+                <label >Username</label>
+                <input  name="id"  type="text" id="myText" class="form-control" placeholder="username">
+                <i id="userNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >password</label>
+                <input type="password" class="form-control" id="password" placeholder="password">
+                <i id="passwordWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >confirm password</label>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="confirm password">
+                <i id="confirmationWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >Fname</label>
+                <input type="text" class="form-control" id="fname" placeholder="fname">
+                <i id="firstNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >Lname</label>
+                <input type="text" class="form-control" id="lname" placeholder="lname">
+                <i id="lastNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >phone number</label>
+                <input type="text" class="form-control" id="phoneno" placeholder="phone number">
+                <i id="phoneWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >Address 1</label>
+                <input type="text" class="form-control" id="Address1" placeholder="Address 1">
+                <i id="address1Warning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >Address 2</label>
+                <input type="text" class="form-control" id="Address2" placeholder="Address 2">
+                <i id="address2Warning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+            <div class="form-group">
+                <label >City</label>
+                <input type="text" class="form-control" id="city" placeholder="City">
+                <i id="cityWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+
+            </div>
+
+            <div>
+                <br>
+                <button type="submit"onclick = "return addNewUser()" class="btn btn-primary" >ADD USER</button>
+            </div>
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

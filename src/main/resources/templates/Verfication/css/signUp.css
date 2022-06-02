@@ -18,7 +18,7 @@ body{
     box-shadow: 0 1px 2px 0 #406E3F;
     border-radius: 20px;
 }
-#email, #user, #pass, #con,#fname,#lName,#city,#phone,#address{
+#email, #user, #pass, #con{
     padding-left: 10px;
     padding-right: 10px;  
     margin: 10px;

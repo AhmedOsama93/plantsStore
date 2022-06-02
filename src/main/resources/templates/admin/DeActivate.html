@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>DeActivate Product</title>
+    <link rel="stylesheet" href="css/addproduct.css">
+    <link rel="stylesheet" href="fontawesome-free-6.1.1-web/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <script type="text/javascript" src="adminHeader.js"></script>
+
+    <style>
+        body{
+            background:#F1F1F1
+        }
+        table {
+            font-family: arial, sans-serif;
+            background: #ffffff;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #90EE90;
+        }
+    </style>
+    <script>
+
+        function onLoad(){
+            var productIDWarning = document.getElementById("productIDWarning");
+        }
+
+        function myFunction() {//there are 3 tokens
+            let token = "Bearer "+ sessionStorage.getItem('accessToken');
+            var x = document.getElementById("myText").value;
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "http://localhost:8081/admin/getProductByIdForAdmin/"+x, true);
+            xhttp.setRequestHeader("Authorization",token);
+            xhttp.send();
+
+            xhttp.onreadystatechange = function () {
+                var tbody = document.getElementById("productTable").querySelector("tbody");
+                tbody.innerHTML = "";
+                if (this.readyState == 4 && this.status == 200) {
+                   const data =JSON.parse(this.responseText);
+                   console.log("data");
+                   console.log(data);
+                        tbody.innerHTML +=
+                            "<tr><td>" + data.id +
+                            "</td>" + "<td>" + data.name +
+                            "</td>" + "<td>" + data.category +
+                            "</td>" + "<td>" + data.quantityAvailable +
+                            "</td>" + "<td>" + data.price +
+                            "</td>" + "<td>" + data.season +
+                            "</td>" + "<td>" + data.soil +
+                            "</td>" + "<td>" + data.active + "</td></tr>";
+                }
+            };
+        }
+        function onSubmitClick()
+        {
+            var isValidID = false;
+            var myText=document.getElementById("myText").value;
+
+            if(myText == "")
+            {
+                productIDWarning.classList.remove("warning-hide");
+                productIDWarning.setAttribute('title', 'ID is required')
+                isValidID = false;
+            }
+
+            else{
+                productIDWarning.classList.add("warning-hide");
+                isValidID = true;
+            }
+
+            if(isValidID){
+                alert("Success");
+                return  true;
+            }
+            else{
+                return false;
+            }
+        }
+        function DeActivate(){
+            if(!onSubmitClick())
+                return false;
+
+            let id=document.getElementById("myText").value;
+
+            const url = 'http://localhost:8081/admin/deActivateProduct/'+id;
+            let token = "Bearer "+ sessionStorage.getItem('accessToken');
+            let h = new Headers();
+            h.append('Accept', 'application/json');
+            h.append('Authorization', token);
+
+            let request = new Request(url,{
+                method: 'POST',
+                headers: h,
+                mode:'cors'
+            });
+
+            fetch(request).then((response)=>{
+                if (response.ok){
+                    // window.location.href = "../products.html";
+                    return response.json();
+                }
+            }).catch(e=>{
+                alert('cant delete product');
+            })
+        }
+        function Activate(){
+            if(!onSubmitClick())
+                return false;
+
+            let id=document.getElementById("myText").value;
+
+            const url = 'http://localhost:8081/admin/ActivateProduct/'+id;
+            let token = "Bearer "+ sessionStorage.getItem('accessToken');
+            let h = new Headers();
+            h.append('Accept', 'application/json');
+            h.append('Authorization', token);
+
+            let request = new Request(url,{
+                method: 'POST',
+                headers: h,
+                mode:'cors'
+            });
+
+            fetch(request).then((response)=>{
+                if (response.ok){
+                    // window.location.href = "../products.html";
+                    return response.json();
+                }
+            }).catch(e=>{
+                alert('cant delete product');
+            })
+        }
+    </script>
+</head>
+
+<body >
+    <div id="header"></div>
+    <div class="main">
+        <br>
+        <H2 style="text-align: center;color: red">DeActivate PRODUCT</H2>
+        <form >
+
+            <div class="form-group">
+                <label >Product ID</label>
+                <input onchange="myFunction()" name="id"  type="number" id="myText" class="form-control" placeholder="id">
+                <i id="productIDWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+            </div>
+
+            <table id="productTable" >
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>product name</th>
+                    <th>Category</th>
+                    <th>available quantity</th>
+                    <th>Price</th>
+                    <th>season</th>
+                    <th>soil</th>
+                    <th>Active</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+<br>
+
+            <div>
+
+                <button onclick="return DeActivate()" type="submit" class="btn btn-primary" style="background-color: red;border-color: darkred">DeActivate</button>
+                <button onclick="return Activate()" type="submit" class="btn btn-primary" >Activate</button>
+
+            </div>
+
+        </form>
+    </div>
+
+
+
+</body>
+
+</html>

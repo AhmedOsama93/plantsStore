@@ -69,7 +69,7 @@ public class userController {
         return ResponseEntity.ok().build();
     }
     @PostMapping(path="visitor/changeForgetPassword")
-    public ResponseEntity<?>forgetPasswordRequest(@RequestBody forgetPasswordForm forgetPasswordForm){
+    public ResponseEntity<?>forgetPasswordRequest(forgetPasswordForm forgetPasswordForm){
         userService.changeForgetPassword(forgetPasswordForm.getCode(),forgetPasswordForm.getNewPassword1(),forgetPasswordForm.getNewPassword2());
         return ResponseEntity.ok().build();
     }
