@@ -39,7 +39,7 @@ public class ordersController {
             return ResponseEntity.ok().body(orderService1.CustomersOfOrders());
     }
     @GetMapping(path = "admin/aboutOrders")
-    public ResponseEntity<List<Integer>> aboutOrders() {
+    public ResponseEntity<List<Double>> aboutOrders() {
         return ResponseEntity.ok().body(orderService1.aboutOrders());
     }
     @PostMapping(path = "user/order")

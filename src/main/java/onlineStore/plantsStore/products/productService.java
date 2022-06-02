@@ -1,21 +1,21 @@
 package onlineStore.plantsStore.products;
 
-import onlineStore.plantsStore.users.usersRepository;
+import onlineStore.plantsStore.orders.orderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class productService {
     private final productRepository productRepository;
-
+    private final orderService orderService;
     @Autowired
-    public productService(productRepository productRepository){
+    public productService(productRepository productRepository, onlineStore.plantsStore.orders.orderService orderService){
         this.productRepository=productRepository;
+        this.orderService = orderService;
     }
 
     public List<product> getActiveProducts(){
@@ -136,6 +136,9 @@ public class productService {
         aboutProductPrice.add(mx);
         aboutProductPrice.add(More200);
         aboutProductPrice.add(less200);
+        List<Double> data2 = new ArrayList<>();
+        data2=orderService.aboutOrders();
+        aboutProductPrice.addAll(data2);
         return aboutProductPrice;
     }
 }

@@ -31,6 +31,9 @@ public class orderService {
         this.usersRepository = usersRepository;
         this.productRepository = productRepository;
     }
+
+
+
     public int getProductSoldCount(){
         List<orders> orders =orderRepository.findAll();
         int productSold=0;
@@ -150,12 +153,12 @@ public class orderService {
         return ords;
     }
 
-    public List<Integer> aboutOrders(){
+    public List<Double> aboutOrders(){
         List<orders>orders = orderRepository.findAll();
-        List<Integer>Quant = new ArrayList<>();
-        List<Integer>aboutOrders=new ArrayList<>();
-        Integer sum = 0;
-        Integer More5 = 0, less5=0;
+        List<Double>Quant = new ArrayList<>();
+        List<Double>aboutOrders=new ArrayList<>();
+        Double sum = 0.0;
+        Double More5 = 0.0, less5=0.0;
         for (orders o:orders) {
             sum+=o.getQuantity();
             if (o.getQuantity()>5){
@@ -164,13 +167,13 @@ public class orderService {
             else {
                 less5++;
             }
-            Quant.add(o.getQuantity());
+            Quant.add((double) o.getQuantity());
         }
-        Integer mn = Collections.min(Quant);
-        Integer mx = Collections.max(Quant);
-        Integer avg = sum/orders.size();
+        Double mn = Collections.min(Quant);
+        Double mx = Collections.max(Quant);
+        Double avg = sum/orders.size();
         aboutOrders.add(mn);
-        aboutOrders.add((int) avg);
+        aboutOrders.add(avg);
         aboutOrders.add(mx);
         aboutOrders.add(More5);
         aboutOrders.add(less5);

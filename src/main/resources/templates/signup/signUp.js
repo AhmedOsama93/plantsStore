@@ -15,6 +15,7 @@ function onLoad(){
 function onSubmitClick(){
     var firstName = document.getElementById("user").value;
     if(!regName.test(firstName) && firstName != ""){
+        console.log("hhhhhhhh")
         firstNameWarning.classList.remove("warning-hide");
         firstNameWarning.setAttribute('title', 'only alphabets are allowed')
         isValidFirstName = false;
@@ -46,7 +47,7 @@ function onSubmitClick(){
         lastNameWarning.setAttribute('title', 'Last name is required')
         isValidLastName = false;
     }
-    
+
     var email = document.getElementById("email").value;
     if(!regEmail.test(email) && email != "")
     {
@@ -105,7 +106,7 @@ function onSubmitClick(){
     if( isValidFirstName && isValidLastName  && isValidEmail  && isValidPassword  && isValidConfirmation )
     {
         alert("Success");
-        
+
     let fname = document.getElementById('fname').value;
     let lname = document.getElementById('lName').value;
     let username = document.getElementById('user').value;
