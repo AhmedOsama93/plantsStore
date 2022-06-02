@@ -104,8 +104,6 @@ public class productService {
     }
 
     public void editProduct(product product){
-
-
             if(product.getSeason()==null||product.getSeason().equals(",")||product.getSeason().equals("")){
                 product.setSeason(null);
             }
@@ -113,6 +111,31 @@ public class productService {
                 product.setSoil(null);
             }
             productRepository.save(product);
-
+    }
+    public List<Double>aboutProductPrice(){
+        List<product>products=productRepository.findAll();
+        List<Double>prices = new ArrayList<>();
+        List<Double>aboutProductPrice=new ArrayList<>();
+        Double sum = 0.0;
+        Double More200 = 0.0, less200=0.0;
+        for (product p:products) {
+            sum+=p.getPrice();
+            if (p.getPrice()>200){
+                More200++;
+            }
+            else {
+                less200++;
+            }
+            prices.add(p.getPrice());
+        }
+        Double mn = Collections.min(prices);
+        Double mx = Collections.max(prices);
+        Double avg = sum/products.size();
+        aboutProductPrice.add(mn);
+        aboutProductPrice.add(avg);
+        aboutProductPrice.add(mx);
+        aboutProductPrice.add(More200);
+        aboutProductPrice.add(less200);
+        return aboutProductPrice;
     }
 }

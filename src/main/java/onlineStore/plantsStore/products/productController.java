@@ -73,7 +73,10 @@ public class productController {
         productService.editProduct(product);
         return ResponseEntity.ok().build();
     }
-
+    @GetMapping(path="admin/aboutProductPrice")
+    public ResponseEntity<List<Double>> aboutProductPrice(){
+        return ResponseEntity.ok().body(productService.aboutProductPrice());
+    }
 }
 @Data
 class SeasonStat{
