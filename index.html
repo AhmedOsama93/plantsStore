@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="css/index.css">
+
+</head>
+<body>
+        <nav>
+              <ul class="ul">
+                <img src="img/logo3.png" class="logo">
+                <li><button onclick="log()" id="logState" style="background-color:#406E3F; color: white; border: #406E3F; margin-top: 16px; margin-left: 10px;">LOG IN</button></li>
+                <li><a href="index.html">Home</a></li>
+              </ul>
+        </nav>
+        <!-- ----------------------------- -->
+        <div class="slideshow-container">
+
+          <!-- Full-width images with number and caption text -->
+          <div class="mySlides fade">
+            <a onclick="chapter('summer')">
+              <img src="img/summer.png" style="width:100%">
+            </a>
+          </div>
+        
+          <div class="mySlides fade">
+            <a onclick="chapter('winter')">
+            <img src="img/winter.png" style="width:100%">
+          </a>
+          </div>
+        
+          <div class="mySlides fade">
+            <a onclick="chapter('spring')">
+            <img src="img/spring.png" style="width:100%;">
+          </a>
+          </div>
+
+          <div class="mySlides fade">
+            <a onclick="chapter('autumn')">
+            <img src="img/autumn.png" style="width:100%">
+          </a>
+          </div>
+        
+          <!-- Next and previous buttons -->
+          <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+          <a class="next" onclick="plusSlides(1)">&#10095;</a>
+        </div>
+        <br>
+        
+        <!-- The dots/circles -->
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+        </div>
+        <!---------------------------->
+
+        <div class="cardDiv">
+              <div class="card">
+                <button onclick="chapter('summer')" class="button">
+                <img src="img/9.png"  class="foto" style="width:100%">
+                <header>
+                  <h1 class = "h1" >Summer</h1>
+                </button>
+              </div>
+              <div class="card">
+                <button onclick="chapter('winter')" class="button">
+                <img   src="img/3.png" class="foto" style="width:100%">
+                 <header>
+                   <h1 class = "h1">Winter</h1>
+                  </button>
+              </div>
+              <div class="card">
+                <button onclick="chapter('spring')"class="button">
+                <img src="img/4.png" class="foto" style="width:100%">
+                 <header>
+                   <h1 class = "h1">Spring</h1>
+                  </button>
+              </div>
+                <div class="card">
+                  <button onclick="chapter('autumn')"class="button">
+                  <img src="img/5.png" class="foto" style="width:100%">
+                  <header>
+                    <h1 class = "h1">Autumn</h1>
+                  </button>
+              </div>
+      </div>
+      <div style="flex-grow:1"></div>
+      <div id="footer">
+        <ul class="footerUL">
+            <div>
+                <img src="img/f.png" style="width: 30px;float: left; height: 30px; margin-top: 10px; margin-left: 16px;">
+                <li><a href="https://www.facebook.com">Facebook</a></li>
+            </div>
+            <div>
+                <img src="img/i.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
+                <li><a href="https://www.instagram.com">Instagram</a></li>
+            </div>
+            <div>
+                <img src="img/w.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
+                <li><a href="https://www.whatsapp.com">WhatsApp</a></li>
+            </div>
+            <div>
+                <img src="img/l.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
+                <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+            </div>  
+        </ul>
+    </div>
+    <script src="js/chapters.js"></script>
+  </body>
+</html>
