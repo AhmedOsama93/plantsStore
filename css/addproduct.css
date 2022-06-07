@@ -1,0 +1,15 @@
+form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 50px auto;
+}
+.warning{
+    color: red;
+    background-color: white;
+    font-size: 20px;
+    border-radius: 50%;
+}
+.warning-hide{
+   display: none !important;
+}
