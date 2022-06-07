@@ -1,0 +1,5 @@
+1. sign up 
+2. log in
+3. verifyCode 
+4. security
+5. sessions
