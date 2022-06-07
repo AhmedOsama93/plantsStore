@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Info</title>
+    <link rel="stylesheet" href="css/form.css">
+</head>
+<body>
+    <nav>
+        <ul class="ul">
+            <img src="../home/img/logo3.png" class="logo">
+            <li><a href="../home/index.html">Home</a></li>
+            <li><a href="profile.html">Profile</a></li> 
+        </ul>
+     </nav>
+    <div class="form">
+        <div>
+            <label for="fname">First name </label><br>
+            <input type="text" id="fname" name="fname" placeholder="First name">
+            <i id="firstNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+            <br>
+            <label for="Lname">Last name </label><br>
+            <input type="text" id="Lname" name="Lname" placeholder="Last name">
+            <i id="lastNameWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+            <br>
+            <label for="Phone">Phone     </label><br>
+            <input type="text" id="phone" name="phone" placeholder="Phone number">
+            <i id="phoneWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+            <br>
+            <label for="Address1">Address1   </label><br>
+            <input type="text" id="address1" name="address1" placeholder="Address">
+            <i id="address1Warning" class="fas fa-exclamation-circle warning warning-hide"></i>
+            <br>
+            <label for="Address2">Address2   </label><br>
+            <input type="text" id="address2" name="address2" placeholder="Second address">
+            <i id="address2Warning" class="fas fa-exclamation-circle warning warning-hide"></i>
+            <br>
+            <label for="City">City   </label><br>
+            <input type="text" id="City" name="City" placeholder="City name">
+            <i id="cityWarning" class="fas fa-exclamation-circle warning warning-hide"></i>
+            <br>
+            <button onclick="edit()" id  ="submit">Submit</button>
+        </div>
+    </div>
+    <div style="flex-grow:1"></div>
+    <div id="footer">
+        <ul class="footerUL">
+            <div>
+                <img src="../home/img/f.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
+                <li><a href="https://www.facebook.com">Facebook</a></li>
+            </div>
+            <div>
+                <img src="../home/img/i.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
+                <li><a href="https://www.instagram.com">Instagram</a></li>
+            </div>
+            <div>
+                <img src="../home/img/w.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
+                <li><a href="https://www.whatsapp.com">WhatsApp</a></li>
+            </div>
+            <div>
+                <img src="../home/img/l.png" style="width: 30px;float: left; height: 30px; margin-top: 10px;">
+                <li><a href="https://www.linkedin.com">LinkedIn</a></li>
+            </div>  
+        </ul>
+    </div>
+    <script src="js/form.js"></script>
+</body>
+</html>
