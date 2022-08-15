@@ -25,7 +25,7 @@ let h = new Headers();
         document.getElementById('name').innerHTML = e.fName;
     })
 }
-getInfo();
+// getInfo();
 function log(){
     if (sessionStorage.getItem('state') == 'loggedIn'){
         sessionStorage.setItem('state','loggedOut');

@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.RequestHeader;
 
 @Controller
 public class pageController {
+    @GetMapping(path="/")
+    public String homePage(){
+        return "home/index.html";
+    }
     @GetMapping(path="/getAdminPage")
     public String adminPage(@RequestHeader(name="Authorization") String token1){
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());

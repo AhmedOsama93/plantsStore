@@ -45,7 +45,7 @@ public class userController {
     }
 
     @PostMapping(path="visitor/registerNewUser")
-    public ResponseEntity<?> registerNewUser(@RequestParam users user){
+    public ResponseEntity<?> registerNewUser(@RequestBody users user){
         userService.addNewUser(user);
         return ResponseEntity.ok().build();
     }
@@ -75,6 +75,7 @@ public class userController {
     }
     @GetMapping(path = "/user/getMyData")
     public ResponseEntity<users>getUserData(@RequestHeader(name="Authorization") String token1){
+
         Algorithm algorithm = Algorithm.HMAC256("secret".getBytes());
         JWTVerifier verifier = JWT.require(algorithm).build();
         String token = token1.substring("Bearer ".length());

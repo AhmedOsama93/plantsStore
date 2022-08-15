@@ -51,11 +51,9 @@
             xhttpc2.onreadystatechange = function () {
                 if (this.readyState === 4 && this.status === 200) {
 
-                    const cahrt2data = this.responseText;
-                    console.log("data2");
-                    console.log(cahrt2data);
-                    var v1 = parseInt(cahrt2data[1]);
-                    var v2 = parseInt(cahrt2data[3]);
+                    const cahrt2data =  JSON.parse(this.responseText);
+                    var v1 = cahrt2data[0];
+                    var v2 = cahrt2data[1];
                     console.log(v1);
                     console.log(v2);
                     var data22 = google.visualization.arrayToDataTable([

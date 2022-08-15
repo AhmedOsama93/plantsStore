@@ -6,7 +6,7 @@ window.onload = function ()
         "<head>\n" +
         "    <style>\n" +
         "        body {\n" +
-        "            font-family: \"Lato\", sans-serif;\n" +
+        "            font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;" +
         "        }\n" +
         "\n" +
         "        .sidenav {\n" +
@@ -16,7 +16,7 @@ window.onload = function ()
         "            z-index: 1;\n" +
         "            top: 0;\n" +
         "            left: 0;\n" +
-        "            background-color: #0dd354;\n" +
+        "            background-color: #00B26F;\n" +
         "            overflow-x: hidden;\n" +
         "            padding-top: 20px;\n" +
         "        }\n" +
@@ -47,16 +47,15 @@ window.onload = function ()
         "<body>\n" +
         "\n" +
         "<div class=\"sidenav\">\n" +
-        "    <h1 style=\"padding-left: 30px\">Dracena </h1>\n" +
+        "   <img src=\"../home/img/logo3.png\" class=\"logo\" style=\"width: 150px; height: 43px; \"> " +
         "\n" +
         "\n" +
-        "    <a href=\"admin.html\">Dashboard</a>\n" +
-        "    <a href=\"users.html\">Users</a>\n" +
-        "    <a href=\"products.html\">Products</a>\n" +
-        "    <a href=\"topproducts.html\">Top 10 Product</a>\n" +
-        "    <a href=\"allOrders.html\">Orders</a>\n" +
-        "    <a href=\"aboutProducts.html\">about product</a>\n" +
-        "    <a href=\"../home/index.html\">User View</a>\n" +
+        "    <a href=\"admin.html\"'><label style=\"font-size:18px; margin-left:20px; \">DASHBOARD</label></a>\n" +
+        "    <a href=\"users.html\"><label style=\"font-size:18px;margin-left:20px; \">USERS</label></a>\n" +
+        "    <a href=\"products.html\"><label style=\"font-size:18px;margin-left:20px; \">PRODUCTS</label></a>\n" +
+        "    <a href=\"topproducts.html\"><label style=\"font-size:18px;margin-left:20px; \">TOP 10 PRODUCTS</label></a>\n" +
+        "    <a href=\"allOrders.html\"><label style=\"font-size:18px; margin-left:20px;\">ORDERS</label></a>\n" +
+        "    <a href=\"../home/index.html\"><label style=\"font-size:18px; margin-left:20px;\">USER VIEW</label></a>\n" +
         "</div>\n" +
         "\n" +
         "</body>\n" +

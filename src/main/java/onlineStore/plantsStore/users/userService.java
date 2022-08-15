@@ -107,15 +107,18 @@ public class userService  implements UserDetailsService {
     public users getUserData(String username){
         return usersRepository.findusersByEmail(username);
     }
+
     public boolean isEmailTaken(String username){
-        if(usersRepository.findusersByEmail(username)!=null)
-            return true;
+        if(usersRepository.findusersByEmail(username)!=null){
+            if(usersRepository.findusersByEmail(username).getActive()!=0)
+                return true;
+        }
         return false;
     }
     public users addNewUser(users user) {
         users user1 = usersRepository.findusersByEmail(user.getUsername());
 
-        if(user1!=null){
+        if(user1!=null&&user1.getActive()!=0){
             if (user1.getActive()!=0){
                 throw new IllegalStateException("email is suspended");
             }
